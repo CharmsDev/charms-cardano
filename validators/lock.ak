@@ -12,6 +12,6 @@ validator lock {
   }
 
   else(_ctx: ScriptContext) {
-    todo @"fallback logic if none of the other purposes match"
+    fail @"invalid redeemer in lock"
   }
 }

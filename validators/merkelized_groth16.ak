@@ -15,7 +15,7 @@ validator merkelized_groth16 {
     merkelized_validator.withdraw(
       groth_verify,
       redeemer
-    )    
+    )
   }
 
   else(_ctx: ScriptContext) {

@@ -11,10 +11,6 @@ validator free_mint(utxo_ref: OutputReference) {
     True
   }
 
-  burn(_datum: Option<Data>, _redeemer: Data, _utxo: OutputReference, _self: Transaction) {
-    True
-  }
-
   else(_ctx: ScriptContext) {
     fail @"invalid redeemer in free_mint"
   }

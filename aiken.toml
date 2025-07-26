@@ -1,13 +1,13 @@
-name = "ikigaitech/charms-contracts"
+name = "charmsdev/charms-cardano"
 version = "0.0.0"
 compiler = "v1.1.17"
 plutus = "v3"
 license = "Apache-2.0"
-description = "Aiken contracts for project 'ikigaitech/charms-contracts'"
+description = "Aiken contracts for project 'charmsdev/charms-cardano'"
 
 [repository]
-user = "ikigaitech"
-project = "charms-contracts"
+user = "charmsdev"
+project = "charms-cardano"
 platform = "github"
 
 [[dependencies]]

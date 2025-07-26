@@ -5,8 +5,13 @@ use cardano/governance.{ProposalProcedure, Voter}
 use cardano/transaction.{Transaction, OutputReference}
 use cardano/script_context.{ScriptContext}
 use aiken_design_patterns/merkelized_validator
+use aiken/crypto.{ScriptHash}
+use charms_cardano/types.{Groth16Inputs, groth16_input_coercer}
+use ak_381/groth16.{Proof, SnarkVerificationKey}
 
-validator main {
+validator main(
+  merkelized_groth16: ScriptHash
+) {
   mint(_redeemer: Data, _policy_id: PolicyId, _self: Transaction) {
 
     /// Confirm the Merkelized Validator has signed the Tx
@@ -14,7 +19,7 @@ validator main {
     todo @"mint logic goes here"
   }
 
-  spend(_datum: Option<Data>, _redeemer: Data, _utxo: OutputReference, _self: Transaction) {
+  spend(_datum: Option<Data>, redeemer: Groth16Inputs, _utxo: OutputReference, self: Transaction) {
     /// Identify Charms - Check for utxos which contain a charms datum / charms native asset
     /// Parse Charms - Retrieve the following parameters from said utxos:
     /// a. Groth Verification Key
@@ -25,23 +30,11 @@ validator main {
     /// Confirm nothing else has been spent from this address
 
     merkelized_validator.delegated_validation(
-      function_input: 
-      staking_validator: merkelized_groth16
-      input_data_coercer: 
+      function_input: redeemer,
+      staking_validator: merkelized_groth16,
+      input_data_coercer: groth16_input_coercer,
       redeemers: self.redeemers
     )
-  }
-
-  burn(_redeemer: Data, _policy_id: PolicyId, _self: Transaction) {
-    /// Identify Charms - Check for utxos which contain a charms datum / charms native asset
-    /// Parse Charms - Retrieve the following parameters from said utxos:
-    /// a. Groth Verification Key
-    /// b. Proof
-    /// c. Public Inputs (App Data, App VK)
-    /// Confirm the params listed in the redeemer match those acquired in step 2
-    /// Confirm the Merkelized Validator has signed the Tx
-    /// [Optional] Confirm a charms asset has been burned
-    todo @"burn logic goes here"
   }
 
   else(_ctx: ScriptContext) {
@@ -81,9 +74,9 @@ test groth_verify_pass_1() {
 
   merkelized_validator.delegated_validation(
     function_input: (vk, pk, public_values),
-    staking_validator: merkelized_groth16.
-    input_data_coercer: 
-    redeemers: self.redeemers,
+    staking_validator: "",
+    input_data_coercer: groth16_input_coercer,
+    redeemers: [Groth16Inputs(vk, pk, public_values)]
   )
 }
 

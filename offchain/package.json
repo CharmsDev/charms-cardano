@@ -1,0 +1,28 @@
+{
+  "name": "offchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate-wallet": "node --loader ts-node/esm scripts/generate-wallet.ts",
+    "print-utxos": "node --loader ts-node/esm scripts/print-utxos.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.0",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.27.1",
+    "dotenv-parse-variables": "^2.0.0",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@lucid-evolution/lucid": "^0.4.29",
+    "@types/jest": "^29.5.14",
+    "dotenv": "^16.5.0",
+    "fs": "^0.0.1-security",
+    "ts-node": "^10.9.2"
+  }
+}

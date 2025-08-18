@@ -1,5 +1,5 @@
 import "dotenv/config";
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import { writeFileSync } from "fs";
 import dotenvParseVariables from "dotenv-parse-variables";
 
@@ -17,7 +17,7 @@ export function getEnv(variable: string): string {
 export function updateEnv(config = {}, eol = "\n") {
   let env = dotenv.config({});
   if (env.error) throw env.error;
-  env = dotenvParseVariables(env.parsed);
+  if (!!env.parsed) env = dotenvParseVariables(env.parsed);
 
   const envContents = Object.entries({ ...env, ...config })
     .map(([key, val]) => `${key}=${val}`)

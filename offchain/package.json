@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "generate-wallet": "node --loader ts-node/esm scripts/generate-wallet.ts",
     "print-utxos": "node --loader ts-node/esm scripts/print-utxos.ts"
@@ -20,6 +21,7 @@
   },
   "dependencies": {
     "@lucid-evolution/lucid": "^0.4.29",
+    "@types/dotenv-parse-variables": "^2.0.3",
     "@types/jest": "^29.5.14",
     "dotenv": "^16.5.0",
     "fs": "^0.0.1-security",

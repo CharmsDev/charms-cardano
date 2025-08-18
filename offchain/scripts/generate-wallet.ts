@@ -1,7 +1,7 @@
 import {
   Blockfrost,
   Lucid,
-  Network,
+  type Network,
   generatePrivateKey,
 } from "@lucid-evolution/lucid";
 import { getEnv, updateEnv } from "./env.ts";

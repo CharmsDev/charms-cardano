@@ -1,0 +1,329 @@
+{
+  "preamble": {
+    "title": "charmsdev/charms-cardano",
+    "description": "Aiken contracts for project 'charmsdev/charms-cardano'",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.19+e525483"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "free_mint.free_mint.mint",
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "parameters": [
+        {
+          "title": "_utxo_ref",
+          "schema": {
+            "$ref": "#/definitions/cardano~1transaction~1OutputReference"
+          }
+        }
+      ],
+      "compiledCode": "5855010100229800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748000c01cdd500144c9289bae30093008375400516401830060013003375400d149a26cac80081",
+      "hash": "3daf8dbb9b6d6c5aaad92dd3657baf28c52dc06dc8ed4b2ccfe2e5b8"
+    },
+    {
+      "title": "free_mint.free_mint.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "parameters": [
+        {
+          "title": "_utxo_ref",
+          "schema": {
+            "$ref": "#/definitions/cardano~1transaction~1OutputReference"
+          }
+        }
+      ],
+      "compiledCode": "5855010100229800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748000c01cdd500144c9289bae30093008375400516401830060013003375400d149a26cac80081",
+      "hash": "3daf8dbb9b6d6c5aaad92dd3657baf28c52dc06dc8ed4b2ccfe2e5b8"
+    },
+    {
+      "title": "lock.lock.spend",
+      "datum": {
+        "title": "_datum",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "compiledCode": "585b01010029800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748008c01cdd500144c8cc898c028004c028c02c004c020dd50014590060c018004c00cdd5003452689b2b200201",
+      "hash": "fc20070d1e5379403add6acbf77b233b2f8240821c187b398525de28"
+    },
+    {
+      "title": "lock.lock.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "585b01010029800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748008c01cdd500144c8cc898c028004c028c02c004c020dd50014590060c018004c00cdd5003452689b2b200201",
+      "hash": "fc20070d1e5379403add6acbf77b233b2f8240821c187b398525de28"
+    },
+    {
+      "title": "main.main.mint",
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "parameters": [
+        {
+          "title": "merkelized_groth16",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1ScriptHash"
+          }
+        }
+      ],
+      "compiledCode": "590267010100229800aba2aba1aba0aab9faab9eaab9dab9a9bae00248888888966002646465300130063754003370e90004c02800e601400491112cc004c00c012264c6eb8c038c02cdd5002c56600266e1d2002004899914c004c04000a602060220052259800980398071baa002899191919912cc004c06000e264b3001300d3014375400313232323232323298009bac301f0019bad301f0079bae301f0069bae301f0059bae301f0049bae301f003488888966002604c00f1330163758604a01044b300100289980c004112cc00400a2b3001301e30253754027132323298009bae302c0019bae302c0039bae302c002488966002606000913302001a22598008014082264600460660066eb4c0c400902f45902d0c0b0004c0ac004c098dd5009c5902444c8c008c0ac00cdd71814801204e899180118148019bae3027002409516408c301f001301e001301d001301c001301b001301a0013015375400316404c602e00b1640546eb0c054004c054008c054004c050004c03cdd500145900d24446600200c264b300130093010375400313259800980518089baa0018992cc004c05c006266ebcc8cc0140044004c0580040262c80a0c048dd5000c59010180a18089baa0018b201e3232330010013756602a602c602c602c602c602c602c602c602c602c60246ea8024896600200314c0103d87a80008992cc004cdd78021809800c4cdd2a40006602c602800297ae0899801801980c00120243016001405066e952004330123374a9001198091ba900d4bd7025eb8060166ea801488c8cc00400400c88cc00c004c00800a2c80490090c024c028004c024004c010dd5004c52689b2b200401",
+      "hash": "449b1f82254e23d5c6961abb1f3b95dea7c4ed00503f43f827fd4277"
+    },
+    {
+      "title": "main.main.spend",
+      "datum": {
+        "title": "_datum",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/charms_cardano~1types~1Groth16Inputs"
+        }
+      },
+      "parameters": [
+        {
+          "title": "merkelized_groth16",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1ScriptHash"
+          }
+        }
+      ],
+      "compiledCode": "590267010100229800aba2aba1aba0aab9faab9eaab9dab9a9bae00248888888966002646465300130063754003370e90004c02800e601400491112cc004c00c012264c6eb8c038c02cdd5002c56600266e1d2002004899914c004c04000a602060220052259800980398071baa002899191919912cc004c06000e264b3001300d3014375400313232323232323298009bac301f0019bad301f0079bae301f0069bae301f0059bae301f0049bae301f003488888966002604c00f1330163758604a01044b300100289980c004112cc00400a2b3001301e30253754027132323298009bae302c0019bae302c0039bae302c002488966002606000913302001a22598008014082264600460660066eb4c0c400902f45902d0c0b0004c0ac004c098dd5009c5902444c8c008c0ac00cdd71814801204e899180118148019bae3027002409516408c301f001301e001301d001301c001301b001301a0013015375400316404c602e00b1640546eb0c054004c054008c054004c050004c03cdd500145900d24446600200c264b300130093010375400313259800980518089baa0018992cc004c05c006266ebcc8cc0140044004c0580040262c80a0c048dd5000c59010180a18089baa0018b201e3232330010013756602a602c602c602c602c602c602c602c602c602c60246ea8024896600200314c0103d87a80008992cc004cdd78021809800c4cdd2a40006602c602800297ae0899801801980c00120243016001405066e952004330123374a9001198091ba900d4bd7025eb8060166ea801488c8cc00400400c88cc00c004c00800a2c80490090c024c028004c024004c010dd5004c52689b2b200401",
+      "hash": "449b1f82254e23d5c6961abb1f3b95dea7c4ed00503f43f827fd4277"
+    },
+    {
+      "title": "main.main.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "parameters": [
+        {
+          "title": "merkelized_groth16",
+          "schema": {
+            "$ref": "#/definitions/aiken~1crypto~1ScriptHash"
+          }
+        }
+      ],
+      "compiledCode": "590267010100229800aba2aba1aba0aab9faab9eaab9dab9a9bae00248888888966002646465300130063754003370e90004c02800e601400491112cc004c00c012264c6eb8c038c02cdd5002c56600266e1d2002004899914c004c04000a602060220052259800980398071baa002899191919912cc004c06000e264b3001300d3014375400313232323232323298009bac301f0019bad301f0079bae301f0069bae301f0059bae301f0049bae301f003488888966002604c00f1330163758604a01044b300100289980c004112cc00400a2b3001301e30253754027132323298009bae302c0019bae302c0039bae302c002488966002606000913302001a22598008014082264600460660066eb4c0c400902f45902d0c0b0004c0ac004c098dd5009c5902444c8c008c0ac00cdd71814801204e899180118148019bae3027002409516408c301f001301e001301d001301c001301b001301a0013015375400316404c602e00b1640546eb0c054004c054008c054004c050004c03cdd500145900d24446600200c264b300130093010375400313259800980518089baa0018992cc004c05c006266ebcc8cc0140044004c0580040262c80a0c048dd5000c59010180a18089baa0018b201e3232330010013756602a602c602c602c602c602c602c602c602c602c60246ea8024896600200314c0103d87a80008992cc004cdd78021809800c4cdd2a40006602c602800297ae0899801801980c00120243016001405066e952004330123374a9001198091ba900d4bd7025eb8060166ea801488c8cc00400400c88cc00c004c00800a2c80490090c024c028004c024004c010dd5004c52689b2b200401",
+      "hash": "449b1f82254e23d5c6961abb1f3b95dea7c4ed00503f43f827fd4277"
+    },
+    {
+      "title": "merkelized_groth16.merkelized_groth16.withdraw",
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/aiken_design_patterns~1merkelized_validator~1WithdrawRedeemerIO$charms_cardano~1types~1Groth16Inputs_Bool"
+        }
+      },
+      "compiledCode": "5902fd01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cc01c0092225980099b8748010c01cdd5001466002601460106ea800a44646600200200644660060026004005370e90002444b30013001300a375400d132323259800980880144c966002600a601c6ea800626464646644b300130170038992cc004c02cc050dd5000c4c8c8c8c8c8c8ca60026eb0c0780066eb4c07801e6eb8c07801a6eb8c0780166eb8c0780126eb8c07800d222222598009812803c4cc064dd61812004112cc00400a26603601044b30010028acc004c070c094dd5009c4c8c8ca60026eb8c0ac0066eb8c0ac00e6eb8c0ac00922259800981780244cc08c0688966002005132325980099b8748008c0bcdd5181918198014400633001001a50a5140b88172600260620032303230330019181918199819800c88cde21bbb0023784003222259800801c40062b30010028b4660020093036003981b0014cddb00099bb8375a606a0046eecdd7181a801a00840d081a12222298009800800cc0d8c0d0dd5002cc010c0d0dd5002a44466f18cc014dd7181c981b9baa001375c600e606e6ea8004cde299bc533005375c600e606e6ea8008dd71803181b9baa0023378864b30010018b46600260760033758600e60706ea80266eecdd7181d000a00840e46eb0c0e4c0e8c0e8c0e8c0e8c0e8c0e8c0dcdd50011bc2375c6072607460746074606e6ea8008cc014dd71803181b9baa001375c60726074607460746074606e6ea8008302e375405313230023032003375a6060004817a2c816860560026054002604c6ea804e2c8122264600460540066eb8c0a000902744c8c008c0a000cdd71813001204a8b2046180f000980e800980e000980d800980d000980c800980a9baa0018b202630160058b202a37586028002602800460280026026002601e6ea80062c8068c04000e2c8078c966002601c00315980099b8948010c0340062d13370e90011806800a0188b201e3754601e002601e00260166ea801a2c804916401830070013003375400f149a26cac8009",
+      "hash": "0eeb212321bc834df9af4cbf3a2e340fbe6a10adba1c1ca86d57b39c"
+    },
+    {
+      "title": "merkelized_groth16.merkelized_groth16.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "5902fd01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cc01c0092225980099b8748010c01cdd5001466002601460106ea800a44646600200200644660060026004005370e90002444b30013001300a375400d132323259800980880144c966002600a601c6ea800626464646644b300130170038992cc004c02cc050dd5000c4c8c8c8c8c8c8ca60026eb0c0780066eb4c07801e6eb8c07801a6eb8c0780166eb8c0780126eb8c07800d222222598009812803c4cc064dd61812004112cc00400a26603601044b30010028acc004c070c094dd5009c4c8c8ca60026eb8c0ac0066eb8c0ac00e6eb8c0ac00922259800981780244cc08c0688966002005132325980099b8748008c0bcdd5181918198014400633001001a50a5140b88172600260620032303230330019181918199819800c88cde21bbb0023784003222259800801c40062b30010028b4660020093036003981b0014cddb00099bb8375a606a0046eecdd7181a801a00840d081a12222298009800800cc0d8c0d0dd5002cc010c0d0dd5002a44466f18cc014dd7181c981b9baa001375c600e606e6ea8004cde299bc533005375c600e606e6ea8008dd71803181b9baa0023378864b30010018b46600260760033758600e60706ea80266eecdd7181d000a00840e46eb0c0e4c0e8c0e8c0e8c0e8c0e8c0e8c0dcdd50011bc2375c6072607460746074606e6ea8008cc014dd71803181b9baa001375c60726074607460746074606e6ea8008302e375405313230023032003375a6060004817a2c816860560026054002604c6ea804e2c8122264600460540066eb8c0a000902744c8c008c0a000cdd71813001204a8b2046180f000980e800980e000980d800980d000980c800980a9baa0018b202630160058b202a37586028002602800460280026026002601e6ea80062c8068c04000e2c8078c966002601c00315980099b8948010c0340062d13370e90011806800a0188b201e3754601e002601e00260166ea801a2c804916401830070013003375400f149a26cac8009",
+      "hash": "0eeb212321bc834df9af4cbf3a2e340fbe6a10adba1c1ca86d57b39c"
+    }
+  ],
+  "definitions": {
+    "Bool": {
+      "title": "Bool",
+      "anyOf": [
+        {
+          "title": "False",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        },
+        {
+          "title": "True",
+          "dataType": "constructor",
+          "index": 1,
+          "fields": []
+        }
+      ]
+    },
+    "ByteArray": {
+      "dataType": "bytes"
+    },
+    "Data": {
+      "title": "Data",
+      "description": "Any Plutus data."
+    },
+    "Int": {
+      "dataType": "integer"
+    },
+    "List$ByteArray": {
+      "dataType": "list",
+      "items": {
+        "$ref": "#/definitions/ByteArray"
+      }
+    },
+    "List$Int": {
+      "dataType": "list",
+      "items": {
+        "$ref": "#/definitions/Int"
+      }
+    },
+    "aiken/crypto/ScriptHash": {
+      "title": "ScriptHash",
+      "dataType": "bytes"
+    },
+    "aiken_design_patterns/merkelized_validator/WithdrawRedeemerIO$charms_cardano/types/Groth16Inputs_Bool": {
+      "title": "WithdrawRedeemerIO",
+      "description": "Datatype for redeemer of the \"computation stake validator\" to represent\n input argument(s) and output value(s).\n\n As a simple example, a summation logic where it adds all its inputs\n together, can work with a redeemer of\n type `WithdrawRedeemerIO<List<Int>, Int>`, and a valid redeemer data would\n be:\n ```aiken\n let valid_summation_io =\n   WithdrawRedeemerIO {\n     input_arg: [1, 2, 3, 4, 5],\n     result: 15,\n   }\n ```",
+      "anyOf": [
+        {
+          "title": "WithdrawRedeemerIO",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "input_arg",
+              "$ref": "#/definitions/charms_cardano~1types~1Groth16Inputs"
+            },
+            {
+              "title": "result",
+              "$ref": "#/definitions/Bool"
+            }
+          ]
+        }
+      ]
+    },
+    "ak_381/groth16/Proof": {
+      "title": "Proof",
+      "anyOf": [
+        {
+          "title": "Proof",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "piA",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "piB",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "piC",
+              "$ref": "#/definitions/ByteArray"
+            }
+          ]
+        }
+      ]
+    },
+    "ak_381/groth16/SnarkVerificationKey": {
+      "title": "SnarkVerificationKey",
+      "anyOf": [
+        {
+          "title": "SnarkVerificationKey",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "nPublic",
+              "$ref": "#/definitions/Int"
+            },
+            {
+              "title": "vkAlpha",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "vkBeta",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "vkGamma",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "vkDelta",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "vkAlphaBeta",
+              "$ref": "#/definitions/List$ByteArray"
+            },
+            {
+              "title": "vkIC",
+              "$ref": "#/definitions/List$ByteArray"
+            }
+          ]
+        }
+      ]
+    },
+    "cardano/transaction/OutputReference": {
+      "title": "OutputReference",
+      "description": "An `OutputReference` is a unique reference to an output on-chain. The `output_index`\n corresponds to the position in the output list of the transaction (identified by its id)\n that produced that output",
+      "anyOf": [
+        {
+          "title": "OutputReference",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "transaction_id",
+              "$ref": "#/definitions/ByteArray"
+            },
+            {
+              "title": "output_index",
+              "$ref": "#/definitions/Int"
+            }
+          ]
+        }
+      ]
+    },
+    "charms_cardano/types/Groth16Inputs": {
+      "title": "Groth16Inputs",
+      "anyOf": [
+        {
+          "title": "Groth16Inputs",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "vk",
+              "$ref": "#/definitions/ak_381~1groth16~1SnarkVerificationKey"
+            },
+            {
+              "title": "proof",
+              "$ref": "#/definitions/ak_381~1groth16~1Proof"
+            },
+            {
+              "title": "public_values",
+              "$ref": "#/definitions/List$Int"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

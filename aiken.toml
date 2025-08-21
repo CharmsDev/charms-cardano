@@ -1,0 +1,33 @@
+name = "charmsdev/charms-cardano"
+version = "0.0.0"
+compiler = "v1.1.19"
+plutus = "v3"
+license = "Apache-2.0"
+description = "Aiken contracts for project 'charmsdev/charms-cardano'"
+
+[repository]
+user = "charmsdev"
+project = "charms-cardano"
+platform = "github"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v2.2.0"
+source = "github"
+
+[[dependencies]]
+name = "aiken-lang/fuzz"
+version = "v2"
+source = "github"
+
+[[dependencies]]
+name = "anastasia-labs/aiken-design-patterns"
+version = "v1.2.0"
+source = "github"
+
+[[dependencies]]
+name = "modulo-p/ak-381"
+version = "v0.1.1"
+source = "github"
+
+[config]

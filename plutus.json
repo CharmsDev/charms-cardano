@@ -8,7 +8,7 @@
       "name": "Aiken",
       "version": "v1.1.19+e525483"
     },
-    "license": "Apache-2.0"
+    "license": "MIT"
   },
   "validators": [
     {
@@ -21,14 +21,14 @@
       },
       "parameters": [
         {
-          "title": "_utxo_ref",
+          "title": "_app_vk",
           "schema": {
-            "$ref": "#/definitions/cardano~1transaction~1OutputReference"
+            "$ref": "#/definitions/ByteArray"
           }
         }
       ],
-      "compiledCode": "5855010100229800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748000c01cdd500144c9289bae30093008375400516401830060013003375400d149a26cac80081",
-      "hash": "3daf8dbb9b6d6c5aaad92dd3657baf28c52dc06dc8ed4b2ccfe2e5b8"
+      "compiledCode": "5859010100229800aba2aba1aab9eaab9dab9a9bae00248888896600264653001300700198039804000cc01c0092225980099b8748000c020dd500144c9289bae300a3009375400516401c30070013004375400f149a26cac80101",
+      "hash": "dabe325f14f9acbade7f800b1cdc3cb35252a9fc96f32647580faab9"
     },
     {
       "title": "free_mint.free_mint.else",
@@ -37,14 +37,14 @@
       },
       "parameters": [
         {
-          "title": "_utxo_ref",
+          "title": "_app_vk",
           "schema": {
-            "$ref": "#/definitions/cardano~1transaction~1OutputReference"
+            "$ref": "#/definitions/ByteArray"
           }
         }
       ],
-      "compiledCode": "5855010100229800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748000c01cdd500144c9289bae30093008375400516401830060013003375400d149a26cac80081",
-      "hash": "3daf8dbb9b6d6c5aaad92dd3657baf28c52dc06dc8ed4b2ccfe2e5b8"
+      "compiledCode": "5859010100229800aba2aba1aab9eaab9dab9a9bae00248888896600264653001300700198039804000cc01c0092225980099b8748000c020dd500144c9289bae300a3009375400516401c30070013004375400f149a26cac80101",
+      "hash": "dabe325f14f9acbade7f800b1cdc3cb35252a9fc96f32647580faab9"
     },
     {
       "title": "lock.lock.spend",
@@ -275,27 +275,6 @@
             {
               "title": "vkIC",
               "$ref": "#/definitions/List$ByteArray"
-            }
-          ]
-        }
-      ]
-    },
-    "cardano/transaction/OutputReference": {
-      "title": "OutputReference",
-      "description": "An `OutputReference` is a unique reference to an output on-chain. The `output_index`\n corresponds to the position in the output list of the transaction (identified by its id)\n that produced that output",
-      "anyOf": [
-        {
-          "title": "OutputReference",
-          "dataType": "constructor",
-          "index": 0,
-          "fields": [
-            {
-              "title": "transaction_id",
-              "$ref": "#/definitions/ByteArray"
-            },
-            {
-              "title": "output_index",
-              "$ref": "#/definitions/Int"
             }
           ]
         }

@@ -1,14 +1,12 @@
 use cardano/assets.{PolicyId}
-use cardano/transaction.{Transaction, OutputReference}
-use cardano/script_context.{ScriptContext}
+use cardano/transaction.{Transaction}
 
-validator free_mint(_utxo_ref: OutputReference) {
-
+validator free_mint(_app_vk: ByteArray) {
   mint(_redeemer: Data, _policy_id: PolicyId, _self: Transaction) {
     True
   }
 
-  else(_ctx: ScriptContext) {
-    fail @"invalid redeemer in free_mint"
+  else(_) {
+    fail @"invalid use of free_mint"
   }
 }

@@ -1,13 +1,16 @@
-use cardano/transaction.{Transaction, OutputReference}
+use cardano/transaction.{Datum, DatumHash, InlineDatum, NoDatum, Transaction, OutputReference}
 use cardano/script_context.{ScriptContext}
 use aiken_design_patterns/merkelized_validator
 use aiken/crypto.{ScriptHash}
 use charms_cardano/types.{Groth16Inputs, groth16_input_coercer}
 use cardano/assets.{PolicyId}
 use ak_381/groth16.{SnarkVerificationKey, Proof, groth_verify}
+use aiken/collection/list
+use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer}
 
 validator main(
-  merkelized_groth16: ScriptHash
+  merkelized_groth16: ScriptHash,
+  groth_vk: SnarkVerificationKey
 ) {
   mint(_redeemer: Data, _policy_id: PolicyId, _self: Transaction) {
 
@@ -16,12 +19,20 @@ validator main(
     todo @"mint logic goes here"
   }
 
-  spend(_datum: Option<Data>, redeemer: Groth16Inputs, _utxo: OutputReference, self: Transaction) {
+  spend(_datum: Option<Data>, redeemer: SpellRedeemer, _utxo: OutputReference, self: Transaction) {
     /// Identify Charms - Check for utxos which contain a charms datum / charms native asset
-    /// Parse Charms - Retrieve the following parameters from said utxos:
-    /// a. Groth Verification Key
-    /// b. Proof
-    /// c. Public Inputs (App Data, App VK)
+    expect Some(spell_output) = list.last(self.outputs) // for now naively assume the last output is the spell output
+
+    /// Parse Charms data - Retrieve the following parameters from said utxos:
+    /// a. Groth Verification Key | parameter/redeemer
+    /// - groth_vk
+
+    /// b. Proof | in a tuple of (spell, proof) in the change output
+    expect SpellDatum {spell, proof} = extract_spell(spell_output.datum)
+
+    /// c. Public Inputs (App Data, App VK) | parse from spell, inputs
+    expect app_public_inputs = to_serialized_pv(spell, redeemer.spell_vk)
+
     /// Confirm the params listed in the redeemer match those acquired in step 2
     /// Confirm the Merkelized Validator has signed the Tx
     /// Confirm nothing else has been spent from this address
@@ -39,9 +50,41 @@ validator main(
   }
 }
 
-// test groth_verify_pass_1() {
-//   let merkelized_groth16: ScriptHash = #"f4ec54c8bec3a07e79812cb3bdbea22bb56bce3b1258b42589953e9b"
-  
+fn extract_spell(datum: Datum) -> Data {
+    when datum is {
+    NoDatum -> fail
+    DatumHash(h) -> {
+      fail // just fail with DatumHash for now
+      // expect Some(d) = dict.get(tx_datums, h)
+      // d
+    }
+    InlineDatum(d) -> d
+  }
+}
+
+fn to_serialized_pv(spell: NormalizedSpell, spell_vk: SnarkVerificationKey) -> List<Int> {
+  when spell.version is {
+    0 -> {
+      // Legacy: commit to tuple (spell_vk, spell) using old serialization
+      sp1_serialize((spell_vk, spell))
+    }
+    Int(_n) -> {
+      // Commit to CBOR-encoded tuple (spell_vk, spell)
+      cbor_serialize((spell_vk, spell))
+    }
+    _ -> error("Unknown spell version")
+  }
+}
+
+fn sp1_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
+  let (spell_vk, spell) = data
+  // Implement SP1 serialization logic here
+}
+
+fn cbor_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
+  let (spell_vk, spell) = data
+  // Implement CBOR serialization logic here
+}
 
 //   //  Template of VK
 //   let vk: SnarkVerificationKey =

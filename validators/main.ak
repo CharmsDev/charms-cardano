@@ -7,6 +7,10 @@ use cardano/assets.{PolicyId}
 use ak_381/groth16.{SnarkVerificationKey, Proof, groth_verify}
 use aiken/collection/list
 use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer}
+use aiken/builtin.{
+  serialise_data
+}
+use charms_cardano/utils.{bytearray_to_list}
 
 validator main(
   merkelized_groth16: ScriptHash,
@@ -62,28 +66,42 @@ fn extract_spell(datum: Datum) -> Data {
   }
 }
 
+// fn to_serialized_pv2(spell_version: Int, data: SpellData) -> ByteArray {
+//     // For all supported versions except V0, use CBOR encoding of the tuple
+//     if spell_version == 0 {
+//         // For V0, you may need to match the legacy serialization format.
+//         // This is a placeholder; you must implement the legacy logic if needed.
+//         // For now, just CBOR encode as well.
+//         builtin.serialize_data((data.spell_vk, data.n_spell))
+//     } else {
+//         // Standard CBOR encoding for (spell_vk, n_spell)
+//         builtin.serialize_data((data.spell_vk, data.n_spell))
+//     }
+// }
+
 fn to_serialized_pv(spell: NormalizedSpell, spell_vk: SnarkVerificationKey) -> List<Int> {
   when spell.version is {
     0 -> {
       // Legacy: commit to tuple (spell_vk, spell) using old serialization
       sp1_serialize((spell_vk, spell))
     }
-    Int(_n) -> {
+    _ -> {
       // Commit to CBOR-encoded tuple (spell_vk, spell)
-      cbor_serialize((spell_vk, spell))
+      let cbor_vec: List<Int> = cbor_serialize((spell_vk, spell))
+      cbor_vec
     }
-    _ -> error("Unknown spell version")
   }
 }
 
 fn sp1_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
-  let (spell_vk, spell) = data
-  // Implement SP1 serialization logic here
+  // Probably doesn't make sense to support SP1 serialization? Will revisit.
+
+  expect sp1: List<Int> = bytearray_to_list(serialise_data(data))
+  sp1
 }
 
 fn cbor_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
-  let (spell_vk, spell) = data
-  // Implement CBOR serialization logic here
+  bytearray_to_list(serialise_data(data))
 }
 
 //   //  Template of VK

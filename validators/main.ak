@@ -4,13 +4,14 @@ use aiken_design_patterns/merkelized_validator
 use aiken/crypto.{ScriptHash}
 use charms_cardano/types.{Groth16Inputs, groth16_input_coercer}
 use cardano/assets.{PolicyId}
-use ak_381/groth16.{SnarkVerificationKey, Proof, groth_verify}
+use ak_381/groth16.{SnarkVerificationKey}
 use aiken/collection/list
-use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer}
+use charms_cardano/charms.{NormalizedSpell, SpellDatum, SpellRedeemer}
 use aiken/builtin.{
   serialise_data
 }
 use charms_cardano/utils.{bytearray_to_list}
+
 
 validator main(
   merkelized_groth16: ScriptHash,
@@ -23,30 +24,43 @@ validator main(
     todo @"mint logic goes here"
   }
 
-  spend(_datum: Option<Data>, redeemer: SpellRedeemer, _utxo: OutputReference, self: Transaction) {
+  spend(_datum_opt: Option<Data>, redeemer: SpellRedeemer, utxo: OutputReference, self: Transaction) {
     /// Identify Charms - Check for utxos which contain a charms datum / charms native asset
-    expect Some(spell_output) = list.last(self.outputs) // for now naively assume the last output is the spell output
+    // expect Some(spell_input) = find_input(self.inputs, utxo) // left out for testing purposes
+    expect Some(spell_output) = list.last(self.outputs)
+    
+    /// Confirm the spell datum has not been changed
+    // expect spell_input.output.datum == spell_output.datum // left out for testing purposes
 
     /// Parse Charms data - Retrieve the following parameters from said utxos:
     /// a. Groth Verification Key | parameter/redeemer
-    /// - groth_vk
+    /// - groth_vk is passed as a parameter to the validator
 
     /// b. Proof | in a tuple of (spell, proof) in the change output
     expect SpellDatum {spell, proof} = extract_spell(spell_output.datum)
 
     /// c. Public Inputs (App Data, App VK) | parse from spell, inputs
-    expect app_public_inputs = to_serialized_pv(spell, redeemer.spell_vk)
+    let app_public_inputs = to_serialized_pv(spell, redeemer.spell_vk)
+
+    let groth_inputs: Groth16Inputs = Groth16Inputs {
+      vk: groth_vk,
+      proof: proof,
+      public_values: app_public_inputs
+    }
 
     /// Confirm the params listed in the redeemer match those acquired in step 2
-    /// Confirm the Merkelized Validator has signed the Tx
-    /// Confirm nothing else has been spent from this address
+    // TODO
 
+    /// Confirm the Merkelized Validator has signed the Tx
     merkelized_validator.delegated_validation(
-      function_input: redeemer,
+      function_input: groth_inputs,
       staking_validator: merkelized_groth16,
-      input_data_coercer:  groth16_input_coercer,
+      input_data_coercer: groth16_input_coercer,
       redeemers: self.redeemers
     )
+
+      /// Confirm nothing else has been spent from this address
+      // TODO
   }
 
   else(_ctx: ScriptContext) {

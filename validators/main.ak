@@ -1,18 +1,21 @@
 use aiken/builtin.{serialise_data}
 use aiken/collection/list
 use aiken/crypto.{ScriptHash}
-use aiken_design_patterns/merkelized_validator
+use aiken_design_patterns/merkelized_validator.{WithdrawRedeemerIO}
 use ak_381/groth16.{Proof, SnarkVerificationKey}
-use cardano/assets.{PolicyId}
+use cardano/assets.{PolicyId, from_asset}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
-  Datum, DatumHash, InlineDatum, NoDatum, OutputReference, Transaction,
-  placeholder,
+  Datum, DatumHash, InlineDatum, NoDatum, OutputReference, Redeemer, ScriptPurpose, Spend, Transaction,
+  Withdraw, placeholder, Output
 }
 use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer}
 use charms_cardano/test_utils.{TestCircuit, base_passing_circuit}
-use charms_cardano/types.{Groth16Inputs, groth16_input_coercer}
+use charms_cardano/groth.{Groth16Inputs, groth16_input_coercer}
 use charms_cardano/utils.{bytearray_to_list}
+use cardano/address.{Address, Script}
+use aiken/interval.{everything}
+use aiken/collection/dict
 
 validator main(merkelized_groth16: ScriptHash, groth_vk: SnarkVerificationKey) {
   mint(redeemer: SpellRedeemer, _policy_id: PolicyId, self: Transaction) {
@@ -136,7 +139,7 @@ test main_spend_pass() {
     SpellDatum { spell, proof: base_passing_circuit().proof }
 
   // Create mock spell redeemer
-  let spell_redeemer: SpellRedeemer =
+  let spell_redeemer: Redeemer =
     SpellRedeemer { spell_vk: base_passing_circuit().vk }
 
   // Create mock transaction with required outputs
@@ -151,37 +154,53 @@ test main_spend_pass() {
       reference_script: None,
     }
 
+  let mock_outref =
+    OutputReference {
+      transaction_id: #"",
+      output_index: 0,
+    }
+
+  let withdraw_redeemer: Redeemer =
+    WithdrawRedeemerIO {
+      input_arg: Groth16Inputs {
+        vk: base_passing_circuit().vk,
+        proof: base_passing_circuit().proof,
+        public_values: base_passing_circuit().public_values,
+      },
+      result: True,
+    }
+
+  expect paired_withdraw_redeemer: Pair<ScriptPurpose, Redeemer> =
+    Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer)
+
+  expect paired_spend_redeemer: Pair<ScriptPurpose, Redeemer> =
+    Pair(Spend(mock_outref), spell_redeemer)
+
+  let redeemers: Pairs<ScriptPurpose, Redeemer> =
+    [paired_withdraw_redeemer, paired_spend_redeemer]
+  
+
   let mock_transaction =
     Transaction {
+      ..placeholder,
       inputs: [],
       reference_inputs: [],
       outputs: [mock_output],
       fee: 0,
       mint: from_asset(#"", #"", 1),
       certificates: [],
-      withdrawals: dict.new(),
-      validity_range: Interval {
-        lower_bound: Bound { bound_type: NegInf, inclusive: True },
-        upper_bound: Bound { bound_type: PosInf, inclusive: True },
-      },
+      validity_range: everything,
       extra_signatories: [],
-      redeemers: dict.from_list(
-        [
-          (
-            Withdraw(Script(merkelized_groth16_hash)),
-            groth16_input_coercer(
-              Groth16Inputs { vk: groth_vk, proof, public_values: [561, 3] },
-            ),
-          ),
-        ],
+      redeemers: dict.from_pairs(
+        redeemers
       ),
-      datums: dict.new(),
       id: #"",
     }
 
   main(merkelized_groth16_hash, groth_vk).spend(
+    [],
     spell_redeemer,
-    #"",
+    mock_outref,
     mock_transaction,
   )
 }

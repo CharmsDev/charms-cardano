@@ -5,7 +5,7 @@ use cardano/address.{Credential, Script}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{Transaction, placeholder}
 use charms_cardano/test_utils.{base_passing_circuit}
-use charms_cardano/types.{Groth16Inputs}
+use charms_cardano/groth.{Groth16Inputs}
 
 validator merkelized_groth16 {
   withdraw(

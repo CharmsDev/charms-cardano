@@ -2,20 +2,23 @@ use aiken/builtin.{serialise_data}
 use aiken/collection/list
 use aiken/crypto.{ScriptHash}
 use aiken_design_patterns/merkelized_validator
-use ak_381/groth16.{SnarkVerificationKey}
+use ak_381/groth16.{Proof, SnarkVerificationKey}
 use cardano/assets.{PolicyId}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
-  Datum, DatumHash, InlineDatum, NoDatum, OutputReference,
-  Transaction
+  Datum, DatumHash, InlineDatum, NoDatum, OutputReference, Transaction,
+  placeholder,
 }
-use charms_cardano/charms.{NormalizedSpell, SpellDatum, SpellRedeemer}
+use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer}
+use charms_cardano/test_utils.{TestCircuit, base_passing_circuit}
 use charms_cardano/types.{Groth16Inputs, groth16_input_coercer}
 use charms_cardano/utils.{bytearray_to_list}
 
 validator main(merkelized_groth16: ScriptHash, groth_vk: SnarkVerificationKey) {
   mint(redeemer: SpellRedeemer, _policy_id: PolicyId, self: Transaction) {
-        // expect Some(spell_input) = find_input(self.inputs, utxo) // left out for testing purposes
+    //TODO: Confirm the token name is correct
+
+    // expect Some(spell_input) = find_input(self.inputs, utxo) // left out for testing purposes
     expect Some(spell_output) = list.last(self.outputs)
 
     // expect spell_input.output.datum == spell_output.datum // left out for testing purposes
@@ -105,9 +108,80 @@ fn sp1_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
   // Probably doesn't make sense to support SP1 serialization? Will revisit.
 
   bytearray_to_list(serialise_data(data))
-
 }
 
 fn cbor_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
   bytearray_to_list(serialise_data(data))
+}
+
+test main_spend_pass() {
+  let tx = placeholder
+  // downcast public values
+  let public_values: Data = base_passing_circuit().public_values
+  let app =
+    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+  let app_public_inputs = [Pair(app, public_values)]
+
+  // Create a mock spell and spell datum
+  let spell: NormalizedSpell =
+    NormalizedSpell {
+      version: 1,
+      tx: placeholder,
+      app_public_inputs,
+      mock: True,
+    }
+
+  // Add other required fields based on your NormalizedSpell definition
+  let spell_datum: SpellDatum =
+    SpellDatum { spell, proof: base_passing_circuit().proof }
+
+  // Create mock spell redeemer
+  let spell_redeemer: SpellRedeemer =
+    SpellRedeemer { spell_vk: base_passing_circuit().vk }
+
+  // Create mock transaction with required outputs
+  let mock_output =
+    Output {
+      address: Address {
+        payment_credential: Script(base_passing_circuit().sh),
+        stake_credential: None,
+      },
+      value: from_asset(#"", #"", 100),
+      datum: InlineDatum(spell_datum),
+      reference_script: None,
+    }
+
+  let mock_transaction =
+    Transaction {
+      inputs: [],
+      reference_inputs: [],
+      outputs: [mock_output],
+      fee: 0,
+      mint: from_asset(#"", #"", 1),
+      certificates: [],
+      withdrawals: dict.new(),
+      validity_range: Interval {
+        lower_bound: Bound { bound_type: NegInf, inclusive: True },
+        upper_bound: Bound { bound_type: PosInf, inclusive: True },
+      },
+      extra_signatories: [],
+      redeemers: dict.from_list(
+        [
+          (
+            Withdraw(Script(merkelized_groth16_hash)),
+            groth16_input_coercer(
+              Groth16Inputs { vk: groth_vk, proof, public_values: [561, 3] },
+            ),
+          ),
+        ],
+      ),
+      datums: dict.new(),
+      id: #"",
+    }
+
+  main(merkelized_groth16_hash, groth_vk).spend(
+    spell_redeemer,
+    #"",
+    mock_transaction,
+  )
 }

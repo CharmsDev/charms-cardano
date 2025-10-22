@@ -1,10 +1,12 @@
-use aiken/primitive/bytearray
 use aiken/collection/list
+use aiken/primitive/bytearray
 
 pub fn bytearray_to_list(ba: ByteArray) -> List<Int> {
-  bytearray.foldr(ba, [], fn(b: Int, acc: List<Int>) -> List<Int> {
-    list.push(acc, b)
-  })
+  bytearray.foldr(
+    ba,
+    [],
+    fn(b: Int, acc: List<Int>) -> List<Int> { list.push(acc, b) },
+  )
 }
 
 test bal() {

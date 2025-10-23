@@ -1360,3 +1360,1306 @@ WARNING: Unmatched cancel notification for request id 3868
 2025.10.22 23:52:06 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
 2025.10.22 23:52:06 INFO  compiling scrolls-scalus_2d46a7ee75 (1 scala source)
 2025.10.22 23:52:06 INFO  time: compiled scrolls-scalus_2d46a7ee75 in 0.27s
+2025.10.22 23:52:18 WARN  Could not find semantic tokens for: file:///C:/Users/Sam/Ikigai/charms-cardano/scrolls-scalus/project.scala
+2025.10.22 23:52:18 WARN  Could not find semantic tokens for: file:///C:/Users/Sam/Ikigai/charms-cardano/scrolls-scalus/project.scala
+2025.10.23 09:31:50 INFO  Started: Metals version 1.6.3 in folders 'C:\Users\Sam\Ikigai\charms-cardano' for client Visual Studio Code 1.105.1.
+2025.10.23 09:31:53 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.23 09:31:53 INFO  no build target found for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.23 09:31:55 INFO  no build target found for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.23 09:31:56 INFO  Attempting to connect to the build server...
+2025.10.23 09:31:56 INFO  Running BSP server List(C:\Users\Sam\AppData\Local\Coursier\data\bin\.scala-cli.aux.exe, bsp, --json-options, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\.scala-build\ide-options-v2.json, --json-launcher-options, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\.scala-build\ide-launcher-options.json, --envs-file, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\.scala-build\ide-envs.json, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus)
+2025.10.23 09:31:56 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\Sam\Ikigai\charms-cardano\.metals\bsp.trace.json or C:\Users\Sam\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 09:31:58 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.12.1"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.12.1
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 09:31:58 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 09:31:58 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 09:31:58 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 09:31:58 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 09:31:58 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 09:31:58 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 09:31:58 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 09:31:58 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.12.1"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.12.1
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 09:31:58 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  time: Connected to build server in 2s
+2025.10.23 09:31:58 INFO  Connected to Build server: scala-cli v1.9.1
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 09:31:58 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.12.1"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.12.1
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 09:31:58 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 09:31:58 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 09:31:58 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 09:31:58 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 09:31:58 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 09:31:58 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 09:31:58 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 09:31:58 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.12.1"
+2025.10.23 09:31:58 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.12.1
+2025.10.23 09:31:58 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 09:31:58 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:31:58 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 09:31:58 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.4s
+2025.10.23 09:32:00 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.23 09:32:02 INFO  time: indexed workspace in 4.66s
+2025.10.23 09:32:03 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 09:32:03 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.12.1"
+2025.10.23 09:32:03 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.12.1
+2025.10.23 09:32:03 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 09:32:03 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:32:03 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 09:32:03 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 09:32:03 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 09:32:03 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 09:32:03 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:32:03 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 09:32:03 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 09:32:03 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 09:32:03 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 09:32:03 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:32:03 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 09:32:03 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 09:32:03 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 09:32:03 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 09:32:03 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:32:03 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 09:32:03 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.12.1"
+2025.10.23 09:32:03 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.12.1
+2025.10.23 09:32:03 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 09:32:03 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 09:32:03 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 09:32:03 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.22s
+Oct 23, 2025 10:05:15 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report C:\Users\Sam\Ikigai\charms-cardano\.metals\.reports\metals-full\2025-10-23\r_compiler-error_(scrolls-scalus_2d46a7ee75-test)_10-05-15-541.md
+2025.10.23 10:05:53 INFO  Created report: Optional[file:///C:/Users/Sam/Ikigai/charms-cardano/scrolls-scalus/Scrolls.test.scala]
+2025.10.23 10:05:53 INFO  empty definition using pc, found symbol in pc: `<none>`. (full report at: "C:\Users\Sam\Ikigai\charms-cardano\.metals\.reports\metals-full\2025-10-23\r_empty-definition_(scrolls-scalus_5f2d46a7ee75-test)_10-05-53-586.md")
+2025.10.23 10:05:54 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalus/scalus-testkit_3/
+2025.10.23 10:05:54 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalus/scalus-testkit_3/
+2025.10.23 10:05:54 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scalus/scalus-testkit_3/
+2025.10.23 10:05:54 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scalus/scalus-testkit_3/
+2025.10.23 10:05:54 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalus/scalus-testkit_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalus/scalus-testkit_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scalus/scalus-testkit_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scalus/scalus-testkit_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalatest/scalatest_3/
+2025.10.23 10:05:54 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalatest/scalatest_3/
+2025.10.23 10:05:54 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalatest/scalatest_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalatest/scalatest_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalameta/munit_3/
+2025.10.23 10:05:54 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalameta/munit_3/
+2025.10.23 10:05:54 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalameta/munit_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalameta/munit_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalameta/munit-scalacheck_3/
+2025.10.23 10:05:54 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalameta/munit-scalacheck_3/
+2025.10.23 10:05:54 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalameta/munit-scalacheck_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalameta/munit-scalacheck_3/maven-metadata.xml
+2025.10.23 10:05:54 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/
+2025.10.23 10:05:54 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/
+2025.10.23 10:05:55 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/maven-metadata.xml
+2025.10.23 10:05:55 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/maven-metadata.xml
+2025.10.23 10:05:55 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalus/scalus_3/
+2025.10.23 10:05:55 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalus/scalus_3/
+2025.10.23 10:05:55 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scalus/scalus_3/
+2025.10.23 10:05:55 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scalus/scalus_3/
+2025.10.23 10:05:55 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalus/scalus_3/maven-metadata.xml
+2025.10.23 10:05:55 INFO  BSP server: Checked https://repo1.maven.org/maven2/org/scalus/scalus_3/maven-metadata.xml
+2025.10.23 10:05:55 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scalus/scalus_3/maven-metadata.xml
+2025.10.23 10:05:55 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scalus/scalus_3/maven-metadata.xml
+2025.10.23 10:05:55 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:05:55 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:05:55 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:05:55 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:05:55 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:05:55 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:05:55 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:05:55 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:05:55 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:05:55 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:05:55 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:05:55 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:05:55 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:05:55 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:05:55 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:05:55 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:05:55 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:05:55 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:05:55 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:05:55 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:05:55 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:05:55 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:05:55 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:05:55 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:05:55 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:05:56 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:05:56 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.19s
+2025.10.23 10:06:09 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:06:09 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:06:09 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:06:09 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:06:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:09 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:06:09 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:06:09 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:06:09 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:06:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:09 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:06:09 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:06:09 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:06:09 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:06:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:09 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:06:09 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:06:09 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:06:09 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:06:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:09 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:06:09 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:06:09 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:06:09 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:06:09 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:09 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:06:09 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.19s
+2025.10.23 10:06:13 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:06:13 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:06:13 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:06:13 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:06:13 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:13 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:06:13 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:06:13 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:06:13 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:06:13 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:13 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:06:13 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:06:13 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:06:13 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:06:13 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:13 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:06:13 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:06:13 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:06:13 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:06:13 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:13 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:06:13 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:06:13 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:06:13 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:06:13 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:13 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:06:13 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.17s
+2025.10.23 10:06:24 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:06:24 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:06:24 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:06:24 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:06:24 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:24 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:06:24 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:06:24 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:06:24 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:06:24 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:24 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:06:24 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:06:24 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:06:24 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:06:24 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:24 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:06:24 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:06:24 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:06:24 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:06:24 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:24 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:06:24 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:06:24 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:06:24 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:06:24 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:24 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:06:24 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.73s
+2025.10.23 10:06:36 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:06:36 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:06:36 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:06:36 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:06:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:36 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:06:36 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:06:36 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:06:36 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:06:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:36 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:06:36 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:06:36 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:06:36 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:06:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:36 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:06:36 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:06:36 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:06:36 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:06:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:36 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:06:36 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:06:36 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:06:36 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:06:36 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:36 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:06:36 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.15s
+2025.10.23 10:06:39 INFO  empty definition using pc, found symbol in pc: `<none>`. (full report at: "C:\Users\Sam\Ikigai\charms-cardano\.metals\.reports\metals-full\2025-10-23\r_empty-definition_(scrolls-scalus_5f2d46a7ee75-test)_10-05-53-586.md")
+2025.10.23 10:06:49 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:06:49 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:06:49 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:06:49 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:06:49 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:49 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:06:49 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:06:49 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:06:49 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:06:49 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:49 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:06:49 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:06:49 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:06:49 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:06:49 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:49 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:06:49 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:06:49 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:06:49 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:06:49 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:49 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:06:49 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:06:49 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:06:49 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:06:49 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:06:49 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:06:49 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.58s
+2025.10.23 10:07:04 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:07:04 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:07:04 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:07:04 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:07:04 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:04 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:07:04 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:07:04 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:07:04 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:07:04 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:04 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:07:04 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:07:04 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:07:04 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:07:04 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:04 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:07:04 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:07:04 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:07:04 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:07:04 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:04 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:07:04 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:07:04 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:07:04 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:07:04 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:04 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:07:06 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 1.5s
+2025.10.23 10:07:09 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:07:09 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:07:09 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:07:09 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:07:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:09 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:07:09 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:07:09 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:07:09 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:07:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:09 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:07:09 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:07:09 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:07:09 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:07:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:09 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:07:09 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:07:09 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:07:09 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:07:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:09 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:07:09 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:07:09 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:07:09 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:07:09 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:09 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:07:09 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.24s
+2025.10.23 10:07:23 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:07:23 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:07:23 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:07:23 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:07:23 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:23 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:07:23 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:07:23 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:07:23 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:07:23 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:23 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:07:23 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:07:23 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:07:23 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:07:23 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:23 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:07:23 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:07:23 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:07:23 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:07:23 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:23 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:07:23 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:07:23 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:07:23 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:07:23 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:07:23 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:07:23 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.46s
+2025.10.23 10:10:39 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:10:39 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:10:39 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:10:39 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:10:39 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:39 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:10:39 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:10:39 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:10:39 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:10:39 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:39 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:10:39 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:10:39 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:10:39 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:10:39 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:39 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:10:39 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:10:39 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:10:39 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:10:39 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:39 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:10:39 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:10:39 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:10:39 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:10:39 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:39 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:10:39 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.47s
+2025.10.23 10:10:48 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:10:48 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:10:48 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:10:48 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:10:48 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:48 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:10:48 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:10:48 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:10:48 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:10:48 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:48 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:10:48 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:10:48 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:10:48 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:10:48 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:48 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:10:48 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:10:48 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:10:48 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:10:48 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:48 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:10:48 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:10:48 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:10:48 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:10:48 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:48 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:10:48 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.41s
+Oct 23, 2025 10:10:48 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: scala.meta.internal.metals.debug.DiscoveryFailures$WorkspaceErrorsException$: Cannot run class, since the workspace has errors.
+java.util.concurrent.CompletionException: scala.meta.internal.metals.debug.DiscoveryFailures$WorkspaceErrorsException$: Cannot run class, since the workspace has errors.
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:332)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:347)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:708)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2162)
+	at scala.concurrent.java8.FuturesConvertersImpl$CF.apply(FutureConvertersImpl.scala:29)
+	at scala.concurrent.java8.FuturesConvertersImpl$CF.apply(FutureConvertersImpl.scala:26)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:517)
+	at scala.concurrent.ExecutionContext$parasitic$.execute(ExecutionContext.scala:222)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:462)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:371)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete0(Promise.scala:295)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:537)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: scala.meta.internal.metals.debug.DiscoveryFailures$WorkspaceErrorsException$: Cannot run class, since the workspace has errors.
+	at scala.meta.internal.metals.debug.DiscoveryFailures$WorkspaceErrorsException$.<clinit>(DiscoveryFailures.scala:57)
+	at scala.meta.internal.metals.debug.DebugProvider.ensureNoWorkspaceErrors(DebugProvider.scala:473)
+	at scala.meta.internal.metals.debug.DebugProvider.$anonfun$startTestSuite$5(DebugProvider.scala:646)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:503)
+	... 3 more
+
+2025.10.23 10:10:53 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:10:53 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:10:53 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:10:53 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:10:53 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:53 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:10:53 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:10:53 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:10:53 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:10:53 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:53 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:10:53 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:10:53 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:10:53 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:10:53 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:53 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:10:53 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:10:53 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:10:53 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:10:53 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:53 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:10:53 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:10:53 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:10:53 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:10:53 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:10:53 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:10:53 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.43s
+Oct 23, 2025 10:10:54 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: scala.meta.internal.metals.debug.DiscoveryFailures$WorkspaceErrorsException$: Cannot run class, since the workspace has errors.
+java.util.concurrent.CompletionException: scala.meta.internal.metals.debug.DiscoveryFailures$WorkspaceErrorsException$: Cannot run class, since the workspace has errors.
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:332)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:347)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:708)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2162)
+	at scala.concurrent.java8.FuturesConvertersImpl$CF.apply(FutureConvertersImpl.scala:29)
+	at scala.concurrent.java8.FuturesConvertersImpl$CF.apply(FutureConvertersImpl.scala:26)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:517)
+	at scala.concurrent.ExecutionContext$parasitic$.execute(ExecutionContext.scala:222)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:462)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:371)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete0(Promise.scala:295)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:537)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: scala.meta.internal.metals.debug.DiscoveryFailures$WorkspaceErrorsException$: Cannot run class, since the workspace has errors.
+	at scala.meta.internal.metals.debug.DiscoveryFailures$WorkspaceErrorsException$.<clinit>(DiscoveryFailures.scala:57)
+	at scala.meta.internal.metals.debug.DebugProvider.ensureNoWorkspaceErrors(DebugProvider.scala:473)
+	at scala.meta.internal.metals.debug.DebugProvider.$anonfun$startTestSuite$5(DebugProvider.scala:646)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:503)
+	... 3 more
+
+Oct 23, 2025 10:11:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1014
+Oct 23, 2025 10:11:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1015
+Oct 23, 2025 10:11:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1016
+Oct 23, 2025 10:11:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1017
+Oct 23, 2025 10:11:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1018
+Oct 23, 2025 10:11:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1021
+Oct 23, 2025 10:11:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1022
+Oct 23, 2025 10:11:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1023
+Oct 23, 2025 10:11:01 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1024
+2025.10.23 10:11:38 INFO  Shutting down server
+2025.10.23 10:11:38 INFO  shutting down Metals
+2025.10.23 10:11:38 INFO  Shut down connection with build server.
+2025.10.23 10:11:38 INFO  Exiting server
+2025.10.23 10:11:53 INFO  Started: Metals version 1.6.3 in folders 'C:\Users\Sam\Ikigai\charms-cardano' for client Visual Studio Code 1.105.1.
+2025.10.23 10:11:53 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.23 10:11:53 INFO  no build target found for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.test.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.23 10:11:55 INFO  no build target found for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.test.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.10.23 10:11:55 INFO  Attempting to connect to the build server...
+2025.10.23 10:11:55 INFO  Running BSP server List(C:\Users\Sam\AppData\Local\Coursier\data\bin\.scala-cli.aux.exe, bsp, --json-options, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\.scala-build\ide-options-v2.json, --json-launcher-options, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\.scala-build\ide-launcher-options.json, --envs-file, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\.scala-build\ide-envs.json, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus)
+2025.10.23 10:11:55 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\Sam\Ikigai\charms-cardano\.metals\bsp.trace.json or C:\Users\Sam\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:11:56 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:11:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:11:56 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:11:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:11:56 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:11:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:11:56 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:11:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:11:56 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:11:56 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:55 INFO  time: Connected to build server in 0.95s
+2025.10.23 10:11:56 INFO  Connected to Build server: scala-cli v1.9.1
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:11:56 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:11:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:11:56 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:11:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:11:56 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:11:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:11:56 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:11:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:56 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:11:56 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:11:56 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:11:56 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:11:56 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:11:57 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:11:57 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.49s
+2025.10.23 10:11:58 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.23 10:12:00 INFO  time: indexed workspace in 4.18s
+2025.10.23 10:12:01 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:12:01 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:12:01 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:12:01 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:12:01 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:12:01 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:12:01 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:12:01 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:12:01 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:12:01 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:12:01 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:12:01 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:12:01 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:12:01 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:12:01 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:12:01 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:12:01 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:12:01 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:12:01 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:12:01 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:12:01 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:12:01 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:12:01 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:12:01 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:12:01 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:12:01 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:12:01 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.47s
+2025.10.23 10:14:24 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:14:24 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:14:24 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:14:24 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:14:24 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:24 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:14:24 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:14:24 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:14:24 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:14:24 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:24 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:14:24 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:14:24 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:14:24 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:14:24 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:24 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:14:24 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:14:24 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:14:24 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:14:24 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:24 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:14:24 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:14:24 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:14:24 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:14:24 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:24 INFO  compiling scrolls-scalus_2d46a7ee75 (1 scala source)
+2025.10.23 10:14:24 INFO  time: compiled scrolls-scalus_2d46a7ee75 in 0.32s
+2025.10.23 10:14:30 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:14:30 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:14:30 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:14:30 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:14:30 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:14:31 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:14:31 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:14:31 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:14:31 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:14:31 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:31 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:14:31 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:14:31 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:14:31 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:14:31 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:31 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:14:31 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:14:31 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:14:31 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:14:31 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:31 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:14:31 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:14:31 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:14:31 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:14:31 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:31 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:14:31 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:14:31 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:14:31 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:14:31 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:31 INFO  compiling scrolls-scalus_2d46a7ee75 (1 scala source)
+2025.10.23 10:14:31 INFO  time: compiled scrolls-scalus_2d46a7ee75 in 0.28s
+2025.10.23 10:14:32 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:14:32 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:14:32 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:14:32 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:14:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:32 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:14:32 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:14:32 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:14:32 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:14:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:32 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:14:32 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:14:32 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:14:32 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:14:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:32 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:14:32 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:14:32 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:14:32 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:14:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:32 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:14:32 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:14:32 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:14:32 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:14:32 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:32 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:14:32 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.48s
+2025.10.23 10:14:36 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:14:36 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:14:36 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:14:36 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:14:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:36 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:14:36 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:14:36 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:14:36 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:14:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:36 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:14:36 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:14:36 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:14:36 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:14:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:36 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:14:36 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:14:36 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:14:36 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:14:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:36 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:14:36 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:14:36 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:14:36 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:14:36 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:36 INFO  compiling scrolls-scalus_2d46a7ee75 (1 scala source)
+2025.10.23 10:14:36 INFO  time: compiled scrolls-scalus_2d46a7ee75 in 0.25s
+2025.10.23 10:14:39 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:14:39 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:14:39 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:14:39 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:14:39 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:39 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:14:39 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:14:39 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:14:39 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:14:39 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:39 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:14:39 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:14:39 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:14:39 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:14:39 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:39 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:14:39 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:14:39 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:14:39 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:14:39 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:39 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:14:39 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:14:39 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:14:39 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:14:39 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:14:40 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:14:40 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.47s
+2025.10.23 10:18:25 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:18:25 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:18:25 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:18:25 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:18:25 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:25 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:18:25 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:18:25 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:18:25 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:18:25 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:25 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:18:25 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:18:25 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:18:25 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:18:25 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:25 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:18:25 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:18:25 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:18:25 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:18:25 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:25 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:18:25 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:18:25 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:18:25 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:18:25 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:25 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:18:25 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.48s
+2025.10.23 10:18:29 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:18:29 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:18:29 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:18:29 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:18:29 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:18:29 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:18:29 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:18:29 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:18:29 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:18:29 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:29 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:18:29 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:18:29 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:18:29 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:18:29 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:29 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:18:29 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:18:29 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:18:29 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:18:29 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:29 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:18:29 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:18:29 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:18:29 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:18:29 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:29 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:18:29 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:18:29 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:18:29 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:18:29 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:29 INFO  compiling scrolls-scalus_2d46a7ee75 (1 scala source)
+2025.10.23 10:18:29 INFO  time: compiled scrolls-scalus_2d46a7ee75 in 0.29s
+2025.10.23 10:18:32 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:18:32 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:18:32 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:18:32 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:18:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:32 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:18:32 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:18:32 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:18:32 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:18:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:32 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:18:32 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:18:32 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:18:32 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:18:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:32 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:18:32 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:18:32 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:18:32 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:18:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:32 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:18:32 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:18:32 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:18:32 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:18:32 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:32 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:18:32 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.11s
+2025.10.23 10:18:36 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:18:36 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:18:36 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:18:36 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:18:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:36 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:18:36 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:18:36 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:18:36 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:18:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:36 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:18:36 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:18:36 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:18:36 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:18:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:36 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:18:36 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:18:36 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:18:36 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:18:36 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:36 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:18:36 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:18:36 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:18:36 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:18:36 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:18:36 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:18:36 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.39s
+2025.10.23 10:20:12 WARN  Could not find semantic tokens for: file:///C:/Users/Sam/Ikigai/charms-cardano/scrolls-scalus/project.scala
+2025.10.23 10:20:12 WARN  Could not find semantic tokens for: file:///C:/Users/Sam/Ikigai/charms-cardano/scrolls-scalus/project.scala
+2025.10.23 10:21:04 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:21:04 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:21:04 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:21:04 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:21:04 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:04 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:21:04 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:21:04 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:21:04 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:21:04 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:04 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:21:04 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:21:04 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:21:04 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:21:04 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:04 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:21:04 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:21:04 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:21:04 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:21:04 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:04 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:21:04 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:21:04 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:21:04 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:21:04 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:04 INFO  compiling scrolls-scalus_2d46a7ee75 (1 scala source)
+2025.10.23 10:21:04 INFO  time: compiled scrolls-scalus_2d46a7ee75 in 0.28s
+2025.10.23 10:21:06 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:21:06 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:21:06 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:21:06 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:21:06 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:06 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:21:06 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:21:06 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:21:06 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:21:06 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:06 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:21:06 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:21:06 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:21:06 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:21:06 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:06 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:21:06 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:21:06 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:21:06 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:21:06 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:06 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:21:06 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:21:06 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:21:06 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:21:06 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:21:06 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:21:06 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.44s
+Oct 23, 2025 10:22:25 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 518
+2025.10.23 10:22:25 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:22:25 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:22:25 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:22:25 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:22:25 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:22:25 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:22:25 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:22:25 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:22:25 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:22:25 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:22:25 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:22:25 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:22:25 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:22:25 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:22:25 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:22:25 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:22:25 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:22:25 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:22:25 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:22:25 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:22:25 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:22:25 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:22:25 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:22:25 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:22:25 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:22:25 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:22:25 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.45s
+Oct 23, 2025 10:22:30 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 537
+Oct 23, 2025 10:23:12 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 552
+2025.10.23 10:26:55 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:26:55 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:26:55 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:26:55 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:26:55 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:26:55 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:26:55 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:26:55 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:26:55 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:26:55 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:26:55 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:26:55 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:26:55 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:26:55 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:26:55 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:26:55 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:26:55 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:26:55 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:26:55 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:26:55 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:26:55 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:26:55 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:26:55 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:26:55 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:26:55 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:26:55 INFO  compiling scrolls-scalus_2d46a7ee75 (1 scala source)
+2025.10.23 10:26:55 INFO  time: compiled scrolls-scalus_2d46a7ee75 in 0.28s
+2025.10.23 10:27:06 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 10:27:06 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:27:06 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:27:06 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:27:06 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:27:06 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:06 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:27:06 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:27:06 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:27:06 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:27:06 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:06 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:27:06 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:27:06 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:27:06 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:27:06 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:06 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:27:06 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:27:06 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:27:06 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:27:06 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:06 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:27:06 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:27:06 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:27:06 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:27:06 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:06 INFO  compiling scrolls-scalus_2d46a7ee75 (1 scala source)
+2025.10.23 10:27:06 INFO  time: compiled scrolls-scalus_2d46a7ee75 in 0.26s
+2025.10.23 10:27:09 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:27:09 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:27:09 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:27:09 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:27:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:09 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:27:09 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:27:09 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:27:09 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:27:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:09 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:27:09 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:27:09 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:27:09 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:27:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:09 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:27:09 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:27:09 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:27:09 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:27:09 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:09 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:27:09 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:27:09 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:27:09 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:27:09 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:09 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:27:09 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.41s
+2025.10.23 10:27:17 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:27:17 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:27:17 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:27:17 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:27:17 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:17 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:27:17 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:27:17 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:27:17 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:27:17 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:17 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:27:17 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:27:17 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:27:17 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:27:17 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:17 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:27:17 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:27:17 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:27:17 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:27:17 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:17 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:27:17 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:27:17 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:27:17 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:27:17 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:17 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:27:17 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 99ms
+2025.10.23 10:27:18 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:27:18 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:27:18 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:27:18 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:27:18 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:18 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:27:18 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:27:18 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:27:18 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:27:18 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:18 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:27:18 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:27:18 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:27:18 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:27:18 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:18 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:27:18 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:27:18 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:27:18 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:27:18 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:18 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:27:18 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:27:18 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:27:18 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:27:18 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:27:18 INFO  compiling scrolls-scalus_2d46a7ee75-test (1 scala source)
+2025.10.23 10:27:18 INFO  time: compiled scrolls-scalus_2d46a7ee75-test in 0.6s
+2025.10.23 10:27:37 WARN  Could not find semantic tokens for: file:///C:/Users/Sam/Ikigai/charms-cardano/scrolls-scalus/project.scala
+2025.10.23 10:27:37 WARN  Could not find semantic tokens for: file:///C:/Users/Sam/Ikigai/charms-cardano/scrolls-scalus/project.scala
+2025.10.23 10:27:40 WARN  Could not find semantic tokens for: file:///C:/Users/Sam/Ikigai/charms-cardano/scrolls-scalus/project.scala
+2025.10.23 10:27:40 WARN  Could not find semantic tokens for: file:///C:/Users/Sam/Ikigai/charms-cardano/scrolls-scalus/project.scala
+2025.10.23 10:28:46 INFO  Shutting down server
+2025.10.23 10:28:46 INFO  shutting down Metals
+2025.10.23 10:28:46 INFO  Shut down connection with build server.
+2025.10.23 10:28:46 INFO  BSP server: Oct 23, 2025 10:28:46 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+2025.10.23 10:28:46 INFO  BSP server: WARNING: Notification threw an exception: {
+2025.10.23 10:28:46 INFO  BSP server:   "jsonrpc": "2.0",
+2025.10.23 10:28:46 INFO  BSP server:   "method": "build/exit",
+2025.10.23 10:28:46 INFO  BSP server:   "params": null
+2025.10.23 10:28:46 INFO  BSP server: }
+2025.10.23 10:28:46 INFO  BSP server: java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+2025.10.23 10:28:46 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+2025.10.23 10:28:46 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:152)
+2025.10.23 10:28:46 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)
+2025.10.23 10:28:46 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)
+2025.10.23 10:28:46 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+2025.10.23 10:28:46 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+2025.10.23 10:28:46 INFO  BSP server: 	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+2025.10.23 10:28:46 INFO  BSP server: 	at java.base@17.0.6/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+2025.10.23 10:28:46 INFO  BSP server: 	at java.base@17.0.6/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+2025.10.23 10:28:46 INFO  BSP server: 	at java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+2025.10.23 10:28:46 INFO  BSP server: 	at java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+2025.10.23 10:28:46 INFO  BSP server: 	at java.base@17.0.6/java.lang.Thread.run(Thread.java:833)
+2025.10.23 10:28:46 INFO  BSP server: 	at com.oracle.svm.core.thread.PlatformThreads.threadStartRoutine(PlatformThreads.java:775)
+2025.10.23 10:28:46 INFO  BSP server: 	at com.oracle.svm.core.windows.WindowsPlatformThreads.osThreadStartRoutine(WindowsPlatformThreads.java:178)
+2025.10.23 10:28:46 INFO  BSP server: Caused by: java.lang.reflect.InvocationTargetException
+2025.10.23 10:28:46 INFO  Exiting server
+2025.10.23 10:29:30 INFO  Started: Metals version 1.6.3 in folders 'C:\Users\Sam\Ikigai\charms-cardano' for client Visual Studio Code 1.105.1.
+2025.10.23 10:29:30 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.23 10:29:31 INFO  Attempting to connect to the build server...
+2025.10.23 10:29:31 INFO  Running BSP server List(C:\Users\Sam\AppData\Local\Coursier\data\bin\.scala-cli.aux.exe, bsp, --json-options, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\.scala-build\ide-options-v2.json, --json-launcher-options, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\.scala-build\ide-launcher-options.json, --envs-file, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\.scala-build\ide-envs.json, C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus)
+2025.10.23 10:29:31 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at C:\Users\Sam\Ikigai\charms-cardano\.metals\bsp.trace.json or C:\Users\Sam\AppData\Local\scalameta\metals\cache\bsp.trace.json
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:29:32 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:29:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:29:32 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:29:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:29:32 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:29:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:29:32 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:29:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:29:32 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:29:32 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:31 INFO  time: Connected to build server in 0.97s
+2025.10.23 10:29:32 INFO  Connected to Build server: scala-cli v1.9.1
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 10:29:32 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 10:29:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 10:29:32 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 10:29:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 10:29:32 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 10:29:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 10:29:32 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 10:29:32 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:32 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 10:29:32 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 10:29:32 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 10:29:32 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 10:29:32 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 10:29:32 INFO  compiling scrolls-scalus_d5c0a6989e (2 scala sources)
+2025.10.23 10:29:32 INFO  time: compiled scrolls-scalus_d5c0a6989e in 0.27s
+2025.10.23 10:29:32 INFO  compiling scrolls-scalus_d5c0a6989e-test (1 scala source)
+2025.10.23 10:29:32 INFO  time: compiled scrolls-scalus_d5c0a6989e-test in 0.48s
+2025.10.23 10:29:33 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.10.23 10:29:33 INFO  time: indexed workspace in 2.24s
+2025.10.23 11:06:52 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 11:06:52 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 11:06:52 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 11:06:52 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 11:06:52 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:06:52 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 11:06:52 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 11:06:52 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 11:06:52 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 11:06:52 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:06:52 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 11:06:52 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 11:06:52 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 11:06:52 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 11:06:52 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:06:52 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 11:06:52 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 11:06:52 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 11:06:52 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 11:06:52 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:06:52 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 11:06:52 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 11:06:52 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 11:06:52 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 11:06:52 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:06:52 INFO  compiling scrolls-scalus_d5c0a6989e-test (1 scala source)
+2025.10.23 11:06:52 INFO  time: compiled scrolls-scalus_d5c0a6989e-test in 0.46s
+Oct 23, 2025 11:08:28 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 92
+Oct 23, 2025 11:08:31 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 103
+2025.10.23 11:08:53 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 11:08:53 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 11:08:53 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 11:08:53 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 11:08:53 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:53 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 11:08:53 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 11:08:53 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 11:08:53 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 11:08:53 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:53 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 11:08:53 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 11:08:53 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 11:08:53 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 11:08:53 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:53 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 11:08:53 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 11:08:53 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 11:08:53 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 11:08:53 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:53 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 11:08:53 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 11:08:53 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 11:08:53 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 11:08:53 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:53 INFO  compiling scrolls-scalus_d5c0a6989e (1 scala source)
+2025.10.23 11:08:53 INFO  time: compiled scrolls-scalus_d5c0a6989e in 0.4s
+2025.10.23 11:08:56 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 11:08:56 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 11:08:56 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 11:08:56 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 11:08:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:56 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 11:08:56 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 11:08:56 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 11:08:56 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 11:08:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:56 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 11:08:56 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 11:08:56 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 11:08:56 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 11:08:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:56 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 11:08:56 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 11:08:56 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 11:08:56 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 11:08:56 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:56 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 11:08:56 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 11:08:56 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 11:08:56 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 11:08:56 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:08:56 INFO  compiling scrolls-scalus_d5c0a6989e-test (1 scala source)
+2025.10.23 11:08:56 INFO  time: compiled scrolls-scalus_d5c0a6989e-test in 0.85s
+Oct 23, 2025 11:09:27 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2025.10.23 11:09:43 WARN  Could not load snapshot text for C:\Users\Sam\Ikigai\charms-cardano\scrolls-scalus\Scrolls.scala
+2025.10.23 11:09:43 INFO  BSP server: [hint] .\project.scala:5:20
+2025.10.23 11:09:43 INFO  BSP server: [hint] "scalus-testkit is outdated, update to 0.13.0"
+2025.10.23 11:09:43 INFO  BSP server: [hint]      scalus-testkit 0.10.1 -> org.scalus::scalus-testkit:0.13.0
+2025.10.23 11:09:43 INFO  BSP server: [hint] //> using test.dep org.scalus::scalus-testkit:0.10.1
+2025.10.23 11:09:43 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:09:43 INFO  BSP server: [hint] .\project.scala:7:20
+2025.10.23 11:09:43 INFO  BSP server: [hint] "munit is outdated, update to 1.2.1"
+2025.10.23 11:09:43 INFO  BSP server: [hint]      munit 1.1.1 -> org.scalameta::munit::1.2.1
+2025.10.23 11:09:43 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit::1.1.1
+2025.10.23 11:09:43 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:09:43 INFO  BSP server: [hint] .\project.scala:8:20
+2025.10.23 11:09:43 INFO  BSP server: [hint] "munit-scalacheck is outdated, update to 1.2.0"
+2025.10.23 11:09:43 INFO  BSP server: [hint]      munit-scalacheck 1.1.0 -> org.scalameta::munit-scalacheck::1.2.0
+2025.10.23 11:09:43 INFO  BSP server: [hint] //> using test.dep org.scalameta::munit-scalacheck::1.1.0
+2025.10.23 11:09:43 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:09:43 INFO  BSP server: [hint] .\project.scala:9:20
+2025.10.23 11:09:43 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.19.0"
+2025.10.23 11:09:43 INFO  BSP server: [hint]      scalacheck 1.18.1 -> org.scalacheck::scalacheck::1.19.0
+2025.10.23 11:09:43 INFO  BSP server: [hint] //> using test.dep org.scalacheck::scalacheck::1.18.1
+2025.10.23 11:09:43 INFO  BSP server: [hint]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:09:43 INFO  BSP server: [hint] .\project.scala:4:15
+2025.10.23 11:09:43 INFO  BSP server: [hint] "scalus_3 is outdated, update to 0.13.0"
+2025.10.23 11:09:43 INFO  BSP server: [hint]      scalus_3 0.10.1 -> org.scalus:scalus_3:0.13.0
+2025.10.23 11:09:43 INFO  BSP server: [hint] //> using dep org.scalus:scalus_3:0.10.1
+2025.10.23 11:09:43 INFO  BSP server: [hint]               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025.10.23 11:09:43 INFO  compiling scrolls-scalus_d5c0a6989e (1 scala source)
+2025.10.23 11:09:43 INFO  time: compiled scrolls-scalus_d5c0a6989e in 0.26s

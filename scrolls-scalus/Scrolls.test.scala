@@ -15,20 +15,19 @@ import scalus.uplc.eval.*
 import scala.language.implicitConversions
 import scala.math.Ordering.Implicits.*
 
-class HelloCardanoSpec extends FunSuite, ScalusTest {
+class ScrollsSpec extends FunSuite, ScalusTest {
 
-    test("Hello Cardano") {
-        val ownerPubKey = PubKeyHash(
+    test("Scrolls validator passes with correct signature") {
+        val ICPHash = PubKeyHash(
           hex"1234567890abcdef1234567890abcdef1234567890abcdef12345678"
         )
-        val message = "Hello, Cardano!".toData
         val context = makeSpendingScriptContext(
-          datum = ownerPubKey.toData,
-          redeemer = message,
-          signatories = List(ownerPubKey)
+          datum = ICPHash.toData,
+          redeemer = Data.unit,
+          signatories = List(ICPHash)
         )
 
-        val result = compile(HelloCardano.validate).runScript(context)
+        val result = compile(Scrolls.validate).runScript(context)
 
         assert(result.isSuccess)
         assert(result.budget <= ExBudget(ExCPU(62000000), ExMemory(240000)))

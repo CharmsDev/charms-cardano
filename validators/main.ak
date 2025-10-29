@@ -1,19 +1,19 @@
 use aiken/builtin.{serialise_data}
 use aiken/collection/list
 use aiken/crypto.{ScriptHash}
-use aiken_design_patterns/merkelized_validator.{WithdrawRedeemerIO}
+use aiken_design_patterns/merkelized_validator.{WithdrawRedeemer}
 use ak_381/groth16.{SnarkVerificationKey}
+use cardano/address.{Address, Script}
 use cardano/assets.{PolicyId, from_asset}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
-  Datum, DatumHash, InlineDatum, NoDatum, OutputReference, Redeemer, ScriptPurpose, Spend, Transaction,
-  Withdraw, placeholder, Output
+  Datum, DatumHash, InlineDatum, NoDatum, Output, OutputReference, Redeemer,
+  ScriptPurpose, Spend, Transaction, Withdraw, placeholder,
 }
 use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer}
-use charms_cardano/test_utils.{TestCircuit, base_passing_circuit}
 use charms_cardano/groth.{Groth16Inputs, groth16_input_coercer}
+use charms_cardano/test_utils.{TestCircuit, base_passing_circuit}
 use charms_cardano/utils.{bytearray_to_list}
-use cardano/address.{Address, Script}
 
 validator main(merkelized_groth16: ScriptHash, groth_vk: SnarkVerificationKey) {
   mint(redeemer: SpellRedeemer, _policy_id: PolicyId, self: Transaction) {
@@ -147,37 +147,106 @@ test main_spend_pass() {
       reference_script: None,
     }
 
-  let mock_outref =
-    OutputReference {
-      transaction_id: #"",
-      output_index: 0,
-    }
+  let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
+
+  let expected_public_values: List<Int> =
+    to_serialized_pv(spell, base_passing_circuit().vk)
 
   let withdraw_redeemer: Redeemer =
-    WithdrawRedeemerIO {
+    WithdrawRedeemer {
       input_arg: Groth16Inputs {
         vk: base_passing_circuit().vk,
         proof: base_passing_circuit().proof,
-        public_values: base_passing_circuit().public_values,
+        public_values: expected_public_values,
       },
-      result: True,
     }
 
-  let redeemers: Pairs<ScriptPurpose, Redeemer> = 
+  let redeemers: Pairs<ScriptPurpose, Redeemer> =
     [
       Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
-      Pair(Spend(mock_outref), spell_redeemer)
+      Pair(Spend(mock_outref), spell_redeemer),
     ]
 
   expect redeemer: SpellRedeemer = spell_redeemer
   let datum = Some(spell_datum)
 
   main.spend(
-    base_passing_circuit().sh, 
+    base_passing_circuit().sh,
     base_passing_circuit().vk,
     datum,
     redeemer,
     mock_outref,
-    Transaction {..placeholder, redeemers: redeemers, outputs: [mock_output]},
+    Transaction { ..placeholder, redeemers, outputs: [mock_output] },
+  )
+}
+
+test main_spend_vk_0_inputs() fail {
+  // downcast public values
+  let public_values: Data = base_passing_circuit().public_values
+  let app =
+    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+  let app_public_inputs = [Pair(app, public_values)]
+
+  // Create a mock spell and spell datum
+  let spell: NormalizedSpell =
+    NormalizedSpell {
+      version: 1,
+      tx: placeholder,
+      app_public_inputs,
+      mock: True,
+    }
+
+  // Add other required fields based on your NormalizedSpell definition
+  let spell_datum: SpellDatum =
+    SpellDatum { spell, proof: base_passing_circuit().proof }
+
+  // Create mock spell redeemer
+  let spell_redeemer: Redeemer =
+    SpellRedeemer {
+      spell_vk: SnarkVerificationKey { ..base_passing_circuit().vk, nPublic: 0 },
+    }
+
+  // Create mock transaction with required outputs
+  let mock_output =
+    Output {
+      address: Address {
+        payment_credential: Script(base_passing_circuit().sh),
+        stake_credential: None,
+      },
+      value: from_asset(#"", #"", 100),
+      datum: InlineDatum(spell_datum),
+      reference_script: None,
+    }
+
+  let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
+
+  let expected_public_values: List<Int> =
+    to_serialized_pv(spell, base_passing_circuit().vk)
+
+  let withdraw_redeemer: Redeemer =
+    WithdrawRedeemer {
+      input_arg: Groth16Inputs {
+        vk: base_passing_circuit().vk,
+        proof: base_passing_circuit().proof,
+        public_values: expected_public_values,
+      },
+    }
+
+  let redeemers: Pairs<ScriptPurpose, Redeemer> =
+    [
+      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+      Pair(Spend(mock_outref), spell_redeemer),
+    ]
+
+  expect redeemer: SpellRedeemer = spell_redeemer
+  let datum = Some(spell_datum)
+
+  main.spend(
+    base_passing_circuit().sh,
+    base_passing_circuit().vk,
+    datum,
+    redeemer,
+    mock_outref,
+    Transaction { ..placeholder, redeemers, outputs: [mock_output] },
   )
 }

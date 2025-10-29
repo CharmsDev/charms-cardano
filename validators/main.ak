@@ -7,8 +7,8 @@ use cardano/address.{Address, Script}
 use cardano/assets.{PolicyId, from_asset}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
-  Datum, DatumHash, InlineDatum, NoDatum, Output, OutputReference, Redeemer,
-  ScriptPurpose, Spend, Transaction, Withdraw, placeholder,
+  Datum, DatumHash, InlineDatum, Mint, NoDatum, Output, OutputReference,
+  Redeemer, ScriptPurpose, Spend, Transaction, Withdraw, placeholder,
 }
 use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer}
 use charms_cardano/groth.{Groth16Inputs, groth16_input_coercer}
@@ -248,5 +248,126 @@ test main_spend_vk_0_inputs() fail {
     redeemer,
     mock_outref,
     Transaction { ..placeholder, redeemers, outputs: [mock_output] },
+  )
+}
+
+test main_mint_pass() {
+  // downcast public values
+  let public_values: Data = base_passing_circuit().public_values
+  let app =
+    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+  let app_public_inputs = [Pair(app, public_values)]
+
+  // Create a mock spell and spell datum
+  let spell: NormalizedSpell =
+    NormalizedSpell {
+      version: 1,
+      tx: placeholder,
+      app_public_inputs,
+      mock: True,
+    }
+
+  // Add other required fields based on your NormalizedSpell definition
+  let spell_datum: SpellDatum =
+    SpellDatum { spell, proof: base_passing_circuit().proof }
+
+  // Create mock spell redeemer
+  let spell_redeemer: Redeemer =
+    SpellRedeemer { spell_vk: base_passing_circuit().vk }
+
+  // Create mock transaction with required outputs
+  let mock_output =
+    Output {
+      address: Address {
+        payment_credential: Script(base_passing_circuit().sh),
+        stake_credential: None,
+      },
+      value: from_asset(#"", #"", 100),
+      datum: InlineDatum(spell_datum),
+      reference_script: None,
+    }
+
+  let policy_id: PolicyId =
+    #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
+
+  let expected_public_values: List<Int> =
+    to_serialized_pv(spell, base_passing_circuit().vk)
+
+  let withdraw_redeemer: Redeemer =
+    WithdrawRedeemer {
+      input_arg: Groth16Inputs {
+        vk: base_passing_circuit().vk,
+        proof: base_passing_circuit().proof,
+        public_values: expected_public_values,
+      },
+    }
+
+  let redeemers: Pairs<ScriptPurpose, Redeemer> =
+    [
+      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+      Pair(Mint(policy_id), spell_redeemer),
+    ]
+
+  expect redeemer: SpellRedeemer = spell_redeemer
+
+  main.mint(
+    base_passing_circuit().sh,
+    base_passing_circuit().vk,
+    redeemer,
+    policy_id,
+    Transaction { ..placeholder, redeemers, outputs: [mock_output] },
+  )
+}
+
+test main_mint_fail_no_output() fail {
+  // downcast public values
+  let public_values: Data = base_passing_circuit().public_values
+  let app =
+    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+  let app_public_inputs = [Pair(app, public_values)]
+
+  // Create a mock spell and spell datum
+  let spell: NormalizedSpell =
+    NormalizedSpell {
+      version: 1,
+      tx: placeholder,
+      app_public_inputs,
+      mock: True,
+    }
+
+  // Create mock spell redeemer
+  let spell_redeemer: Redeemer =
+    SpellRedeemer { spell_vk: base_passing_circuit().vk }
+
+  let policy_id: PolicyId =
+    #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
+
+  let expected_public_values: List<Int> =
+    to_serialized_pv(spell, base_passing_circuit().vk)
+
+  let withdraw_redeemer: Redeemer =
+    WithdrawRedeemer {
+      input_arg: Groth16Inputs {
+        vk: base_passing_circuit().vk,
+        proof: base_passing_circuit().proof,
+        public_values: expected_public_values,
+      },
+    }
+
+  let redeemers: Pairs<ScriptPurpose, Redeemer> =
+    [
+      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+      Pair(Mint(policy_id), spell_redeemer),
+    ]
+
+  expect redeemer: SpellRedeemer = spell_redeemer
+
+  // No outputs - this should cause the mint to fail when trying to get the last output
+  main.mint(
+    base_passing_circuit().sh,
+    base_passing_circuit().vk,
+    redeemer,
+    policy_id,
+    Transaction { ..placeholder, redeemers, outputs: [] },
   )
 }

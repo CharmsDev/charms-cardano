@@ -117,12 +117,13 @@ test main_spend_pass() {
   let app =
     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
   let app_public_inputs = [Pair(app, public_values)]
+  let placeholder_data: Data = placeholder
 
   // Create a mock spell and spell datum
   let spell: NormalizedSpell =
     NormalizedSpell {
       version: 1,
-      tx: placeholder,
+      tx: placeholder_data,
       app_public_inputs,
       mock: True,
     }

@@ -5,3 +5,4 @@ offchain/node_modules/
 offchain/.env
 .idea/
 artifacts/
+aiken.lock

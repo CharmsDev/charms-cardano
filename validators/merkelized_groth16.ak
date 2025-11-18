@@ -7,7 +7,7 @@ use cardano/transaction.{Transaction, placeholder}
 use charms_cardano/test_utils.{base_passing_circuit}
 use charms_cardano/groth.{Groth16Inputs}
 
-validator merkelized_groth16 {
+validator merkelized_groth16(groth_vk: SnarkVerificationKey) {
   withdraw(
     redeemer: WithdrawRedeemerIO<Groth16Inputs, Bool>,
     _account: Credential,
@@ -18,7 +18,8 @@ validator merkelized_groth16 {
         /// Extract parameters from the redeemer & run groth 16 validation
         inputs: Groth16Inputs,
       ) -> Bool {
-        groth_verify(inputs.vk, inputs.proof, inputs.public_values)
+
+        groth_verify(groth_vk, inputs.proof, inputs.public_values)
       },
       redeemer,
     )
@@ -33,7 +34,6 @@ test groth_verify_pass() {
   let redeemer: WithdrawRedeemerIO<Groth16Inputs, Bool> =
     WithdrawRedeemerIO {
       input_arg: Groth16Inputs {
-        vk: base_passing_circuit().vk,
         proof: base_passing_circuit().proof,
         public_values: base_passing_circuit().public_values,
       },
@@ -41,6 +41,7 @@ test groth_verify_pass() {
     }
 
   merkelized_groth16.withdraw(
+    base_passing_circuit().vk,
     redeemer,
     Script(base_passing_circuit().sh),
     placeholder,
@@ -81,11 +82,16 @@ test groth_verify_fail() fail {
 
   let redeemer: WithdrawRedeemerIO<Groth16Inputs, Bool> =
     WithdrawRedeemerIO {
-      input_arg: Groth16Inputs(vk, pk, public_values),
+      input_arg: Groth16Inputs(pk, public_values),
       result: True,
     }
 
-  merkelized_groth16.withdraw(redeemer, Script(m16_sh), placeholder)
+  merkelized_groth16.withdraw(
+    vk,
+    redeemer,
+    Script(m16_sh),
+    placeholder
+  )
 }
 // test groth_verify_fail_1() fail {
 //   //  Template of VK

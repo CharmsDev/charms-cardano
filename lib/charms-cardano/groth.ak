@@ -1,7 +1,6 @@
-use ak_381/groth16.{SnarkVerificationKey, Proof}
+use ak_381/groth16.{Proof}
 
 pub type Groth16Inputs {
-  vk: SnarkVerificationKey,
   proof: Proof,
   public_values: List<Int>,
 }

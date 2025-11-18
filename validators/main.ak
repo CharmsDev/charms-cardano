@@ -15,7 +15,7 @@ use charms_cardano/groth.{Groth16Inputs, groth16_input_coercer}
 use charms_cardano/test_utils.{TestCircuit, base_passing_circuit}
 use charms_cardano/utils.{bytearray_to_list}
 
-validator main(merkelized_groth16: ScriptHash, groth_vk: SnarkVerificationKey) {
+validator main(merkelized_groth16: ScriptHash) {
   mint(redeemer: SpellRedeemer, _policy_id: PolicyId, self: Transaction) {
     //TODO: Confirm the token name is correct
 
@@ -28,7 +28,7 @@ validator main(merkelized_groth16: ScriptHash, groth_vk: SnarkVerificationKey) {
     let app_public_inputs = to_serialized_pv(spell, redeemer.spell_vk)
 
     let groth_inputs: Groth16Inputs =
-      Groth16Inputs { vk: groth_vk, proof, public_values: app_public_inputs }
+      Groth16Inputs { proof, public_values: app_public_inputs }
 
     merkelized_validator.delegated_validation(
       function_input: groth_inputs,
@@ -51,7 +51,7 @@ validator main(merkelized_groth16: ScriptHash, groth_vk: SnarkVerificationKey) {
     let app_public_inputs = to_serialized_pv(spell, redeemer.spell_vk)
 
     let groth_inputs: Groth16Inputs =
-      Groth16Inputs { vk: groth_vk, proof, public_values: app_public_inputs }
+      Groth16Inputs { proof, public_values: app_public_inputs }
 
     merkelized_validator.delegated_validation(
       function_input: groth_inputs,
@@ -134,7 +134,7 @@ test main_spend_pass() {
 
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
-    SpellRedeemer { spell_vk: base_passing_circuit().vk }
+    SpellRedeemer { spell_vk: base_passing_circuit().vk, charms_version: 1 }
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -156,7 +156,6 @@ test main_spend_pass() {
   let withdraw_redeemer: Redeemer =
     WithdrawRedeemer {
       input_arg: Groth16Inputs {
-        vk: base_passing_circuit().vk,
         proof: base_passing_circuit().proof,
         public_values: expected_public_values,
       },
@@ -173,7 +172,6 @@ test main_spend_pass() {
 
   main.spend(
     base_passing_circuit().sh,
-    base_passing_circuit().vk,
     datum,
     redeemer,
     mock_outref,
@@ -205,6 +203,7 @@ test main_spend_vk_0_inputs() fail {
   let spell_redeemer: Redeemer =
     SpellRedeemer {
       spell_vk: SnarkVerificationKey { ..base_passing_circuit().vk, nPublic: 0 },
+      charms_version: 1
     }
 
   // Create mock transaction with required outputs
@@ -227,7 +226,6 @@ test main_spend_vk_0_inputs() fail {
   let withdraw_redeemer: Redeemer =
     WithdrawRedeemer {
       input_arg: Groth16Inputs {
-        vk: base_passing_circuit().vk,
         proof: base_passing_circuit().proof,
         public_values: expected_public_values,
       },
@@ -244,7 +242,6 @@ test main_spend_vk_0_inputs() fail {
 
   main.spend(
     base_passing_circuit().sh,
-    base_passing_circuit().vk,
     datum,
     redeemer,
     mock_outref,
@@ -274,7 +271,7 @@ test main_mint_pass() {
 
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
-    SpellRedeemer { spell_vk: base_passing_circuit().vk }
+    SpellRedeemer { spell_vk: base_passing_circuit().vk, charms_version: 1 }
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -297,7 +294,6 @@ test main_mint_pass() {
   let withdraw_redeemer: Redeemer =
     WithdrawRedeemer {
       input_arg: Groth16Inputs {
-        vk: base_passing_circuit().vk,
         proof: base_passing_circuit().proof,
         public_values: expected_public_values,
       },
@@ -313,7 +309,6 @@ test main_mint_pass() {
 
   main.mint(
     base_passing_circuit().sh,
-    base_passing_circuit().vk,
     redeemer,
     policy_id,
     Transaction { ..placeholder, redeemers, outputs: [mock_output] },
@@ -338,7 +333,7 @@ test main_mint_fail_no_output() fail {
 
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
-    SpellRedeemer { spell_vk: base_passing_circuit().vk }
+    SpellRedeemer { spell_vk: base_passing_circuit().vk, charms_version: 1 }
 
   let policy_id: PolicyId =
     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
@@ -349,7 +344,6 @@ test main_mint_fail_no_output() fail {
   let withdraw_redeemer: Redeemer =
     WithdrawRedeemer {
       input_arg: Groth16Inputs {
-        vk: base_passing_circuit().vk,
         proof: base_passing_circuit().proof,
         public_values: expected_public_values,
       },
@@ -366,7 +360,6 @@ test main_mint_fail_no_output() fail {
   // No outputs - this should cause the mint to fail when trying to get the last output
   main.mint(
     base_passing_circuit().sh,
-    base_passing_circuit().vk,
     redeemer,
     policy_id,
     Transaction { ..placeholder, redeemers, outputs: [] },

@@ -1,7 +1,8 @@
 use ak_381/groth16.{SnarkVerificationKey, Proof}
 
 pub type SpellRedeemer {
-  spell_vk: SnarkVerificationKey
+  spell_vk: SnarkVerificationKey,
+  charms_version: Int,
 }
 
 pub type SpellDatum {

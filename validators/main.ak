@@ -1,4 +1,3 @@
-use aiken/builtin.{serialise_data}
 use aiken/collection/list
 use aiken/crypto.{ScriptHash}
 use aiken_design_patterns/merkelized_validator.{WithdrawRedeemer}
@@ -10,12 +9,12 @@ use cardano/transaction.{
   Datum, DatumHash, InlineDatum, Mint, NoDatum, Output, OutputReference,
   Redeemer, ScriptPurpose, Spend, Transaction, Withdraw, placeholder,
 }
-use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer}
+use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer, cbor_serialize, extract_spell}
 use charms_cardano/groth.{Groth16Inputs, groth16_input_coercer}
 use charms_cardano/test_utils.{TestCircuit, base_passing_circuit}
 use charms_cardano/utils.{bytearray_to_list}
 
-validator main(merkelized_groth16: ScriptHash) {
+validator main(merkelized_groth16: ScriptHash, beacon_policy_id: PolicyId, tn_prefix: ByteArray, tn_suffix: ByteArray) {
   mint(redeemer: SpellRedeemer, _policy_id: PolicyId, self: Transaction) {
     //TODO: Confirm the token name is correct
 
@@ -25,10 +24,10 @@ validator main(merkelized_groth16: ScriptHash) {
     // expect spell_input.output.datum == spell_output.datum // left out for testing purposes
     expect SpellDatum { spell, proof } = extract_spell(spell_output.datum)
 
-    let app_public_inputs = to_serialized_pv(spell, redeemer.spell_vk)
+    let app_public_inputs = cbor_serialize(redeemer.spell_vk, spell)
 
     let groth_inputs: Groth16Inputs =
-      Groth16Inputs { proof, public_values: app_public_inputs }
+      Groth16Inputs { proof, spell_vk: redeemer.spell_vk }
 
     merkelized_validator.delegated_validation(
       function_input: groth_inputs,
@@ -48,10 +47,10 @@ validator main(merkelized_groth16: ScriptHash) {
   ) {
     expect Some(SpellDatum { spell, proof }) = datum_opt
 
-    let app_public_inputs = to_serialized_pv(spell, redeemer.spell_vk)
+    let app_public_inputs = cbor_serialize(redeemer.spell_vk, spell, )
 
     let groth_inputs: Groth16Inputs =
-      Groth16Inputs { proof, public_values: app_public_inputs }
+      Groth16Inputs { proof, spell_vk: redeemer.spell_vk }
 
     merkelized_validator.delegated_validation(
       function_input: groth_inputs,
@@ -74,41 +73,6 @@ validator main(merkelized_groth16: ScriptHash) {
   else(_ctx: ScriptContext) {
     fail @"invalid redeemer in main"
   }
-}
-
-fn extract_spell(datum: Datum) -> Data {
-  when datum is {
-    NoDatum -> fail
-    DatumHash(_h) -> fail
-    // just fail with DatumHash for now
-    // expect Some(d) = dict.get(tx_datums, h)
-    // d
-    InlineDatum(d) -> d
-  }
-}
-
-fn to_serialized_pv(
-  spell: NormalizedSpell,
-  spell_vk: SnarkVerificationKey,
-) -> List<Int> {
-  when spell.version is {
-    0 ->
-      // Legacy: commit to tuple (spell_vk, spell) using old serialization
-      sp1_serialize((spell_vk, spell))
-    _ ->
-      // Commit to CBOR-encoded tuple (spell_vk, spell)
-      cbor_serialize((spell_vk, spell))
-  }
-}
-
-fn sp1_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
-  // Probably doesn't make sense to support SP1 serialization? Will revisit.
-
-  bytearray_to_list(serialise_data(data))
-}
-
-fn cbor_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
-  bytearray_to_list(serialise_data(data))
 }
 
 test main_spend_pass() {

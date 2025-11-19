@@ -1,8 +1,8 @@
-use ak_381/groth16.{Proof}
+use ak_381/groth16.{Proof, SnarkVerificationKey}
 
 pub type Groth16Inputs {
-  proof: Proof,
-  public_values: List<Int>,
+  spell_vk: SnarkVerificationKey,
+  proof: Proof
 }
 
 // simply downcast Data to Groth16Inputs & crash on exit

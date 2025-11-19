@@ -1,4 +1,7 @@
 use ak_381/groth16.{SnarkVerificationKey, Proof}
+use charms_cardano/utils.{bytearray_to_list}
+use aiken/builtin.{serialise_data}
+use cardano/transaction.{Datum, InlineDatum, NoDatum, DatumHash}
 
 pub type SpellRedeemer {
   spell_vk: SnarkVerificationKey,
@@ -23,4 +26,19 @@ pub type App {
     tag: String,
     identity: ByteArray,
     vk: SnarkVerificationKey
+}
+
+pub fn cbor_serialize(spell_vk: SnarkVerificationKey, spell: NormalizedSpell) -> List<Int> {
+  bytearray_to_list(serialise_data((spell_vk, spell)))
+}
+
+pub fn extract_spell(datum: Datum) -> Data {
+  when datum is {
+    NoDatum -> fail
+    DatumHash(_h) -> fail
+    // just fail with DatumHash for now
+    // expect Some(d) = dict.get(tx_datums, h)
+    // d
+    InlineDatum(d) -> d
+  }
 }

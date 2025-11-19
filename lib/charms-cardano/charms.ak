@@ -4,7 +4,7 @@ use aiken/builtin.{serialise_data}
 use cardano/transaction.{Datum, InlineDatum, NoDatum, DatumHash}
 
 pub type SpellRedeemer {
-  spell_vk: SnarkVerificationKey,
+  input_args: Data,
   charms_version: Int,
 }
 

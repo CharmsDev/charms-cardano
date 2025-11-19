@@ -1,15 +1,24 @@
-use aiken/crypto.{ScriptHash, Script}
+use aiken/crypto.{ScriptHash}
 use ak_381/groth16.{Proof, SnarkVerificationKey}
-use cardano/assets.{PolicyId, from_asset}
+use cardano/assets.{from_asset}
 use cardano/transaction.{Output, InlineDatum}
-use charms_cardano/validator_types.{BeaconDatum}
+use charms_cardano/beacon.{BeaconDatum, BeaconParts}
 use cardano/address.{from_script}
+use charms_cardano/utils.{mk_beacon_tn}
 
 pub type TestCircuit {
   sh: ScriptHash,
   vk: SnarkVerificationKey,
   proof: Proof,
   public_values: List<Int>,
+}
+
+pub const test_charms_version = 67
+
+pub const test_beacon_parts: BeaconParts = BeaconParts {
+    policy_id: #"fe7c7867b321f41c674ef6c1af7b3250a673c24e4213e0425a7ae456", // token minting policy (not legit)
+    tx_prefix: "222",
+    tx_suffix: "deadbeef",
 }
 
 pub fn base_passing_circuit() -> TestCircuit {
@@ -47,16 +56,12 @@ pub fn base_passing_circuit() -> TestCircuit {
   TestCircuit { sh, vk, proof, public_values }
 }
 
-
-const beacon_policy_id: PolicyId =
-    #"fe7c7867b321f41c674ef6c1af7b3250a673c24e4213e0425a7ae456" // not a real policy id
-
 pub fn test_beacon() -> Output {
     Output {
         address: from_script(base_passing_circuit().sh),
         value: from_asset(
-            beacon_policy_id,
-            "222deadbeef",
+            test_beacon_parts.policy_id,
+            mk_beacon_tn(test_beacon_parts, test_charms_version),
             1,
         ),
         datum: InlineDatum(

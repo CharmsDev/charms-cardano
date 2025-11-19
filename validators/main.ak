@@ -1,38 +1,29 @@
 use aiken/collection/list
-use aiken/crypto.{ScriptHash}
 use aiken_design_patterns/merkelized_validator.{WithdrawRedeemer}
 use ak_381/groth16.{SnarkVerificationKey}
 use cardano/address.{Address, Script}
 use cardano/assets.{PolicyId, from_asset}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
-  Datum, DatumHash, InlineDatum, Mint, NoDatum, Output, OutputReference,
+  InlineDatum, Mint,  Output, OutputReference,
   Redeemer, ScriptPurpose, Spend, Transaction, Withdraw, placeholder,
 }
-use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer, cbor_serialize, extract_spell}
-use charms_cardano/groth.{Groth16Inputs, groth16_input_coercer}
-use charms_cardano/test_utils.{TestCircuit, base_passing_circuit}
-use charms_cardano/utils.{bytearray_to_list}
+use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer, cbor_serialize}
+use charms_cardano/test_utils.{TestCircuit, base_passing_circuit, test_beacon_parts}
+use charms_cardano/utils.{has_beacon}
+use charms_cardano/beacon.{BeaconParts}
 
-validator main(merkelized_groth16: ScriptHash, beacon_policy_id: PolicyId, tn_prefix: ByteArray, tn_suffix: ByteArray) {
+validator main(beacon_parts: BeaconParts) {
   mint(redeemer: SpellRedeemer, _policy_id: PolicyId, self: Transaction) {
-    //TODO: Confirm the token name is correct
+    expect Some(beacon_ref_input) = list.last(self.reference_inputs)
 
-    // expect Some(spell_input) = find_input(self.inputs, utxo) // left out for testing purposes
-    expect Some(spell_output) = list.last(self.outputs)
+    expect Some(charms_validator) = beacon_ref_input.output.reference_script
 
-    // expect spell_input.output.datum == spell_output.datum // left out for testing purposes
-    expect SpellDatum { spell, proof } = extract_spell(spell_output.datum)
-
-    let app_public_inputs = cbor_serialize(redeemer.spell_vk, spell)
-
-    let groth_inputs: Groth16Inputs =
-      Groth16Inputs { proof, spell_vk: redeemer.spell_vk }
-
+    has_beacon(beacon_parts, redeemer.charms_version, beacon_ref_input.output.value) && 
     merkelized_validator.delegated_validation(
-      function_input: groth_inputs,
-      staking_validator: merkelized_groth16,
-      input_data_coercer: groth16_input_coercer,
+      function_input: redeemer.input_args,
+      staking_validator: charms_validator,
+      input_data_coercer: fn(d: Data) { d }, // expect generic data - coercion is specified within the validator
       redeemers: self.redeemers,
     )
   }
@@ -40,22 +31,20 @@ validator main(merkelized_groth16: ScriptHash, beacon_policy_id: PolicyId, tn_pr
   /// Confirm the Merkelized Validator has signed the Tx
   /// [Optional] Confirm outputs conform to the Charm Assetname Standard
   spend(
-    datum_opt: Option<SpellDatum>,
+    _datum_opt: Option<SpellDatum>,
     redeemer: SpellRedeemer,
     _utxo: OutputReference,
     self: Transaction,
   ) {
-    expect Some(SpellDatum { spell, proof }) = datum_opt
+    expect Some(beacon_ref_input) = list.last(self.reference_inputs)
+    expect has_beacon(beacon_parts, redeemer.charms_version, beacon_ref_input.output.value)
 
-    let app_public_inputs = cbor_serialize(redeemer.spell_vk, spell, )
-
-    let groth_inputs: Groth16Inputs =
-      Groth16Inputs { proof, spell_vk: redeemer.spell_vk }
+    expect Some(charms_validator) = beacon_ref_input.output.reference_script
 
     merkelized_validator.delegated_validation(
-      function_input: groth_inputs,
-      staking_validator: merkelized_groth16,
-      input_data_coercer: groth16_input_coercer,
+      function_input: redeemer.input_args,
+      staking_validator: charms_validator,
+      input_data_coercer: fn(d: Data) { d }, // expect generic data - coercion is specified within the validator
       redeemers: self.redeemers,
     )
   }
@@ -82,6 +71,7 @@ test main_spend_pass() {
     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
   let app_public_inputs = [Pair(app, public_values)]
   let placeholder_data: Data = placeholder
+  let input_args = base_passing_circuit().vk
 
   // Create a mock spell and spell datum
   let spell: NormalizedSpell =
@@ -98,7 +88,7 @@ test main_spend_pass() {
 
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
-    SpellRedeemer { spell_vk: base_passing_circuit().vk, charms_version: 1 }
+    SpellRedeemer { input_args, charms_version: 1 }
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -115,14 +105,11 @@ test main_spend_pass() {
   let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
 
   let expected_public_values: List<Int> =
-    to_serialized_pv(spell, base_passing_circuit().vk)
+    cbor_serialize(base_passing_circuit().vk, spell)
 
   let withdraw_redeemer: Redeemer =
     WithdrawRedeemer {
-      input_arg: Groth16Inputs {
-        proof: base_passing_circuit().proof,
-        public_values: expected_public_values,
-      },
+      input_arg: input_args
     }
 
   let redeemers: Pairs<ScriptPurpose, Redeemer> =
@@ -135,7 +122,7 @@ test main_spend_pass() {
   let datum = Some(spell_datum)
 
   main.spend(
-    base_passing_circuit().sh,
+    test_beacon_parts,
     datum,
     redeemer,
     mock_outref,
@@ -166,7 +153,7 @@ test main_spend_vk_0_inputs() fail {
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
     SpellRedeemer {
-      spell_vk: SnarkVerificationKey { ..base_passing_circuit().vk, nPublic: 0 },
+      input_args: SnarkVerificationKey { ..base_passing_circuit().vk, nPublic: 0 },
       charms_version: 1
     }
 
@@ -185,14 +172,11 @@ test main_spend_vk_0_inputs() fail {
   let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
 
   let expected_public_values: List<Int> =
-    to_serialized_pv(spell, base_passing_circuit().vk)
+    cbor_serialize(base_passing_circuit().vk, spell)
 
   let withdraw_redeemer: Redeemer =
     WithdrawRedeemer {
-      input_arg: Groth16Inputs {
-        proof: base_passing_circuit().proof,
-        public_values: expected_public_values,
-      },
+      input_arg: base_passing_circuit().vk
     }
 
   let redeemers: Pairs<ScriptPurpose, Redeemer> =
@@ -205,7 +189,7 @@ test main_spend_vk_0_inputs() fail {
   let datum = Some(spell_datum)
 
   main.spend(
-    base_passing_circuit().sh,
+    test_beacon_parts,
     datum,
     redeemer,
     mock_outref,
@@ -235,7 +219,7 @@ test main_mint_pass() {
 
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
-    SpellRedeemer { spell_vk: base_passing_circuit().vk, charms_version: 1 }
+    SpellRedeemer { input_args: base_passing_circuit().vk, charms_version: 1 }
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -253,14 +237,11 @@ test main_mint_pass() {
     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
 
   let expected_public_values: List<Int> =
-    to_serialized_pv(spell, base_passing_circuit().vk)
+    cbor_serialize(base_passing_circuit().vk, spell)
 
   let withdraw_redeemer: Redeemer =
     WithdrawRedeemer {
-      input_arg: Groth16Inputs {
-        proof: base_passing_circuit().proof,
-        public_values: expected_public_values,
-      },
+      input_arg: base_passing_circuit().vk
     }
 
   let redeemers: Pairs<ScriptPurpose, Redeemer> =
@@ -272,7 +253,7 @@ test main_mint_pass() {
   expect redeemer: SpellRedeemer = spell_redeemer
 
   main.mint(
-    base_passing_circuit().sh,
+    test_beacon_parts,
     redeemer,
     policy_id,
     Transaction { ..placeholder, redeemers, outputs: [mock_output] },
@@ -297,20 +278,17 @@ test main_mint_fail_no_output() fail {
 
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
-    SpellRedeemer { spell_vk: base_passing_circuit().vk, charms_version: 1 }
+    SpellRedeemer { input_args: base_passing_circuit().vk, charms_version: 1 }
 
   let policy_id: PolicyId =
     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
 
   let expected_public_values: List<Int> =
-    to_serialized_pv(spell, base_passing_circuit().vk)
+    cbor_serialize(base_passing_circuit().vk, spell)
 
   let withdraw_redeemer: Redeemer =
     WithdrawRedeemer {
-      input_arg: Groth16Inputs {
-        proof: base_passing_circuit().proof,
-        public_values: expected_public_values,
-      },
+      input_arg: base_passing_circuit().vk
     }
 
   let redeemers: Pairs<ScriptPurpose, Redeemer> =
@@ -323,7 +301,7 @@ test main_mint_fail_no_output() fail {
 
   // No outputs - this should cause the mint to fail when trying to get the last output
   main.mint(
-    base_passing_circuit().sh,
+    test_beacon_parts,
     redeemer,
     policy_id,
     Transaction { ..placeholder, redeemers, outputs: [] },

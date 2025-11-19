@@ -4,21 +4,23 @@ use ak_381/groth16.{Proof, SnarkVerificationKey, groth_verify}
 use cardano/address.{Credential, Script}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{Transaction, placeholder}
-use charms_cardano/test_utils.{base_passing_circuit}
-use charms_cardano/groth.{Groth16Inputs}
+use charms_cardano/test_utils.{base_passing_circuit, test_charms_version}
 use charms_cardano/charms.{extract_spell, cbor_serialize, SpellDatum}
 use aiken/collection/list
 
 validator merkelized_groth16(groth_vk: SnarkVerificationKey, charms_version: Int) {
   withdraw(
-    redeemer: WithdrawRedeemerIO<Groth16Inputs, Bool>,
+    redeemer: WithdrawRedeemerIO<Data, Bool>,
     _account: Credential,
     self: Transaction,
   ) {
     merkelized_validator.withdraw_io(
       fn(
-        inputs: Groth16Inputs,
+        inputs: Data,
       ) -> Bool {
+        // extract spell_vk from redeemer
+        expect spell_vk: SnarkVerificationKey = inputs
+
         // find spell output
         expect Some(spell_output) = list.last(self.outputs)
 
@@ -29,10 +31,10 @@ validator merkelized_groth16(groth_vk: SnarkVerificationKey, charms_version: Int
         expect spell.version == charms_version
 
         // serialize public inputs
-        let app_public_inputs = cbor_serialize(inputs.spell_vk, spell)
+        let app_public_inputs = cbor_serialize(spell_vk, spell)
 
         // verify groth16 proof
-        groth_verify(groth_vk, inputs.proof, app_public_inputs)
+        groth_verify(groth_vk, proof, app_public_inputs)
       },
       redeemer,
     )
@@ -44,17 +46,16 @@ validator merkelized_groth16(groth_vk: SnarkVerificationKey, charms_version: Int
 }
 
 test groth_verify_pass() {
-  let redeemer: WithdrawRedeemerIO<Groth16Inputs, Bool> =
+  let input_arg: Data = base_passing_circuit().vk
+  let redeemer: WithdrawRedeemerIO<Data, Bool> =
     WithdrawRedeemerIO {
-      input_arg: Groth16Inputs {
-        spell_vk: base_passing_circuit().vk,
-        proof: base_passing_circuit().proof,
-      },
+      input_arg,
       result: True,
     }
 
   merkelized_groth16.withdraw(
     base_passing_circuit().vk,
+    test_charms_version,
     redeemer,
     Script(base_passing_circuit().sh),
     placeholder,
@@ -83,6 +84,8 @@ test groth_verify_fail() fail {
       ],
     }
 
+  let data_vk: Data = vk
+
   //  Template of Proof
   let pk: Proof =
     Proof {
@@ -93,14 +96,15 @@ test groth_verify_fail() fail {
   // Template of public values
   let public_values: List<Int> = [561, 3]
 
-  let redeemer: WithdrawRedeemerIO<Groth16Inputs, Bool> =
+  let redeemer: WithdrawRedeemerIO<Data, Bool> =
     WithdrawRedeemerIO {
-      input_arg: Groth16Inputs(pk, public_values),
+      input_arg: data_vk,
       result: True,
     }
 
   merkelized_groth16.withdraw(
     vk,
+    test_charms_version,
     redeemer,
     Script(m16_sh),
     placeholder

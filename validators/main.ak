@@ -30,10 +30,7 @@ fn main_impl(
 
   expect Some(charms_validator) = ref_input.output.reference_script
 
-  expect Some(rdmr) = self.redeemers |> pairs.get_first(Withdraw(Script(charms_validator)))
-  expect withdraw_redeemer: MainRedeemer = rdmr
-
-  withdraw_redeemer == redeemer
+  self.redeemers |> pairs.has_key(Withdraw(Script(charms_validator)))
 }
 
 validator main(beacon_parts: BeaconParts, _app_vk: ByteArray) {
@@ -136,10 +133,7 @@ test main_spend_vk_0_inputs() fail {
     }
 
   // Create mock spell redeemer
-  let spell_redeemer: Redeemer =
-    MainRedeemer {
-      version: 1,
-    }
+  let spell_redeemer: Redeemer = MainRedeemer { version: 1 }
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -204,8 +198,7 @@ test main_mint_pass() {
     SpellDatum { spell, proof: base_passing_circuit().proof }
 
   // Create mock spell redeemer
-  let spell_redeemer: Redeemer =
-    MainRedeemer { version: 1 }
+  let spell_redeemer: Redeemer = MainRedeemer { version: 1 }
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -264,8 +257,7 @@ test main_mint_fail_no_output() fail {
     }
 
   // Create mock spell redeemer
-  let spell_redeemer: Redeemer =
-    MainRedeemer { version: 1 }
+  let spell_redeemer: Redeemer = MainRedeemer { version: 1 }
 
   let policy_id: PolicyId =
     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"

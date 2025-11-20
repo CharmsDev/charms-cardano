@@ -11,22 +11,21 @@ use cardano/transaction.{
   Datum, InlineDatum, Mint, NoDatum, Output, OutputReference, Redeemer,
   ScriptPurpose, Spend, Transaction, Withdraw, placeholder,
 }
-use charms_cardano/beacon.{BeaconParts}
+use charms_cardano/beacon.{BeaconParts, has_beacon}
 use charms_cardano/charms.{
   App, MainRedeemer, NormalizedSpell, SpellDatum, cbor_serialize,
 }
 use charms_cardano/test_utils.{
   TestCircuit, base_passing_circuit, test_beacon_parts,
 }
-use charms_cardano/utils.{has_beacon}
 
 fn main_impl(
   beacon_parts: BeaconParts,
-  redeemer: MainRedeemer,
+  redeemer: ByteArray,
   self: Transaction,
 ) -> Bool {
   expect Some(ref_input) = list.last(self.reference_inputs)
-  expect has_beacon(beacon_parts, redeemer.version, ref_input.output.value)
+  expect has_beacon(beacon_parts, redeemer, ref_input.output.value)
 
   expect Some(charms_validator) = ref_input.output.reference_script
 
@@ -34,13 +33,13 @@ fn main_impl(
 }
 
 validator main(beacon_parts: BeaconParts, _app_vk: ByteArray) {
-  mint(redeemer: MainRedeemer, _policy_id: PolicyId, self: Transaction) {
+  mint(redeemer: ByteArray, _policy_id: PolicyId, self: Transaction) {
     main_impl(beacon_parts, redeemer, self)
   }
 
   spend(
     _datum_opt: Option<Data>,
-    redeemer: MainRedeemer,
+    redeemer: ByteArray,
     _utxo: OutputReference,
     self: Transaction,
   ) {
@@ -74,7 +73,7 @@ test main_spend_pass() {
   let spell_datum: Data = NoDatum
 
   // Create mock spell redeemer
-  let spell_redeemer: Redeemer = MainRedeemer { version: 1 }
+  let spell_redeemer: Redeemer = "8"
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -101,7 +100,7 @@ test main_spend_pass() {
       Pair(Spend(mock_outref), spell_redeemer),
     ]
 
-  expect redeemer: MainRedeemer = spell_redeemer
+  expect redeemer: ByteArray = spell_redeemer
   let datum = Some(spell_datum)
 
   let app_vk = #"deadbeef"

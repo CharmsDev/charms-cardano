@@ -47,7 +47,7 @@ validator main(beacon_parts: BeaconParts, _app_vk: ByteArray) {
   }
 
   else(_ctx: ScriptContext) {
-    fail @"invalid redeemer in main"
+    fail @"invalid script purpose"
   }
 }
 

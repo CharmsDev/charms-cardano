@@ -5,7 +5,6 @@ use cardano/transaction.{Datum, InlineDatum, NoDatum, DatumHash}
 
 pub type MainRedeemer {
   version: Int,
-  input_arg: Data,
 }
 
 pub type SpellDatum {

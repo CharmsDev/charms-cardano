@@ -1,4 +1,5 @@
 use aiken/collection/list
+use aiken/collection/pairs
 use aiken_design_patterns/merkelized_validator.{
   WithdrawRedeemer, delegated_validation,
 }
@@ -29,12 +30,10 @@ fn main_impl(
 
   expect Some(charms_validator) = ref_input.output.reference_script
 
-  merkelized_validator.delegated_validation(
-    function_input: redeemer.input_arg,
-    staking_validator: charms_validator,
-    input_data_coercer: fn(d: Data) { d },
-    redeemers: self.redeemers,
-  )
+  expect Some(rdmr) = self.redeemers |> pairs.get_first(Withdraw(Script(charms_validator)))
+  expect withdraw_redeemer: MainRedeemer = rdmr
+
+  withdraw_redeemer == redeemer
 }
 
 validator main(beacon_parts: BeaconParts, _app_vk: ByteArray) {
@@ -78,7 +77,7 @@ test main_spend_pass() {
   let spell_datum: Data = NoDatum
 
   // Create mock spell redeemer
-  let spell_redeemer: Redeemer = MainRedeemer { input_arg, version: 1 }
+  let spell_redeemer: Redeemer = MainRedeemer { version: 1 }
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -139,10 +138,6 @@ test main_spend_vk_0_inputs() fail {
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
     MainRedeemer {
-      input_arg: SnarkVerificationKey {
-        ..base_passing_circuit().vk,
-        nPublic: 0,
-      },
       version: 1,
     }
 
@@ -210,7 +205,7 @@ test main_mint_pass() {
 
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
-    MainRedeemer { input_arg: base_passing_circuit().vk, version: 1 }
+    MainRedeemer { version: 1 }
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -270,7 +265,7 @@ test main_mint_fail_no_output() fail {
 
   // Create mock spell redeemer
   let spell_redeemer: Redeemer =
-    MainRedeemer { input_arg: base_passing_circuit().vk, version: 1 }
+    MainRedeemer { version: 1 }
 
   let policy_id: PolicyId =
     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"

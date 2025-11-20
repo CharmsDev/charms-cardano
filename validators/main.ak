@@ -132,7 +132,7 @@ test main_spend_vk_0_inputs() fail {
     }
 
   // Create mock spell redeemer
-  let spell_redeemer: Redeemer = MainRedeemer { version: 1 }
+  let spell_redeemer: Redeemer = "1"
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -160,7 +160,7 @@ test main_spend_vk_0_inputs() fail {
       Pair(Spend(mock_outref), spell_redeemer),
     ]
 
-  expect redeemer: MainRedeemer = spell_redeemer
+  expect redeemer: ByteArray = spell_redeemer
   let spell_datum: Data = NoDatum
   let datum = Some(spell_datum)
 
@@ -197,7 +197,7 @@ test main_mint_pass() {
     SpellDatum { spell, proof: base_passing_circuit().proof }
 
   // Create mock spell redeemer
-  let spell_redeemer: Redeemer = MainRedeemer { version: 1 }
+  let spell_redeemer: Redeemer = "1"
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -226,7 +226,7 @@ test main_mint_pass() {
       Pair(Mint(policy_id), spell_redeemer),
     ]
 
-  expect redeemer: MainRedeemer = spell_redeemer
+  expect redeemer: ByteArray = spell_redeemer
 
   let app_vk = #"deadbeef"
 
@@ -256,7 +256,7 @@ test main_mint_fail_no_output() fail {
     }
 
   // Create mock spell redeemer
-  let spell_redeemer: Redeemer = MainRedeemer { version: 1 }
+  let spell_redeemer: Redeemer = "1"
 
   let policy_id: PolicyId =
     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
@@ -273,7 +273,7 @@ test main_mint_fail_no_output() fail {
       Pair(Mint(policy_id), spell_redeemer),
     ]
 
-  expect redeemer: MainRedeemer = spell_redeemer
+  expect redeemer: ByteArray = spell_redeemer
 
   let app_vk = #"deadbeef"
 

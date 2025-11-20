@@ -55,7 +55,7 @@ test groth_verify_pass() {
 
   merkelized_groth16.withdraw(
     base_passing_circuit().vk,
-    test_charms_version,
+    1,
     redeemer,
     Script(base_passing_circuit().sh),
     placeholder,
@@ -104,7 +104,7 @@ test groth_verify_fail() fail {
 
   merkelized_groth16.withdraw(
     vk,
-    test_charms_version,
+    1,
     redeemer,
     Script(m16_sh),
     placeholder

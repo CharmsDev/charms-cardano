@@ -1,7 +1,7 @@
 use aiken/collection/list
 use aiken/primitive/bytearray
+use cardano/assets.{Value, has_nft}
 use charms_cardano/beacon.{BeaconParts}
-use cardano/assets.{Value, has_nft_strict}
 
 pub fn bytearray_to_list(ba: ByteArray) -> List<Int> {
   bytearray.foldr(
@@ -17,7 +17,7 @@ test bal() {
 
 // only assets allowed in the beacon output are ada & 1 beacon NFT
 pub fn has_beacon(beacon: BeaconParts, version: Int, value: Value) {
-  has_nft_strict(value, beacon.policy_id, mk_beacon_tn(beacon, version))
+  has_nft(value, beacon.policy_id, mk_beacon_tn(beacon, version))
 }
 
 pub fn mk_beacon_tn(beacon: BeaconParts, version: Int) -> ByteArray {

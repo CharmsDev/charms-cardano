@@ -3,9 +3,9 @@ use charms_cardano/utils.{bytearray_to_list}
 use aiken/builtin.{serialise_data}
 use cardano/transaction.{Datum, InlineDatum, NoDatum, DatumHash}
 
-pub type SpellRedeemer {
-  input_args: Data,
-  charms_version: Int,
+pub type MainRedeemer {
+  version: Int,
+  input_arg: Data,
 }
 
 pub type SpellDatum {
@@ -23,8 +23,8 @@ pub type NormalizedSpell {
 
 // from https://github.com/CharmsDev/charms/blob/82b3bf558c7b7e70df0574ede296aea2baf6e891/charms-data/src/lib.rs#L196
 pub type App {
-    tag: String,
-    identity: ByteArray,
+  tag: String,
+  identity: ByteArray,
     vk: SnarkVerificationKey
 }
 

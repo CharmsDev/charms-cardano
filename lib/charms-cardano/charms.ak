@@ -1,7 +1,7 @@
-use ak_381/groth16.{SnarkVerificationKey, Proof}
-use charms_cardano/utils.{bytearray_to_list}
 use aiken/builtin.{serialise_data}
-use cardano/transaction.{Datum, InlineDatum, NoDatum, DatumHash}
+use ak_381/groth16.{Proof, SnarkVerificationKey}
+use cardano/transaction.{Datum, DatumHash, InlineDatum, NoDatum}
+use charms_cardano/utils.{bytearray_to_list}
 
 pub type MainRedeemer {
   version: Int,
@@ -24,10 +24,13 @@ pub type NormalizedSpell {
 pub type App {
   tag: String,
   identity: ByteArray,
-    vk: SnarkVerificationKey
+  vk: SnarkVerificationKey,
 }
 
-pub fn cbor_serialize(spell_vk: SnarkVerificationKey, spell: NormalizedSpell) -> List<Int> {
+pub fn cbor_serialize(
+  spell_vk: SnarkVerificationKey,
+  spell: NormalizedSpell,
+) -> List<Int> {
   bytearray_to_list(serialise_data((spell_vk, spell)))
 }
 

@@ -1,20 +1,15 @@
 use aiken/collection/list
 use aiken/collection/pairs
-use aiken_design_patterns/merkelized_validator.{
-  WithdrawRedeemer, delegated_validation,
-}
-use ak_381/groth16.{SnarkVerificationKey}
+use aiken_design_patterns/merkelized_validator.{WithdrawRedeemer}
 use cardano/address.{Address, Script}
 use cardano/assets.{PolicyId, from_asset}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
-  Datum, InlineDatum, Mint, NoDatum, Output, OutputReference, Redeemer,
-  ScriptPurpose, Spend, Transaction, Withdraw, placeholder,
+  InlineDatum, Mint, NoDatum, Output, OutputReference, Redeemer, ScriptPurpose,
+  Spend, Transaction, Withdraw, placeholder,
 }
 use charms_cardano/beacon.{BeaconParts, has_beacon}
-use charms_cardano/charms.{
-  App, MainRedeemer, NormalizedSpell, SpellDatum, cbor_serialize,
-}
+use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, cbor_serialize}
 use charms_cardano/test_utils.{
   TestCircuit, base_passing_circuit, test_beacon_parts,
 }

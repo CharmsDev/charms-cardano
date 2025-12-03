@@ -1,23 +1,24 @@
+use aiken/collection/list
 use aiken/crypto.{ScriptHash}
 use aiken_design_patterns/merkelized_validator.{WithdrawRedeemerIO}
 use ak_381/groth16.{Proof, SnarkVerificationKey, groth_verify}
 use cardano/address.{Credential, Script}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{Transaction, placeholder}
-use charms_cardano/test_utils.{base_passing_circuit, test_charms_version}
-use charms_cardano/charms.{extract_spell, cbor_serialize, SpellDatum}
-use aiken/collection/list
+use charms_cardano/charms.{SpellDatum, cbor_serialize, extract_spell}
+use charms_cardano/test_utils.{base_passing_circuit}
 
-validator merkelized_groth16(groth_vk: SnarkVerificationKey, charms_version: Int) {
+validator merkelized_groth16(
+  groth_vk: SnarkVerificationKey,
+  charms_version: Int,
+) {
   withdraw(
     redeemer: WithdrawRedeemerIO<Data, Bool>,
     _account: Credential,
     self: Transaction,
   ) {
     merkelized_validator.withdraw_io(
-      fn(
-        inputs: Data,
-      ) -> Bool {
+      fn(inputs: Data) -> Bool {
         // extract spell_vk from redeemer
         expect spell_vk: SnarkVerificationKey = inputs
 
@@ -48,10 +49,7 @@ validator merkelized_groth16(groth_vk: SnarkVerificationKey, charms_version: Int
 test groth_verify_pass() {
   let input_arg: Data = base_passing_circuit().vk
   let redeemer: WithdrawRedeemerIO<Data, Bool> =
-    WithdrawRedeemerIO {
-      input_arg,
-      result: True,
-    }
+    WithdrawRedeemerIO { input_arg, result: True }
 
   merkelized_groth16.withdraw(
     base_passing_circuit().vk,
@@ -97,18 +95,9 @@ test groth_verify_fail() fail {
   let public_values: List<Int> = [561, 3]
 
   let redeemer: WithdrawRedeemerIO<Data, Bool> =
-    WithdrawRedeemerIO {
-      input_arg: data_vk,
-      result: True,
-    }
+    WithdrawRedeemerIO { input_arg: data_vk, result: True }
 
-  merkelized_groth16.withdraw(
-    vk,
-    1,
-    redeemer,
-    Script(m16_sh),
-    placeholder
-  )
+  merkelized_groth16.withdraw(vk, 1, redeemer, Script(m16_sh), placeholder)
 }
 // test groth_verify_fail_1() fail {
 //   //  Template of VK

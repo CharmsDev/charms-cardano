@@ -1,16 +1,18 @@
 use aiken/collection/list
 use aiken/crypto.{ScriptHash}
 use aiken/primitive/int.{from_utf8}
-use aiken_design_patterns/stake_validator
-use ak_381/groth16.{Proof, SnarkVerificationKey, groth_verify}
-use cardano/address.{Credential, Script}
+use ak_381/groth16.{SnarkVerificationKey, groth_verify}
+use cardano/address.{Address, Credential, Script}
+use cardano/assets.{from_asset}
 use cardano/script_context.{ScriptContext}
-use cardano/transaction.{Transaction, placeholder}
-use charms_cardano/charms.{SpellDatum, cbor_serialize, extract_spell}
+use cardano/transaction.{InlineDatum, Output, Transaction, placeholder}
+use charms_cardano/charms.{
+  App, NormalizedSpell, SpellDatum, cbor_serialize, extract_spell,
+}
 use charms_cardano/test_utils.{base_passing_circuit}
 
 validator staking_groth16(spell_vk: SnarkVerificationKey, charms_version: Int) {
-  withdraw(redeemer: ByteArray, account: Credential, self: Transaction) {
+  withdraw(_redeemer: ByteArray, _account: Credential, self: Transaction) {
     // find spell output
     expect Some(spell_output) = list.last(self.outputs)
 
@@ -21,7 +23,6 @@ validator staking_groth16(spell_vk: SnarkVerificationKey, charms_version: Int) {
     //expect Some(version) = from_utf8(redeemer) // not needed?
     expect charms_version == spell.version
 
-    //&& version == spell.version
     // serialize public inputs
     let app_public_inputs = cbor_serialize(spell_vk, spell)
 
@@ -35,15 +36,42 @@ validator staking_groth16(spell_vk: SnarkVerificationKey, charms_version: Int) {
 }
 
 test groth_verify_pass() {
-  let input_arg: Data = base_passing_circuit().vk
   let redeemer = "1"
+  expect Some(version) = from_utf8(redeemer)
+  let public_values: Data = base_passing_circuit().public_values
+  let app =
+    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+  let app_public_inputs = [Pair(app, public_values)]
+  let spell: NormalizedSpell =
+    NormalizedSpell {
+      version: 1,
+      tx: placeholder,
+      app_public_inputs,
+      mock: True,
+    }
+  let spell_datum: SpellDatum =
+    SpellDatum { spell, proof: base_passing_circuit().proof }
+
+  // Create mock transaction with required outputs
+  let mock_output =
+    Output {
+      address: Address {
+        payment_credential: Script(base_passing_circuit().sh),
+        stake_credential: None,
+      },
+      value: from_asset(#"", #"", 100),
+      datum: InlineDatum(spell_datum),
+      reference_script: None,
+    }
+
+  let tx = Transaction { ..placeholder, outputs: [mock_output] }
 
   staking_groth16.withdraw(
     base_passing_circuit().vk,
-    1,
+    version,
     redeemer,
     Script(base_passing_circuit().sh),
-    placeholder,
+    tx,
   )
 }
 
@@ -69,19 +97,35 @@ test groth_verify_fail() fail {
       ],
     }
 
-  let data_vk: Data = vk
-
-  //  Template of Proof
-  let pk: Proof =
-    Proof {
-      piA: #"8b84d092731c653b1accdda79c51e3f5d289bed7311189d927deadef0470e437e6d1d400634726512a79a015867424e3",
-      piB: #"92cb1c125816e4b522c7f430a5d74a61116b6189de7b2341f040194c02f10d9ef0cf081f4029444a65ea74e69d98b1cf08d3864087d5d2dee2ed6ab102f9b78e65d341f0824341a9fc25d0ea9dacccc5d355b4eddb0057949370a19c47135b0e",
-      piC: #"a4ef633c858a3ff194db50eacdf715f7296fb3d1202c54b543284e9656b69aa90f33ac0e2572d3ab847b88268dcd1f7e",
-    }
-  // Template of public values
-  let public_values: List<Int> = [561, 3]
-
   let redeemer = "1"
+  expect Some(version) = from_utf8(redeemer)
+  let public_values: Data = base_passing_circuit().public_values
+  let app =
+    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+  let app_public_inputs = [Pair(app, public_values)]
+  let spell: NormalizedSpell =
+    NormalizedSpell {
+      version: 1,
+      tx: placeholder,
+      app_public_inputs,
+      mock: True,
+    }
+  let spell_datum: SpellDatum =
+    SpellDatum { spell, proof: base_passing_circuit().proof }
 
-  staking_groth16.withdraw(vk, 1, redeemer, Script(m16_sh), placeholder)
+  // Create mock transaction with required outputs  
+  let mock_output =
+    Output {
+      address: Address {
+        payment_credential: Script(base_passing_circuit().sh),
+        stake_credential: None,
+      },
+      value: from_asset(#"", #"", 100),
+      datum: InlineDatum(spell_datum),
+      reference_script: None,
+    }
+
+  let tx = Transaction { ..placeholder, outputs: [mock_output] }
+
+  staking_groth16.withdraw(vk, version, redeemer, Script(m16_sh), tx)
 }

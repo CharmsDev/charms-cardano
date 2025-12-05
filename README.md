@@ -53,13 +53,7 @@ aiken check -m foo
 
 ## Documentation
 
-If you're writing a library, you might want to generate an HTML documentation for it.
-
-Use:
-
-```sh
-aiken docs
-```
+Check out `/spec` for documentation
 
 ## Resources
 

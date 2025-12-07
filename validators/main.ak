@@ -1,3 +1,4 @@
+use aiken/builtin.{verify_schnorr_secp256k1_signature}
 use aiken/collection/list
 use aiken/collection/pairs
 use aiken/crypto.{ScriptHash}
@@ -5,7 +6,7 @@ use aiken_design_patterns/merkelized_validator.{
   WithdrawRedeemer, delegated_validation,
 }
 use ak_381/groth16.{SnarkVerificationKey}
-use cardano/address.{Address, Script}
+use cardano/address.{Address, Credential, Script}
 use cardano/assets.{PolicyId, from_asset, has_nft}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
@@ -45,6 +46,16 @@ validator main(version_nft_policy_id: ScriptHash, _app_vk: ByteArray) {
     self: Transaction,
   ) {
     main_impl(version_nft_policy_id, redeemer, self)
+  }
+
+  else(_ctx: ScriptContext) {
+    fail @"invalid script purpose"
+  }
+}
+
+validator scrolls(vkey: ByteArray) {
+  withdraw(redeemer: ByteArray, _account: Credential, self: Transaction) {
+    verify_schnorr_secp256k1_signature(vkey, self.id, redeemer)
   }
 
   else(_ctx: ScriptContext) {

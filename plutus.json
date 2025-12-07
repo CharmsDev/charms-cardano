@@ -150,6 +150,41 @@
       "hash": "b3346443e14de85048f2210d0d39cd38a7ddcd6839ee1630307e6af6"
     },
     {
+      "title": "main.scrolls.withdraw",
+      "redeemer": {
+        "title": "redeemer",
+        "schema": {
+          "$ref": "#/definitions/ByteArray"
+        }
+      },
+      "parameters": [
+        {
+          "title": "vkey",
+          "schema": {
+            "$ref": "#/definitions/ByteArray"
+          }
+        }
+      ],
+      "compiledCode": "5878010100229800aba2aba1aab9eaab9dab9a9bae002488888966002646464b30013370e900218031baa0018994c0040166eb8c024c028c028c028c028c028c028c028c028c028c028c028c020dd518048024dd71804801aed46010600e6ea80062c8028c01cc020004c01c004c010dd5003c52689b2b200401",
+      "hash": "943e826923d9d33d3042ddd05435b7947b4c1d63c8eec2c74d1ecd32"
+    },
+    {
+      "title": "main.scrolls.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "parameters": [
+        {
+          "title": "vkey",
+          "schema": {
+            "$ref": "#/definitions/ByteArray"
+          }
+        }
+      ],
+      "compiledCode": "5878010100229800aba2aba1aab9eaab9dab9a9bae002488888966002646464b30013370e900218031baa0018994c0040166eb8c024c028c028c028c028c028c028c028c028c028c028c028c020dd518048024dd71804801aed46010600e6ea80062c8028c01cc020004c01c004c010dd5003c52689b2b200401",
+      "hash": "943e826923d9d33d3042ddd05435b7947b4c1d63c8eec2c74d1ecd32"
+    },
+    {
       "title": "merkelized_groth16.merkelized_groth16.withdraw",
       "redeemer": {
         "title": "redeemer",

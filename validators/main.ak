@@ -1,35 +1,40 @@
+use aiken/builtin.{verify_schnorr_secp256k1_signature}
 use aiken/collection/list
 use aiken/collection/pairs
-use aiken_design_patterns/merkelized_validator.{WithdrawRedeemer}
-use cardano/address.{Address, Script}
-use cardano/assets.{PolicyId, from_asset}
+use ak_381/groth16.{SnarkVerificationKey}
+use cardano/address.{Address, Credential, Script}
+use cardano/assets.{PolicyId, from_asset, has_nft}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
   InlineDatum, Mint, NoDatum, Output, OutputReference, Redeemer, ScriptPurpose,
   Spend, Transaction, Withdraw, placeholder,
 }
 use charms_cardano/beacon.{BeaconParts, has_beacon}
-use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, cbor_serialize}
+use charms_cardano/charms.{
+  App, MainRedeemer, NormalizedSpell, SpellDatum, cbor_serialize,
+}
 use charms_cardano/test_utils.{
   TestCircuit, base_passing_circuit, test_beacon_parts,
 }
+use aiken/crypto.{ScriptHash}
 
 fn main_impl(
-  beacon_parts: BeaconParts,
-  redeemer: ByteArray,
+  version_nft_policy_id: ScriptHash,
+  version_nft_name: ByteArray,
   self: Transaction,
 ) -> Bool {
   expect Some(ref_input) = list.last(self.reference_inputs)
-  expect has_beacon(beacon_parts, redeemer, ref_input.output.value)
+  expect
+    has_nft(ref_input.output.value, version_nft_policy_id, version_nft_name)
 
   expect Some(charms_validator) = ref_input.output.reference_script
 
   self.redeemers |> pairs.has_key(Withdraw(Script(charms_validator)))
 }
 
-validator main(beacon_parts: BeaconParts, _app_vk: ByteArray) {
+validator main(version_nft_policy_id: ScriptHash, _app_vk: ByteArray) {
   mint(redeemer: ByteArray, _policy_id: PolicyId, self: Transaction) {
-    main_impl(beacon_parts, redeemer, self)
+    main_impl(version_nft_policy_id, redeemer, self)
   }
 
   spend(
@@ -38,7 +43,17 @@ validator main(beacon_parts: BeaconParts, _app_vk: ByteArray) {
     _utxo: OutputReference,
     self: Transaction,
   ) {
-    main_impl(beacon_parts, redeemer, self)
+    main_impl(version_nft_policy_id, redeemer, self)
+  }
+
+  else(_ctx: ScriptContext) {
+    fail @"invalid script purpose"
+  }
+}
+
+validator scrolls(vkey: ByteArray) {
+  withdraw(redeemer: ByteArray, _account: Credential, self: Transaction) {
+    verify_schnorr_secp256k1_signature(vkey, self.id, redeemer)
   }
 
   else(_ctx: ScriptContext) {
@@ -87,7 +102,7 @@ test main_spend_pass() {
   let expected_public_values: List<Int> =
     cbor_serialize(base_passing_circuit().vk, spell)
 
-  let withdraw_redeemer: Redeemer = WithdrawRedeemer { input_arg }
+  let withdraw_redeemer: Redeemer = { input_arg }
 
   let redeemers: Pairs<ScriptPurpose, Redeemer> =
     [
@@ -101,7 +116,7 @@ test main_spend_pass() {
   let app_vk = #"deadbeef"
 
   main.spend(
-    test_beacon_parts,
+    test_beacon_parts.policy_id,
     app_vk,
     datum,
     redeemer,
@@ -162,7 +177,7 @@ test main_spend_vk_0_inputs() fail {
   let app_vk = #"deadbeef"
 
   main.spend(
-    test_beacon_parts,
+    test_beacon_parts.policy_id,
     app_vk,
     datum,
     redeemer,
@@ -226,7 +241,7 @@ test main_mint_pass() {
   let app_vk = #"deadbeef"
 
   main.mint(
-    test_beacon_parts,
+    test_beacon_parts.policy_id,
     app_vk,
     redeemer,
     policy_id,
@@ -274,7 +289,7 @@ test main_mint_fail_no_output() fail {
 
   // No outputs - this should cause the mint to fail when trying to get the last output
   main.mint(
-    test_beacon_parts,
+    test_beacon_parts.policy_id,
     app_vk,
     redeemer,
     policy_id,

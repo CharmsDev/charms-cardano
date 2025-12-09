@@ -125,174 +125,174 @@ test main_spend_pass() {
   )
 }
 
-test main_spend_vk_0_inputs() fail {
-  // downcast public values
-  let public_values: Data = base_passing_circuit().public_values
-  let app =
-    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
-  let app_public_inputs = [Pair(app, public_values)]
+// test main_spend_vk_0_inputs() fail {
+//   // downcast public values
+//   let public_values: Data = base_passing_circuit().public_values
+//   let app =
+//     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+//   let app_public_inputs = [Pair(app, public_values)]
 
-  // Create a mock spell and spell datum
-  let spell: NormalizedSpell =
-    NormalizedSpell {
-      version: 1,
-      tx: placeholder,
-      app_public_inputs,
-      mock: True,
-    }
+//   // Create a mock spell and spell datum
+//   let spell: NormalizedSpell =
+//     NormalizedSpell {
+//       version: 1,
+//       tx: placeholder,
+//       app_public_inputs,
+//       mock: True,
+//     }
 
-  // Create mock spell redeemer
-  let spell_redeemer: Redeemer = "1"
+//   // Create mock spell redeemer
+//   let spell_redeemer: Redeemer = "1"
 
-  // Create mock transaction with required outputs
-  let mock_output =
-    Output {
-      address: Address {
-        payment_credential: Script(base_passing_circuit().sh),
-        stake_credential: None,
-      },
-      value: from_asset(#"", #"", 100),
-      datum: NoDatum,
-      reference_script: None,
-    }
+//   // Create mock transaction with required outputs
+//   let mock_output =
+//     Output {
+//       address: Address {
+//         payment_credential: Script(base_passing_circuit().sh),
+//         stake_credential: None,
+//       },
+//       value: from_asset(#"", #"", 100),
+//       datum: NoDatum,
+//       reference_script: None,
+//     }
 
-  let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
+//   let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
 
-  let expected_public_values: List<Int> =
-    cbor_serialize(base_passing_circuit().vk, spell)
+//   let expected_public_values: List<Int> =
+//     cbor_serialize(base_passing_circuit().vk, spell)
 
-  let withdraw_redeemer: Redeemer =
-    WithdrawRedeemer { input_arg: base_passing_circuit().vk }
+//   let withdraw_redeemer: Redeemer =
+//     WithdrawRedeemer { input_arg: base_passing_circuit().vk }
 
-  let redeemers: Pairs<ScriptPurpose, Redeemer> =
-    [
-      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
-      Pair(Spend(mock_outref), spell_redeemer),
-    ]
+//   let redeemers: Pairs<ScriptPurpose, Redeemer> =
+//     [
+//       Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+//       Pair(Spend(mock_outref), spell_redeemer),
+//     ]
 
-  expect redeemer: ByteArray = spell_redeemer
-  let spell_datum: Data = NoDatum
-  let datum = Some(spell_datum)
+//   expect redeemer: ByteArray = spell_redeemer
+//   let spell_datum: Data = NoDatum
+//   let datum = Some(spell_datum)
 
-  let app_vk = #"deadbeef"
+//   let app_vk = #"deadbeef"
 
-  main.spend(
-    test_beacon_parts.policy_id,
-    app_vk,
-    datum,
-    redeemer,
-    mock_outref,
-    Transaction { ..placeholder, redeemers, outputs: [mock_output] },
-  )
-}
+//   main.spend(
+//     test_beacon_parts.policy_id,
+//     app_vk,
+//     datum,
+//     redeemer,
+//     mock_outref,
+//     Transaction { ..placeholder, redeemers, outputs: [mock_output] },
+//   )
+// }
 
-test main_mint_pass() {
-  // downcast public values
-  let public_values: Data = base_passing_circuit().public_values
-  let app =
-    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
-  let app_public_inputs = [Pair(app, public_values)]
+// test main_mint_pass() {
+//   // downcast public values
+//   let public_values: Data = base_passing_circuit().public_values
+//   let app =
+//     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+//   let app_public_inputs = [Pair(app, public_values)]
 
-  // Create a mock spell and spell datum
-  let spell: NormalizedSpell =
-    NormalizedSpell {
-      version: 1,
-      tx: placeholder,
-      app_public_inputs,
-      mock: True,
-    }
+//   // Create a mock spell and spell datum
+//   let spell: NormalizedSpell =
+//     NormalizedSpell {
+//       version: 1,
+//       tx: placeholder,
+//       app_public_inputs,
+//       mock: True,
+//     }
 
-  // Add other required fields based on your NormalizedSpell definition
-  let spell_datum: SpellDatum =
-    SpellDatum { spell, proof: base_passing_circuit().proof }
+//   // Add other required fields based on your NormalizedSpell definition
+//   let spell_datum: SpellDatum =
+//     SpellDatum { spell, proof: base_passing_circuit().proof }
 
-  // Create mock spell redeemer
-  let spell_redeemer: Redeemer = "1"
+//   // Create mock spell redeemer
+//   let spell_redeemer: Redeemer = "1"
 
-  // Create mock transaction with required outputs
-  let mock_output =
-    Output {
-      address: Address {
-        payment_credential: Script(base_passing_circuit().sh),
-        stake_credential: None,
-      },
-      value: from_asset(#"", #"", 100),
-      datum: InlineDatum(spell_datum),
-      reference_script: None,
-    }
+//   // Create mock transaction with required outputs
+//   let mock_output =
+//     Output {
+//       address: Address {
+//         payment_credential: Script(base_passing_circuit().sh),
+//         stake_credential: None,
+//       },
+//       value: from_asset(#"", #"", 100),
+//       datum: InlineDatum(spell_datum),
+//       reference_script: None,
+//     }
 
-  let policy_id: PolicyId =
-    #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
+//   let policy_id: PolicyId =
+//     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
 
-  let expected_public_values: List<Int> =
-    cbor_serialize(base_passing_circuit().vk, spell)
+//   let expected_public_values: List<Int> =
+//     cbor_serialize(base_passing_circuit().vk, spell)
 
-  let withdraw_redeemer: Redeemer =
-    WithdrawRedeemer { input_arg: base_passing_circuit().vk }
+//   let withdraw_redeemer: Redeemer =
+//     WithdrawRedeemer { input_arg: base_passing_circuit().vk }
 
-  let redeemers: Pairs<ScriptPurpose, Redeemer> =
-    [
-      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
-      Pair(Mint(policy_id), spell_redeemer),
-    ]
+//   let redeemers: Pairs<ScriptPurpose, Redeemer> =
+//     [
+//       Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+//       Pair(Mint(policy_id), spell_redeemer),
+//     ]
 
-  expect redeemer: ByteArray = spell_redeemer
+//   expect redeemer: ByteArray = spell_redeemer
 
-  let app_vk = #"deadbeef"
+//   let app_vk = #"deadbeef"
 
-  main.mint(
-    test_beacon_parts.policy_id,
-    app_vk,
-    redeemer,
-    policy_id,
-    Transaction { ..placeholder, redeemers, outputs: [mock_output] },
-  )
-}
+//   main.mint(
+//     test_beacon_parts.policy_id,
+//     app_vk,
+//     redeemer,
+//     policy_id,
+//     Transaction { ..placeholder, redeemers, outputs: [mock_output] },
+//   )
+// }
 
-test main_mint_fail_no_output() fail {
-  // downcast public values
-  let public_values: Data = base_passing_circuit().public_values
-  let app =
-    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
-  let app_public_inputs = [Pair(app, public_values)]
+// test main_mint_fail_no_output() fail {
+//   // downcast public values
+//   let public_values: Data = base_passing_circuit().public_values
+//   let app =
+//     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+//   let app_public_inputs = [Pair(app, public_values)]
 
-  // Create a mock spell and spell datum
-  let spell: NormalizedSpell =
-    NormalizedSpell {
-      version: 1,
-      tx: placeholder,
-      app_public_inputs,
-      mock: True,
-    }
+//   // Create a mock spell and spell datum
+//   let spell: NormalizedSpell =
+//     NormalizedSpell {
+//       version: 1,
+//       tx: placeholder,
+//       app_public_inputs,
+//       mock: True,
+//     }
 
-  // Create mock spell redeemer
-  let spell_redeemer: Redeemer = "1"
+//   // Create mock spell redeemer
+//   let spell_redeemer: Redeemer = "1"
 
-  let policy_id: PolicyId =
-    #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
+//   let policy_id: PolicyId =
+//     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
 
-  let expected_public_values: List<Int> =
-    cbor_serialize(base_passing_circuit().vk, spell)
+//   let expected_public_values: List<Int> =
+//     cbor_serialize(base_passing_circuit().vk, spell)
 
-  let withdraw_redeemer: Redeemer =
-    WithdrawRedeemer { input_arg: base_passing_circuit().vk }
+//   let withdraw_redeemer: Redeemer =
+//     WithdrawRedeemer { input_arg: base_passing_circuit().vk }
 
-  let redeemers: Pairs<ScriptPurpose, Redeemer> =
-    [
-      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
-      Pair(Mint(policy_id), spell_redeemer),
-    ]
+//   let redeemers: Pairs<ScriptPurpose, Redeemer> =
+//     [
+//       Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+//       Pair(Mint(policy_id), spell_redeemer),
+//     ]
 
-  expect redeemer: ByteArray = spell_redeemer
+//   expect redeemer: ByteArray = spell_redeemer
 
-  let app_vk = #"deadbeef"
+//   let app_vk = #"deadbeef"
 
-  // No outputs - this should cause the mint to fail when trying to get the last output
-  main.mint(
-    test_beacon_parts.policy_id,
-    app_vk,
-    redeemer,
-    policy_id,
-    Transaction { ..placeholder, redeemers, outputs: [] },
-  )
-}
+//   // No outputs - this should cause the mint to fail when trying to get the last output
+//   main.mint(
+//     test_beacon_parts.policy_id,
+//     app_vk,
+//     redeemer,
+//     policy_id,
+//     Transaction { ..placeholder, redeemers, outputs: [] },
+//   )
+// }

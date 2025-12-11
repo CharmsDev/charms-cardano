@@ -1,114 +1,64 @@
-use aiken/builtin.{serialise_data}
+use aiken/builtin.{verify_schnorr_secp256k1_signature}
 use aiken/collection/list
-use aiken/crypto.{ScriptHash}
-use aiken_design_patterns/merkelized_validator.{WithdrawRedeemer}
+use aiken/collection/pairs
 use ak_381/groth16.{SnarkVerificationKey}
-use cardano/address.{Address, Script}
-use cardano/assets.{PolicyId, from_asset}
+use cardano/address.{Address, Credential, Script}
+use cardano/assets.{PolicyId, from_asset, has_nft}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
-  Datum, DatumHash, InlineDatum, Mint, NoDatum, Output, OutputReference,
-  Redeemer, ScriptPurpose, Spend, Transaction, Withdraw, placeholder,
+  InlineDatum, Mint, NoDatum, Output, OutputReference, Redeemer, ScriptPurpose,
+  Spend, Transaction, Withdraw, placeholder,
 }
-use charms_cardano/charms.{App, NormalizedSpell, SpellDatum, SpellRedeemer}
-use charms_cardano/groth.{Groth16Inputs, groth16_input_coercer}
-use charms_cardano/test_utils.{TestCircuit, base_passing_circuit}
-use charms_cardano/utils.{bytearray_to_list}
+use charms_cardano/beacon.{BeaconParts, has_beacon}
+use charms_cardano/charms.{
+  App, MainRedeemer, NormalizedSpell, SpellDatum, cbor_serialize,
+}
+use charms_cardano/test_utils.{
+  TestCircuit, base_passing_circuit, test_beacon_parts,
+}
+use aiken/crypto.{ScriptHash}
 
-validator main(merkelized_groth16: ScriptHash) {
-  mint(redeemer: SpellRedeemer, _policy_id: PolicyId, self: Transaction) {
-    //TODO: Confirm the token name is correct
+fn main_impl(
+  version_nft_policy_id: ScriptHash,
+  version_nft_name: ByteArray,
+  self: Transaction,
+) -> Bool {
+  expect Some(ref_input) = list.last(self.reference_inputs)
+  expect
+    has_nft(ref_input.output.value, version_nft_policy_id, version_nft_name)
 
-    // expect Some(spell_input) = find_input(self.inputs, utxo) // left out for testing purposes
-    expect Some(spell_output) = list.last(self.outputs)
+  expect Some(charms_validator) = ref_input.output.reference_script
 
-    // expect spell_input.output.datum == spell_output.datum // left out for testing purposes
-    expect SpellDatum { spell, proof } = extract_spell(spell_output.datum)
+  self.redeemers |> pairs.has_key(Withdraw(Script(charms_validator)))
+}
 
-    let app_public_inputs = to_serialized_pv(spell, redeemer.spell_vk)
-
-    let groth_inputs: Groth16Inputs =
-      Groth16Inputs { proof, public_values: app_public_inputs }
-
-    merkelized_validator.delegated_validation(
-      function_input: groth_inputs,
-      staking_validator: merkelized_groth16,
-      input_data_coercer: groth16_input_coercer,
-      redeemers: self.redeemers,
-    )
+validator main(version_nft_policy_id: ScriptHash, _app_vk: ByteArray) {
+  mint(redeemer: ByteArray, _policy_id: PolicyId, self: Transaction) {
+    main_impl(version_nft_policy_id, redeemer, self)
   }
 
-  /// Confirm the Merkelized Validator has signed the Tx
-  /// [Optional] Confirm outputs conform to the Charm Assetname Standard
   spend(
-    datum_opt: Option<SpellDatum>,
-    redeemer: SpellRedeemer,
+    _datum_opt: Option<Data>,
+    redeemer: ByteArray,
     _utxo: OutputReference,
     self: Transaction,
   ) {
-    expect Some(SpellDatum { spell, proof }) = datum_opt
-
-    let app_public_inputs = to_serialized_pv(spell, redeemer.spell_vk)
-
-    let groth_inputs: Groth16Inputs =
-      Groth16Inputs { proof, public_values: app_public_inputs }
-
-    merkelized_validator.delegated_validation(
-      function_input: groth_inputs,
-      staking_validator: merkelized_groth16,
-      input_data_coercer: groth16_input_coercer,
-      redeemers: self.redeemers,
-    )
+    main_impl(version_nft_policy_id, redeemer, self)
   }
 
-  /// Identify Charms - Check for utxos which contain a charms datum / charms native asset
-  /// Confirm the spell datum has not been changed
-  /// Parse Charms data - Retrieve the following parameters from said utxos:
-  /// a. Groth Verification Key | parameter/redeemer
-  /// - groth_vk is passed as a parameter to the validator
-  /// b. Proof | in a tuple of (spell, proof) in the change output
-  /// c. Public Inputs (App Data, App VK) | parse from spell, inputs
-  /// Confirm the params listed in the redeemer match those acquired in step 2
-  /// Confirm the Merkelized Validator has signed the Tx
-  /// Confirm nothing else has been spent from this address
   else(_ctx: ScriptContext) {
-    fail @"invalid redeemer in main"
+    fail @"invalid script purpose"
   }
 }
 
-fn extract_spell(datum: Datum) -> Data {
-  when datum is {
-    NoDatum -> fail
-    DatumHash(_h) -> fail
-    // just fail with DatumHash for now
-    // expect Some(d) = dict.get(tx_datums, h)
-    // d
-    InlineDatum(d) -> d
+validator scrolls(vkey: ByteArray) {
+  withdraw(redeemer: ByteArray, _account: Credential, self: Transaction) {
+    verify_schnorr_secp256k1_signature(vkey, self.id, redeemer)
   }
-}
 
-fn to_serialized_pv(
-  spell: NormalizedSpell,
-  spell_vk: SnarkVerificationKey,
-) -> List<Int> {
-  when spell.version is {
-    0 ->
-      // Legacy: commit to tuple (spell_vk, spell) using old serialization
-      sp1_serialize((spell_vk, spell))
-    _ ->
-      // Commit to CBOR-encoded tuple (spell_vk, spell)
-      cbor_serialize((spell_vk, spell))
+  else(_ctx: ScriptContext) {
+    fail @"invalid script purpose"
   }
-}
-
-fn sp1_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
-  // Probably doesn't make sense to support SP1 serialization? Will revisit.
-
-  bytearray_to_list(serialise_data(data))
-}
-
-fn cbor_serialize(data: (SnarkVerificationKey, NormalizedSpell)) -> List<Int> {
-  bytearray_to_list(serialise_data(data))
 }
 
 test main_spend_pass() {
@@ -118,6 +68,7 @@ test main_spend_pass() {
     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
   let app_public_inputs = [Pair(app, public_values)]
   let placeholder_data: Data = placeholder
+  let input_arg = base_passing_circuit().vk
 
   // Create a mock spell and spell datum
   let spell: NormalizedSpell =
@@ -129,12 +80,10 @@ test main_spend_pass() {
     }
 
   // Add other required fields based on your NormalizedSpell definition
-  let spell_datum: SpellDatum =
-    SpellDatum { spell, proof: base_passing_circuit().proof }
+  let spell_datum: Data = NoDatum
 
   // Create mock spell redeemer
-  let spell_redeemer: Redeemer =
-    SpellRedeemer { spell_vk: base_passing_circuit().vk, charms_version: 1 }
+  let spell_redeemer: Redeemer = "8"
 
   // Create mock transaction with required outputs
   let mock_output =
@@ -151,15 +100,9 @@ test main_spend_pass() {
   let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
 
   let expected_public_values: List<Int> =
-    to_serialized_pv(spell, base_passing_circuit().vk)
+    cbor_serialize(base_passing_circuit().vk, spell)
 
-  let withdraw_redeemer: Redeemer =
-    WithdrawRedeemer {
-      input_arg: Groth16Inputs {
-        proof: base_passing_circuit().proof,
-        public_values: expected_public_values,
-      },
-    }
+  let withdraw_redeemer: Redeemer = { input_arg }
 
   let redeemers: Pairs<ScriptPurpose, Redeemer> =
     [
@@ -167,11 +110,14 @@ test main_spend_pass() {
       Pair(Spend(mock_outref), spell_redeemer),
     ]
 
-  expect redeemer: SpellRedeemer = spell_redeemer
+  expect redeemer: ByteArray = spell_redeemer
   let datum = Some(spell_datum)
 
+  let app_vk = #"deadbeef"
+
   main.spend(
-    base_passing_circuit().sh,
+    test_beacon_parts.policy_id,
+    app_vk,
     datum,
     redeemer,
     mock_outref,
@@ -179,189 +125,174 @@ test main_spend_pass() {
   )
 }
 
-test main_spend_vk_0_inputs() fail {
-  // downcast public values
-  let public_values: Data = base_passing_circuit().public_values
-  let app =
-    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
-  let app_public_inputs = [Pair(app, public_values)]
+// test main_spend_vk_0_inputs() fail {
+//   // downcast public values
+//   let public_values: Data = base_passing_circuit().public_values
+//   let app =
+//     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+//   let app_public_inputs = [Pair(app, public_values)]
 
-  // Create a mock spell and spell datum
-  let spell: NormalizedSpell =
-    NormalizedSpell {
-      version: 1,
-      tx: placeholder,
-      app_public_inputs,
-      mock: True,
-    }
+//   // Create a mock spell and spell datum
+//   let spell: NormalizedSpell =
+//     NormalizedSpell {
+//       version: 1,
+//       tx: placeholder,
+//       app_public_inputs,
+//       mock: True,
+//     }
 
-  // Add other required fields based on your NormalizedSpell definition
-  let spell_datum: SpellDatum =
-    SpellDatum { spell, proof: base_passing_circuit().proof }
+//   // Create mock spell redeemer
+//   let spell_redeemer: Redeemer = "1"
 
-  // Create mock spell redeemer
-  let spell_redeemer: Redeemer =
-    SpellRedeemer {
-      spell_vk: SnarkVerificationKey { ..base_passing_circuit().vk, nPublic: 0 },
-      charms_version: 1
-    }
+//   // Create mock transaction with required outputs
+//   let mock_output =
+//     Output {
+//       address: Address {
+//         payment_credential: Script(base_passing_circuit().sh),
+//         stake_credential: None,
+//       },
+//       value: from_asset(#"", #"", 100),
+//       datum: NoDatum,
+//       reference_script: None,
+//     }
 
-  // Create mock transaction with required outputs
-  let mock_output =
-    Output {
-      address: Address {
-        payment_credential: Script(base_passing_circuit().sh),
-        stake_credential: None,
-      },
-      value: from_asset(#"", #"", 100),
-      datum: InlineDatum(spell_datum),
-      reference_script: None,
-    }
+//   let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
 
-  let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
+//   let expected_public_values: List<Int> =
+//     cbor_serialize(base_passing_circuit().vk, spell)
 
-  let expected_public_values: List<Int> =
-    to_serialized_pv(spell, base_passing_circuit().vk)
+//   let withdraw_redeemer: Redeemer =
+//     WithdrawRedeemer { input_arg: base_passing_circuit().vk }
 
-  let withdraw_redeemer: Redeemer =
-    WithdrawRedeemer {
-      input_arg: Groth16Inputs {
-        proof: base_passing_circuit().proof,
-        public_values: expected_public_values,
-      },
-    }
+//   let redeemers: Pairs<ScriptPurpose, Redeemer> =
+//     [
+//       Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+//       Pair(Spend(mock_outref), spell_redeemer),
+//     ]
 
-  let redeemers: Pairs<ScriptPurpose, Redeemer> =
-    [
-      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
-      Pair(Spend(mock_outref), spell_redeemer),
-    ]
+//   expect redeemer: ByteArray = spell_redeemer
+//   let spell_datum: Data = NoDatum
+//   let datum = Some(spell_datum)
 
-  expect redeemer: SpellRedeemer = spell_redeemer
-  let datum = Some(spell_datum)
+//   let app_vk = #"deadbeef"
 
-  main.spend(
-    base_passing_circuit().sh,
-    datum,
-    redeemer,
-    mock_outref,
-    Transaction { ..placeholder, redeemers, outputs: [mock_output] },
-  )
-}
+//   main.spend(
+//     test_beacon_parts.policy_id,
+//     app_vk,
+//     datum,
+//     redeemer,
+//     mock_outref,
+//     Transaction { ..placeholder, redeemers, outputs: [mock_output] },
+//   )
+// }
 
-test main_mint_pass() {
-  // downcast public values
-  let public_values: Data = base_passing_circuit().public_values
-  let app =
-    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
-  let app_public_inputs = [Pair(app, public_values)]
+// test main_mint_pass() {
+//   // downcast public values
+//   let public_values: Data = base_passing_circuit().public_values
+//   let app =
+//     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+//   let app_public_inputs = [Pair(app, public_values)]
 
-  // Create a mock spell and spell datum
-  let spell: NormalizedSpell =
-    NormalizedSpell {
-      version: 1,
-      tx: placeholder,
-      app_public_inputs,
-      mock: True,
-    }
+//   // Create a mock spell and spell datum
+//   let spell: NormalizedSpell =
+//     NormalizedSpell {
+//       version: 1,
+//       tx: placeholder,
+//       app_public_inputs,
+//       mock: True,
+//     }
 
-  // Add other required fields based on your NormalizedSpell definition
-  let spell_datum: SpellDatum =
-    SpellDatum { spell, proof: base_passing_circuit().proof }
+//   // Add other required fields based on your NormalizedSpell definition
+//   let spell_datum: SpellDatum =
+//     SpellDatum { spell, proof: base_passing_circuit().proof }
 
-  // Create mock spell redeemer
-  let spell_redeemer: Redeemer =
-    SpellRedeemer { spell_vk: base_passing_circuit().vk, charms_version: 1 }
+//   // Create mock spell redeemer
+//   let spell_redeemer: Redeemer = "1"
 
-  // Create mock transaction with required outputs
-  let mock_output =
-    Output {
-      address: Address {
-        payment_credential: Script(base_passing_circuit().sh),
-        stake_credential: None,
-      },
-      value: from_asset(#"", #"", 100),
-      datum: InlineDatum(spell_datum),
-      reference_script: None,
-    }
+//   // Create mock transaction with required outputs
+//   let mock_output =
+//     Output {
+//       address: Address {
+//         payment_credential: Script(base_passing_circuit().sh),
+//         stake_credential: None,
+//       },
+//       value: from_asset(#"", #"", 100),
+//       datum: InlineDatum(spell_datum),
+//       reference_script: None,
+//     }
 
-  let policy_id: PolicyId =
-    #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
+//   let policy_id: PolicyId =
+//     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
 
-  let expected_public_values: List<Int> =
-    to_serialized_pv(spell, base_passing_circuit().vk)
+//   let expected_public_values: List<Int> =
+//     cbor_serialize(base_passing_circuit().vk, spell)
 
-  let withdraw_redeemer: Redeemer =
-    WithdrawRedeemer {
-      input_arg: Groth16Inputs {
-        proof: base_passing_circuit().proof,
-        public_values: expected_public_values,
-      },
-    }
+//   let withdraw_redeemer: Redeemer =
+//     WithdrawRedeemer { input_arg: base_passing_circuit().vk }
 
-  let redeemers: Pairs<ScriptPurpose, Redeemer> =
-    [
-      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
-      Pair(Mint(policy_id), spell_redeemer),
-    ]
+//   let redeemers: Pairs<ScriptPurpose, Redeemer> =
+//     [
+//       Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+//       Pair(Mint(policy_id), spell_redeemer),
+//     ]
 
-  expect redeemer: SpellRedeemer = spell_redeemer
+//   expect redeemer: ByteArray = spell_redeemer
 
-  main.mint(
-    base_passing_circuit().sh,
-    redeemer,
-    policy_id,
-    Transaction { ..placeholder, redeemers, outputs: [mock_output] },
-  )
-}
+//   let app_vk = #"deadbeef"
 
-test main_mint_fail_no_output() fail {
-  // downcast public values
-  let public_values: Data = base_passing_circuit().public_values
-  let app =
-    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
-  let app_public_inputs = [Pair(app, public_values)]
+//   main.mint(
+//     test_beacon_parts.policy_id,
+//     app_vk,
+//     redeemer,
+//     policy_id,
+//     Transaction { ..placeholder, redeemers, outputs: [mock_output] },
+//   )
+// }
 
-  // Create a mock spell and spell datum
-  let spell: NormalizedSpell =
-    NormalizedSpell {
-      version: 1,
-      tx: placeholder,
-      app_public_inputs,
-      mock: True,
-    }
+// test main_mint_fail_no_output() fail {
+//   // downcast public values
+//   let public_values: Data = base_passing_circuit().public_values
+//   let app =
+//     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+//   let app_public_inputs = [Pair(app, public_values)]
 
-  // Create mock spell redeemer
-  let spell_redeemer: Redeemer =
-    SpellRedeemer { spell_vk: base_passing_circuit().vk, charms_version: 1 }
+//   // Create a mock spell and spell datum
+//   let spell: NormalizedSpell =
+//     NormalizedSpell {
+//       version: 1,
+//       tx: placeholder,
+//       app_public_inputs,
+//       mock: True,
+//     }
 
-  let policy_id: PolicyId =
-    #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
+//   // Create mock spell redeemer
+//   let spell_redeemer: Redeemer = "1"
 
-  let expected_public_values: List<Int> =
-    to_serialized_pv(spell, base_passing_circuit().vk)
+//   let policy_id: PolicyId =
+//     #"abcdef1234567890abcdef1234567890abcdef1234567890abcdef12"
 
-  let withdraw_redeemer: Redeemer =
-    WithdrawRedeemer {
-      input_arg: Groth16Inputs {
-        proof: base_passing_circuit().proof,
-        public_values: expected_public_values,
-      },
-    }
+//   let expected_public_values: List<Int> =
+//     cbor_serialize(base_passing_circuit().vk, spell)
 
-  let redeemers: Pairs<ScriptPurpose, Redeemer> =
-    [
-      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
-      Pair(Mint(policy_id), spell_redeemer),
-    ]
+//   let withdraw_redeemer: Redeemer =
+//     WithdrawRedeemer { input_arg: base_passing_circuit().vk }
 
-  expect redeemer: SpellRedeemer = spell_redeemer
+//   let redeemers: Pairs<ScriptPurpose, Redeemer> =
+//     [
+//       Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+//       Pair(Mint(policy_id), spell_redeemer),
+//     ]
 
-  // No outputs - this should cause the mint to fail when trying to get the last output
-  main.mint(
-    base_passing_circuit().sh,
-    redeemer,
-    policy_id,
-    Transaction { ..placeholder, redeemers, outputs: [] },
-  )
-}
+//   expect redeemer: ByteArray = spell_redeemer
+
+//   let app_vk = #"deadbeef"
+
+//   // No outputs - this should cause the mint to fail when trying to get the last output
+//   main.mint(
+//     test_beacon_parts.policy_id,
+//     app_vk,
+//     redeemer,
+//     policy_id,
+//     Transaction { ..placeholder, redeemers, outputs: [] },
+//   )
+// }

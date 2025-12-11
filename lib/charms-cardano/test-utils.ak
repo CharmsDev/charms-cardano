@@ -1,5 +1,9 @@
 use aiken/crypto.{ScriptHash}
 use ak_381/groth16.{Proof, SnarkVerificationKey}
+use cardano/address.{from_script}
+use cardano/assets.{from_asset}
+use cardano/transaction.{InlineDatum, Output}
+use charms_cardano/beacon.{BeaconDatum, BeaconParts, beacon_asset_name}
 
 pub type TestCircuit {
   sh: ScriptHash,
@@ -7,6 +11,16 @@ pub type TestCircuit {
   proof: Proof,
   public_values: List<Int>,
 }
+
+pub const test_charms_version = "67"
+
+pub const test_beacon_parts: BeaconParts =
+  BeaconParts {
+    policy_id: #"fe7c7867b321f41c674ef6c1af7b3250a673c24e4213e0425a7ae456",
+    // token minting policy (not legit)
+    name_prefix: "222",
+    name_suffix: "deadbeef",
+  }
 
 pub fn base_passing_circuit() -> TestCircuit {
   let sh: ScriptHash =
@@ -41,4 +55,19 @@ pub fn base_passing_circuit() -> TestCircuit {
   let public_values: List<Int> = [561, 3]
 
   TestCircuit { sh, vk, proof, public_values }
+}
+
+pub fn test_beacon() -> Output {
+  Output {
+    address: from_script(base_passing_circuit().sh),
+    value: from_asset(
+      test_beacon_parts.policy_id,
+      beacon_asset_name(test_beacon_parts, test_charms_version),
+      1,
+    ),
+    datum: InlineDatum(
+      BeaconDatum { withdraw_credential: base_passing_circuit().sh },
+    ),
+    reference_script: Some(base_passing_circuit().sh),
+  }
 }

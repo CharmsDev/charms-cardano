@@ -1,17 +1,16 @@
 use aiken/builtin.{verify_schnorr_secp256k1_signature}
 use aiken/collection/list
 use aiken/collection/pairs
-use ak_381/groth16.{SnarkVerificationKey}
 use cardano/address.{Address, Credential, Script}
 use cardano/assets.{PolicyId, from_asset, has_nft}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
-  InlineDatum, Mint, NoDatum, Output, OutputReference, Redeemer, ScriptPurpose,
+  InlineDatum, NoDatum, Output, OutputReference, Redeemer, ScriptPurpose,
   Spend, Transaction, Withdraw, placeholder,
 }
-use charms_cardano/beacon.{BeaconParts, has_beacon}
+use charms_cardano/beacon.{BeaconParts}
 use charms_cardano/charms.{
-  App, MainRedeemer, NormalizedSpell, SpellDatum, cbor_serialize,
+  App, NormalizedSpell, cbor_serialize,
 }
 use charms_cardano/test_utils.{
   TestCircuit, base_passing_circuit, test_beacon_parts,

@@ -71,3 +71,15 @@ pub fn test_beacon() -> Output {
     reference_script: Some(base_passing_circuit().sh),
   }
 }
+
+pub type SchnorrComponents {
+  signature: ByteArray,
+  message: ByteArray,
+  vkey: ByteArray,
+}
+
+pub const test_schnorr_components: SchnorrComponents = SchnorrComponents{
+  signature: #"6D461BEB2F2DA00027D884FD13A24E2AE85CAECCA8AAA2D41777217EC38FB4960A67D47BC4F0722754EDB0E9017072600FFE4030C2E73771DCD3773F46A62652",
+  message: #"243F6A8885A308D313198A2E03707344A4093822299F31D0082EFA98EC4E6C89",
+  vkey: #"DFF1D77F2A671C5F36183726DB2341BE58FEAE1DA2DECED843240F7B502BA659" 
+}

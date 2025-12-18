@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "generate-wallet": "node --loader ts-node/esm scripts/generate-wallet.ts",
-    "print-utxos": "node --loader ts-node/esm scripts/print-utxos.ts"
+    "print-utxos": "node --loader ts-node/esm scripts/print-utxos.ts",
+    "parameterize-script": "node --loader ts-node/esm scripts/parameterize-script.ts"
   },
   "keywords": [],
   "author": "",

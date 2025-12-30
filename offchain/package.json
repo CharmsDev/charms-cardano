@@ -21,7 +21,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@lucid-evolution/lucid": "^0.4.29",
+    "@evolution-sdk/evolution": "^0.3.10",
     "@types/dotenv-parse-variables": "^2.0.3",
     "@types/jest": "^29.5.14",
     "dotenv": "^16.5.0",

@@ -1,5 +1,5 @@
 use aiken/builtin.{verify_schnorr_secp256k1_signature}
-use cardano/address.{Credential, VerificationKey, Script}
+use cardano/address.{Credential, Script}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{Transaction, placeholder}
 use charms_cardano/test_utils.{test_schnorr_components}

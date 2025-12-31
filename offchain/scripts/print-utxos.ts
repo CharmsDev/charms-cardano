@@ -1,16 +1,32 @@
-import { Lucid, Blockfrost, Network } from "@lucid-evolution/lucid";
+import {
+  Core,
+  BlockfrostConfig,
+  createClient,
+  NetworkId,
+} from "@evolution-sdk/evolution";
 
 import { getEnv } from "./env.ts";
 
-const network = getEnv("PUBLIC_CARDANO_NETWORK");
+const network = getEnv("PUBLIC_CARDANO_NETWORK") as NetworkId;
 const address = getEnv("WALLET_ADDRESS");
 const blockfrostUrl = getEnv(`BLOCKFROST_URL`);
 const blockfrostKey = getEnv(`BLOCKFROST_PROJECT_KEY`);
 
 console.log(address);
 
-const blockfrost = new Blockfrost(blockfrostUrl, blockfrostKey);
-const lucid = await Lucid(blockfrost, network as Network);
-const utxos = await lucid.utxosAt(address);
+const blockfrost: BlockfrostConfig = {
+  type: "blockfrost",
+  baseUrl: blockfrostUrl,
+  projectId: blockfrostKey,
+};
+const lucid = createClient({
+  network,
+  provider: blockfrost,
+  wallet: {
+    type: "read-only",
+    address: address,
+  },
+});
+const utxos = await lucid.getWalletUtxos();
 
 console.log(utxos);

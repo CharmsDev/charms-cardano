@@ -57,7 +57,7 @@ pub fn base_passing_circuit() -> TestCircuit {
   TestCircuit { sh, vk, proof, public_values }
 }
 
-pub fn test_beacon() -> Output {
+pub fn test_beacon(withdraw_sh: ScriptHash) -> Output {
   Output {
     address: from_script(base_passing_circuit().sh),
     value: from_asset(
@@ -66,9 +66,9 @@ pub fn test_beacon() -> Output {
       1,
     ),
     datum: InlineDatum(
-      BeaconDatum { withdraw_credential: base_passing_circuit().sh },
+      BeaconDatum { withdraw_credential: withdraw_sh },
     ),
-    reference_script: Some(base_passing_circuit().sh),
+    reference_script: Some(withdraw_sh),
   }
 }
 

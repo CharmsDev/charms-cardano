@@ -4,6 +4,7 @@ use aiken/collection/pairs
 use aiken/crypto.{ScriptHash}
 use cardano/address.{Address, Credential, Script}
 use cardano/assets.{PolicyId, from_asset, has_nft}
+use cardano/certificate.{Certificate}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
   InlineDatum, NoDatum, Output, OutputReference, Redeemer, ScriptPurpose, Spend,
@@ -51,6 +52,11 @@ validator main(version_nft_policy_id: ScriptHash, _app_vk: ByteArray) {
 validator scrolls(vkey: ByteArray) {
   withdraw(redeemer: ByteArray, _account: Credential, self: Transaction) {
     verify_schnorr_secp256k1_signature(vkey, self.id, redeemer)
+  }
+
+  publish(_redeemer: ByteArray, _certificate: Certificate, _self: Transaction) {
+    // Allow registration/deregistration without signature verification
+    True
   }
 
   else(_ctx: ScriptContext) {

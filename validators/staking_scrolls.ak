@@ -1,5 +1,6 @@
 use aiken/builtin.{verify_schnorr_secp256k1_signature}
-use cardano/address.{Credential, VerificationKey, Script}
+use cardano/address.{Credential, Script}
+use cardano/certificate.{Certificate}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{Transaction, placeholder}
 use charms_cardano/test_utils.{test_schnorr_components}
@@ -9,14 +10,21 @@ validator staking_scrolls(vkey: ByteArray) {
     verify_schnorr_secp256k1_signature(vkey, self.id, redeemer)
   }
 
+  publish(_redeemer: ByteArray, _certificate: Certificate, _self: Transaction) {
+    // Allow registration/deregistration without signature verification
+    True
+  }
+
   else(_ctx: ScriptContext) {
     fail @"scrolls validation has failed"
   }
 }
 
 test staking_scrolls_pass() {
-  let placeholder_cred = Script(#"b3346443e14de85048f2210d0d39cd38a7ddcd6839ee1630307e6af6")
-  let transaction = Transaction { ..placeholder, id: test_schnorr_components.message }
+  let placeholder_cred =
+    Script(#"b3346443e14de85048f2210d0d39cd38a7ddcd6839ee1630307e6af6")
+  let transaction =
+    Transaction { ..placeholder, id: test_schnorr_components.message }
 
   staking_scrolls.withdraw(
     test_schnorr_components.vkey,
@@ -27,9 +35,12 @@ test staking_scrolls_pass() {
 }
 
 test staking_scrolls_bad_sig() fail {
-  let signature = #"6D461BEEEF2DA00027D884FD13A24E2AE85CAECCA8AAA2D41777217EC38FB4960A67D47BC4F0722754EDB0E9017072600FFE4030C2E73771DCD3773F46A62652"
-  let placeholder_cred = Script(#"b3346443e14de85048f2210d0d39cd38a7ddcd6839ee1630307e6af6")
-  let transaction = Transaction { ..placeholder, id: test_schnorr_components.message }
+  let signature =
+    #"6d461beeef2da00027d884fd13a24e2ae85caecca8aaa2d41777217ec38fb4960a67d47bc4f0722754edb0e9017072600ffe4030c2e73771dcd3773f46a62652"
+  let placeholder_cred =
+    Script(#"b3346443e14de85048f2210d0d39cd38a7ddcd6839ee1630307e6af6")
+  let transaction =
+    Transaction { ..placeholder, id: test_schnorr_components.message }
 
   staking_scrolls.withdraw(
     test_schnorr_components.vkey,
@@ -40,9 +51,11 @@ test staking_scrolls_bad_sig() fail {
 }
 
 test staking_scrolls_bad_vkey() fail {
-  let vkey = #"DFF1D77F2A671C5F36183726DB2341BEEEFEAE1DA2DECED843240F7B502BA659"
-  let placeholder_cred = Script(#"b33f6443e14de85048f2210d0d39cd38a7ddcd6839ee1630307e6af6")
-  let transaction = Transaction { ..placeholder, id: test_schnorr_components.message }
+  let vkey = #"dff1d77f2a671c5f36183726db2341beeefeae1da2deced843240f7b502ba659"
+  let placeholder_cred =
+    Script(#"b33f6443e14de85048f2210d0d39cd38a7ddcd6839ee1630307e6af6")
+  let transaction =
+    Transaction { ..placeholder, id: test_schnorr_components.message }
 
   staking_scrolls.withdraw(
     vkey,

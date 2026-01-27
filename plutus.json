@@ -47,31 +47,6 @@
       "hash": "dabe325f14f9acbade7f800b1cdc3cb35252a9fc96f32647580faab9"
     },
     {
-      "title": "lock.lock.spend",
-      "datum": {
-        "title": "_datum",
-        "schema": {
-          "$ref": "#/definitions/Data"
-        }
-      },
-      "redeemer": {
-        "title": "_redeemer",
-        "schema": {
-          "$ref": "#/definitions/Data"
-        }
-      },
-      "compiledCode": "585b01010029800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748008c01cdd500144c8cc898c028004c028c02c004c020dd50014590060c018004c00cdd5003452689b2b200201",
-      "hash": "fc20070d1e5379403add6acbf77b233b2f8240821c187b398525de28"
-    },
-    {
-      "title": "lock.lock.else",
-      "redeemer": {
-        "schema": {}
-      },
-      "compiledCode": "585b01010029800aba2aba1aab9eaab9dab9a4888896600264653001300600198031803800cc0180092225980099b8748008c01cdd500144c8cc898c028004c028c02c004c020dd50014590060c018004c00cdd5003452689b2b200201",
-      "hash": "fc20070d1e5379403add6acbf77b233b2f8240821c187b398525de28"
-    },
-    {
       "title": "main.main.mint",
       "redeemer": {
         "title": "redeemer",

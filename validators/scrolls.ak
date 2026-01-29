@@ -1,7 +1,7 @@
 use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
 use cardano/address.{Credential, Script}
-use cardano/certificate.{Certificate}
+use cardano/certificate.{Certificate, RegisterCredential}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{Transaction, placeholder}
 
@@ -10,9 +10,11 @@ validator scrolls(vkey_hash: VerificationKeyHash) {
     self.extra_signatories |> list.has(vkey_hash)
   }
 
-  publish(_redeemer: ByteArray, _certificate: Certificate, _self: Transaction) {
-    // Allow registration/deregistration without signature verification
-    True
+  publish(_redeemer: ByteArray, certificate: Certificate, _self: Transaction) {
+    when certificate is {
+      RegisterCredential { .. } -> True
+      _ -> False
+    }
   }
 
   else(_ctx: ScriptContext) {

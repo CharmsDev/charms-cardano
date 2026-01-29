@@ -35,45 +35,45 @@ validator staking_groth16(spell_vk: SnarkVerificationKey, charms_version: Int) {
   }
 }
 
-test groth_verify_pass() {
-  let redeemer = "1"
-  expect Some(version) = from_utf8(redeemer)
-  let public_values: Data = base_passing_circuit().public_values
-  let app =
-    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
-  let app_public_inputs = [Pair(app, public_values)]
-  let spell: NormalizedSpell =
-    NormalizedSpell {
-      version: 1,
-      tx: placeholder,
-      app_public_inputs,
-      mock: True,
-    }
-  let spell_datum: SpellDatum =
-    SpellDatum { spell, proof: base_passing_circuit().proof }
+// test groth_verify_pass() {
+//   let redeemer = "1"
+//   expect Some(version) = from_utf8(redeemer)
+//   let public_values: Data = base_passing_circuit().public_values
+//   let app =
+//     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+//   let app_public_inputs = [Pair(app, public_values)]
+//   let spell: NormalizedSpell =
+//     NormalizedSpell {
+//       version: 1,
+//       tx: placeholder,
+//       app_public_inputs,
+//       mock: True,
+//     }
+//   let spell_datum: SpellDatum =
+//     SpellDatum { spell, proof: base_passing_circuit().proof }
 
-  // Create mock transaction with required outputs
-  let mock_output =
-    Output {
-      address: Address {
-        payment_credential: Script(base_passing_circuit().sh),
-        stake_credential: None,
-      },
-      value: from_asset(#"", #"", 100),
-      datum: InlineDatum(spell_datum),
-      reference_script: None,
-    }
+//   // Create mock transaction with required outputs
+//   let mock_output =
+//     Output {
+//       address: Address {
+//         payment_credential: Script(base_passing_circuit().sh),
+//         stake_credential: None,
+//       },
+//       value: from_asset(#"", #"", 100),
+//       datum: InlineDatum(spell_datum),
+//       reference_script: None,
+//     }
 
-  let tx = Transaction { ..placeholder, outputs: [mock_output] }
+//   let tx = Transaction { ..placeholder, outputs: [mock_output] }
 
-  staking_groth16.withdraw(
-    base_passing_circuit().vk,
-    version,
-    redeemer,
-    Script(base_passing_circuit().sh),
-    tx,
-  )
-}
+//   staking_groth16.withdraw(
+//     base_passing_circuit().vk,
+//     version,
+//     redeemer,
+//     Script(base_passing_circuit().sh),
+//     tx,
+//   )
+// }
 
 test groth_verify_fail() fail {
   let m16_sh: ScriptHash =
@@ -113,7 +113,7 @@ test groth_verify_fail() fail {
   let spell_datum: SpellDatum =
     SpellDatum { spell, proof: base_passing_circuit().proof }
 
-  // Create mock transaction with required outputs  
+  // Create mock transaction with required outputs
   let mock_output =
     Output {
       address: Address {

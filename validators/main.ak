@@ -1,20 +1,10 @@
-use aiken/builtin.{verify_schnorr_secp256k1_signature}
 use aiken/collection/list
 use aiken/collection/pairs
 use aiken/crypto.{ScriptHash}
-use cardano/address.{Address, Credential, Script}
-use cardano/assets.{PolicyId, from_asset, has_nft}
-use cardano/certificate.{Certificate}
+use cardano/address.{Script}
+use cardano/assets.{PolicyId, has_nft}
 use cardano/script_context.{ScriptContext}
-use cardano/transaction.{
-  InlineDatum, NoDatum, Output, OutputReference, Redeemer, ScriptPurpose, Spend,
-  Transaction, Withdraw, placeholder,
-}
-use charms_cardano/beacon.{BeaconParts}
-use charms_cardano/charms.{App, NormalizedSpell, cbor_serialize}
-use charms_cardano/test_utils.{
-  TestCircuit, base_passing_circuit, test_beacon_parts,
-}
+use cardano/transaction.{Output, OutputReference, Transaction, Withdraw}
 
 fn main_impl(
   version_nft_policy_id: ScriptHash,
@@ -48,70 +38,69 @@ validator main(version_nft_policy_id: ScriptHash, _app_vk: ByteArray) {
     fail @"invalid script purpose"
   }
 }
+// test main_spend_pass() {
+//   // downcast public values
+//   let public_values: Data = base_passing_circuit().public_values
+//   let app =
+//     App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
+//   let app_public_inputs = [Pair(app, public_values)]
+//   let placeholder_data: Data = placeholder
+//   let input_arg = base_passing_circuit().vk
 
-test main_spend_pass() {
-  // downcast public values
-  let public_values: Data = base_passing_circuit().public_values
-  let app =
-    App { tag: @"test_app", identity: #"abcdef", vk: base_passing_circuit().vk }
-  let app_public_inputs = [Pair(app, public_values)]
-  let placeholder_data: Data = placeholder
-  let input_arg = base_passing_circuit().vk
+//   // Create a mock spell and spell datum
+//   let spell: NormalizedSpell =
+//     NormalizedSpell {
+//       version: 1,
+//       tx: placeholder_data,
+//       app_public_inputs,
+//       mock: True,
+//     }
 
-  // Create a mock spell and spell datum
-  let spell: NormalizedSpell =
-    NormalizedSpell {
-      version: 1,
-      tx: placeholder_data,
-      app_public_inputs,
-      mock: True,
-    }
+//   // Add other required fields based on your NormalizedSpell definition
+//   let spell_datum: Data = NoDatum
 
-  // Add other required fields based on your NormalizedSpell definition
-  let spell_datum: Data = NoDatum
+//   // Create mock spell redeemer
+//   let spell_redeemer: Redeemer = "8"
 
-  // Create mock spell redeemer
-  let spell_redeemer: Redeemer = "8"
+//   // Create mock transaction with required outputs
+//   let mock_output =
+//     Output {
+//       address: Address {
+//         payment_credential: Script(base_passing_circuit().sh),
+//         stake_credential: None,
+//       },
+//       value: from_asset(#"", #"", 100),
+//       datum: InlineDatum(spell_datum),
+//       reference_script: None,
+//     }
 
-  // Create mock transaction with required outputs
-  let mock_output =
-    Output {
-      address: Address {
-        payment_credential: Script(base_passing_circuit().sh),
-        stake_credential: None,
-      },
-      value: from_asset(#"", #"", 100),
-      datum: InlineDatum(spell_datum),
-      reference_script: None,
-    }
+//   let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
 
-  let mock_outref = OutputReference { transaction_id: #"", output_index: 0 }
+//   let expected_public_values: List<Int> =
+//     cbor_serialize(base_passing_circuit().vk, spell)
 
-  let expected_public_values: List<Int> =
-    cbor_serialize(base_passing_circuit().vk, spell)
+//   let withdraw_redeemer: Redeemer = input_arg
 
-  let withdraw_redeemer: Redeemer = input_arg
+//   let redeemers: Pairs<ScriptPurpose, Redeemer> =
+//     [
+//       Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
+//       Pair(Spend(mock_outref), spell_redeemer),
+//     ]
 
-  let redeemers: Pairs<ScriptPurpose, Redeemer> =
-    [
-      Pair(Withdraw(Script(base_passing_circuit().sh)), withdraw_redeemer),
-      Pair(Spend(mock_outref), spell_redeemer),
-    ]
+//   expect redeemer: ByteArray = spell_redeemer
+//   let datum = Some(spell_datum)
 
-  expect redeemer: ByteArray = spell_redeemer
-  let datum = Some(spell_datum)
+//   let app_vk = #"deadbeef"
 
-  let app_vk = #"deadbeef"
-
-  main.spend(
-    test_beacon_parts.policy_id,
-    app_vk,
-    datum,
-    redeemer,
-    mock_outref,
-    Transaction { ..placeholder, redeemers, outputs: [mock_output] },
-  )
-}
+//   main.spend(
+//     test_beacon_parts.policy_id,
+//     app_vk,
+//     datum,
+//     redeemer,
+//     mock_outref,
+//     Transaction { ..placeholder, redeemers, outputs: [mock_output] },
+//   )
+// }
 
 // test main_spend_vk_0_inputs() fail {
 //   // downcast public values

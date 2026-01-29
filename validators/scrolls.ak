@@ -7,7 +7,7 @@ use cardano/transaction.{Transaction, placeholder}
 
 validator scrolls(vkey_hash: VerificationKeyHash) {
   withdraw(_redeemer: Data, _account: Credential, self: Transaction) {
-    list.has(self.extra_signatories, vkey_hash)
+    self.extra_signatories |> list.has(vkey_hash)
   }
 
   publish(_redeemer: ByteArray, _certificate: Certificate, _self: Transaction) {

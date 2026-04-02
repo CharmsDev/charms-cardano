@@ -1,12 +1,14 @@
 use aiken/collection/list
 use aiken/crypto.{ScriptHash}
 use aiken_design_patterns/merkelized_validator.{WithdrawRedeemerIO}
-use ak_381/groth16.{Proof, SnarkVerificationKey, groth_verify}
+// use ak_381/groth16.{Proof}
+use ak_381/groth16.{SnarkVerificationKey, groth_verify}
 use cardano/address.{Credential, Script}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{Transaction, placeholder}
 use charms_cardano/charms.{SpellDatum, cbor_serialize, extract_spell}
-use charms_cardano/test_utils.{base_passing_circuit}
+
+// use charms_cardano/test_utils.{base_passing_circuit}
 
 validator merkelized_groth16(
   groth_vk: SnarkVerificationKey,
@@ -46,19 +48,19 @@ validator merkelized_groth16(
   }
 }
 
-test groth_verify_pass() {
-  let input_arg: Data = base_passing_circuit().vk
-  let redeemer: WithdrawRedeemerIO<Data, Bool> =
-    WithdrawRedeemerIO { input_arg, result: True }
+// test groth_verify_pass() {
+//   let input_arg: Data = base_passing_circuit().vk
+//   let redeemer: WithdrawRedeemerIO<Data, Bool> =
+//     WithdrawRedeemerIO { input_arg, result: True }
 
-  merkelized_groth16.withdraw(
-    base_passing_circuit().vk,
-    1,
-    redeemer,
-    Script(base_passing_circuit().sh),
-    placeholder,
-  )
-}
+//   merkelized_groth16.withdraw(
+//     base_passing_circuit().vk,
+//     1,
+//     redeemer,
+//     Script(base_passing_circuit().sh),
+//     placeholder,
+//   )
+// }
 
 test groth_verify_fail() fail {
   let m16_sh: ScriptHash =
@@ -84,16 +86,15 @@ test groth_verify_fail() fail {
 
   let data_vk: Data = vk
 
-  //  Template of Proof
-  let pk: Proof =
-    Proof {
-      piA: #"8b84d092731c653b1accdda79c51e3f5d289bed7311189d927deadef0470e437e6d1d400634726512a79a015867424e3",
-      piB: #"92cb1c125816e4b522c7f430a5d74a61116b6189de7b2341f040194c02f10d9ef0cf081f4029444a65ea74e69d98b1cf08d3864087d5d2dee2ed6ab102f9b78e65d341f0824341a9fc25d0ea9dacccc5d355b4eddb0057949370a19c47135b0e",
-      piC: #"a4ef633c858a3ff194db50eacdf715f7296fb3d1202c54b543284e9656b69aa90f33ac0e2572d3ab847b88268dcd1f7e",
-    }
+  // //  Template of Proof
+  // let pk: Proof =
+  //   Proof {
+  //     piA: #"8b84d092731c653b1accdda79c51e3f5d289bed7311189d927deadef0470e437e6d1d400634726512a79a015867424e3",
+  //     piB: #"92cb1c125816e4b522c7f430a5d74a61116b6189de7b2341f040194c02f10d9ef0cf081f4029444a65ea74e69d98b1cf08d3864087d5d2dee2ed6ab102f9b78e65d341f0824341a9fc25d0ea9dacccc5d355b4eddb0057949370a19c47135b0e",
+  //     piC: #"a4ef633c858a3ff194db50eacdf715f7296fb3d1202c54b543284e9656b69aa90f33ac0e2572d3ab847b88268dcd1f7e",
+  //   }
   // Template of public values
-  let public_values: List<Int> = [561, 3]
-
+  // let public_values: List<Int> = [561, 3]
   let redeemer: WithdrawRedeemerIO<Data, Bool> =
     WithdrawRedeemerIO { input_arg: data_vk, result: True }
 

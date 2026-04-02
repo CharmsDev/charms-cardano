@@ -52,7 +52,9 @@ pub type BeaconParts {
 
 A beacon asset name is constructed by concatenation:
 
-$$\text{asset\_name} = \text{name\_prefix} \mathbin{||} \text{version} \mathbin{||} \text{name\_suffix}$$
+```math
+\text{asset\_name} = \text{name\_prefix} \mathbin{||} \text{version} \mathbin{||} \text{name\_suffix}
+```
 
 ```aiken
 pub fn beacon_asset_name(beacon: BeaconParts, version: ByteArray) -> ByteArray {
@@ -106,7 +108,9 @@ The last reference input in the transaction is expected to be the beacon UTxO. T
 
 Once the versioned validator's script hash (`charms_validator`) is resolved from the beacon, the contract asserts:
 
-$$\exists\; r \in \text{tx.redeemers} \;.\; r.\text{key} = \text{Withdraw}(\text{Script}(\textit{charms\_validator}))$$
+```math
+\exists\; r \in \text{tx.redeemers} \;.\; r.\text{key} = \text{Withdraw}(\text{Script}(\textit{charms\_validator}))
+```
 
 This means the versioned validator **must be invoked as a staking withdrawal** in the same transaction. Any substantive validation rules — signature checks, zk-SNARK verification, etc. — are enforced entirely by that validator.
 

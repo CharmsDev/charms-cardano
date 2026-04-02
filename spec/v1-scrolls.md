@@ -19,7 +19,9 @@ The Scrolls validator is the versioned validator for **V1 Charms**. It implement
 
 A transaction is considered valid under V1 if and only if the ICP verifier's key hash is present in the transaction's `extra_signatories`:
 
-$$\text{valid} \iff \textit{vkey\_hash} \in \text{tx.extra\_signatories}$$
+```math
+\text{valid} \iff \textit{vkey\_hash} \in \text{tx.extra\_signatories}
+```
 
 The Scrolls validator is never invoked directly as a spending or minting script. It is registered on-chain as a staking credential and invoked via the *withdraw-0 staking validation* pattern — `main` resolves it from the beacon UTxO and requires it to be present as a withdrawal in the same transaction.
 

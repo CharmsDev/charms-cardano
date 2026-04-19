@@ -4,6 +4,9 @@ use cardano/address.{from_script}
 use cardano/assets.{from_asset}
 use cardano/transaction.{InlineDatum, Output}
 use charms_cardano/beacon.{BeaconDatum, BeaconParts, beacon_asset_name}
+use charms_cardano/charms.{NormalizedSpell}
+
+// Groth Utils
 
 pub type TestCircuit {
   sh: ScriptHash,
@@ -26,33 +29,37 @@ pub fn base_passing_circuit() -> TestCircuit {
   let sh: ScriptHash =
     #"f5f1a4c8b3e6e2c3d4b5a69788796a5b4c3d2e1f0a9b8c7d6e5f4a3b2c1d0e0f"
 
-  //  Template of VK
+  // Real mock-prover VK from CharmsDev/charms MockProver DummyCircuit 
   let vk: SnarkVerificationKey =
     SnarkVerificationKey {
-      nPublic: 2,
-      vkAlpha: #"8e3d9e248feda194cb6fa0a3b64fd2a380cb5e94836bf8148bf97ebcbb5819d9a78f63102f0293c104bcbb2f810d8eb4",
-      vkBeta: #"8cd68a7186a908212680a0234d8210c20328f8fb3ce1d69c9aec9330a5802d6cfaf6d7cf3176133221c19188590cb4141874ea7bbfcb9872931e115d882c46b90c3dcbcee10062d1c9b9b0a691d7bec7d2735f06495c7f71dea210e55b2782df",
-      vkGamma: #"93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8",
-      vkDelta: #"938231fcec443fbdeb1079ff126b8f69bd8579ffe82d39923214d4345395beee60200288fa20c97ae50f3212131b6f8802af2f9f515c65af6a9a6c294c738590104376a0af44731d6699db6a286608774243f7d1dddc4605eb340e65e15060a5",
+      nPublic: 1,
+      vkAlpha: #"8fda482e4d7d7cfe718413cd03a290e7f48e6d18867caf21e74f594eedeead1ab2ccf6bf0ed52c492f683f27d6c72861",
+      vkBeta: #"95d2ebb1584d1fc5c7e839cb5a2fdeb0c93da725ab2e89dc9f14d31ec3fd7a54c11b02df84e197ab492c02804b9d68b00a4aafdfdee1356d7089291430753ddc48bbe3dfee5677d9016b14645db6a1a623063b2c2261f53625d3bc80a6839dca",
+      vkGamma: #"a604b708bc781ae38a361b93451384c060e8865aff71dbefee8326798aab2bfea23775cc734de87c275c5ff8648ec1300dd0d7c6d60ac00708ff7db2c274f8bcf99c710a010e41a0221d9fa6582f8ab41f299a1daa65cdf007aef54c6f623dde",
+      vkDelta: #"ae3e7a8c90ba5b5e266fea7105f5d374324ad0e72809aeeda144ffba7defff7d45169d6f7e3c781dba158e67256dc98e18b219a74108de96a9519a60d0b71d6edfa740f665e34c84d83ce7d5ca555ae1cc54e5306295df8b9ffbb9f638117fb4",
       vkAlphaBeta: [
-        #"93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8",
+        // Dead field - groth_verify ignores this and recomputes e(alpha,beta) live
+        #"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
       ],
       vkIC: [
-        #"b5813c90d3455acb8608fdf66e8601f24ef048f3fdf9384862d77c72cb5cddfde2b307976b1b0319c42ba985f94be60a",
-        #"a41a0e6370c054be0f9acce08e97f6d5702d9daa9e9a934e8a377f553593baa1c58062adc73d63558653422d54d6f50c",
-        #"8e02a87c519c3145f984d25fdf769f74fbc36626c385d4554fb4bc1d7a12cbf669d40f257023b8b3c9a31e631aa8f981",
+        #"9404936cde6bd34242ed397e1cbb20cbb8c708e616c63e326caaadcd4cfbd13506d5d16a294cf12528c931e766701cfe",
+        #"a2d72c8535137e081100d44ec28bd6a0539637f4f29450ab6112d756259299f81d4ce6ef16c0bf4807a3ded9f8a8b8e5",
       ],
     }
 
-  //  Template of Proof
+  // Real mock-prover proof from CharmsDev/charms MockProver DummyCircuit
+  // Generated for spell = { version: 7, tx: ([], []), app_public_inputs: [], mock: True }
   let proof: Proof =
     Proof {
-      piA: #"8b84d092731c653b1accdda79c51e3f5d289bed7311189d927deadef0470e437e6d1d400634726512a79a015867424e3",
-      piB: #"92cb1c125816e4b522c7f430a5d74a61116b6189de7b2341f040194c02f10d9ef0cf081f4029444a65ea74e69d98b1cf08d3864087d5d2dee2ed6ab102f9b78e65d341f0824341a9fc25d0ea9dacccc5d355b4eddb0057949370a19c47135b0e",
-      piC: #"a4ef633c858a3ff194db50eacdf715f7296fb3d1202c54b543284e9656b69aa90f33ac0e2572d3ab847b88268dcd1f7e",
+      piA: #"8cb4da5f22a2e3058870ad0369f89b7e063ae5faa15584435df1ea1f85fef1f7e37bc74d5cf418f8c3deff7e384934b5",
+      piB: #"82321e01f3b7ed62c1e908dfd3f43e97932f523827651eae06f1a502437ecd13fd8451ade4d384215cce1d79e28bca500918b11d21ee827e274a65b515d32e087c8fedfd723af03852da22b3c8601a9cea6847fbd2e19d576d5c1783e80aff62",
+      piC: #"b50ff81beda7f1a5c3f77b785f3c4973b8711b2c0e23869ddf45807482ef28b91e43422efe6b5a1d17e4f24b17b6747b",
     }
-  // Template of public values
-  let public_values: List<Int> = [561, 3]
+  // SHA256(Plutus serialise_data((spell_vk, spell))) mod BLS12-381 scalar field order
+  let public_values: List<Int> =
+    [
+      41978872024384238213921674269438459460353496601843866169862833818810829177629,
+    ]
 
   TestCircuit { sh, vk, proof, public_values }
 }
@@ -65,10 +72,21 @@ pub fn test_beacon(withdraw_sh: ScriptHash) -> Output {
       beacon_asset_name(test_beacon_parts, test_charms_version),
       1,
     ),
-    datum: InlineDatum(
-      BeaconDatum { withdraw_credential: withdraw_sh },
-    ),
+    datum: InlineDatum(BeaconDatum { withdraw_credential: withdraw_sh }),
     reference_script: Some(withdraw_sh),
+  }
+}
+
+// Returns the exact NormalizedSpell used in CharmsDev/charms MockProver
+// that corresponds to the mock proof fixtures in base_passing_circuit()
+pub fn mock_normalized_spell() -> NormalizedSpell {
+  NormalizedSpell {
+    version: 7,
+    tx: ([], []),
+    // Empty transaction: (ins: [], outs: [])
+    app_public_inputs: [],
+    // Empty app_public_inputs
+    mock: True,
   }
 }
 
@@ -78,8 +96,9 @@ pub type SchnorrComponents {
   vkey: ByteArray,
 }
 
-pub const test_schnorr_components: SchnorrComponents = SchnorrComponents{
-  signature: #"6D461BEB2F2DA00027D884FD13A24E2AE85CAECCA8AAA2D41777217EC38FB4960A67D47BC4F0722754EDB0E9017072600FFE4030C2E73771DCD3773F46A62652",
-  message: #"243F6A8885A308D313198A2E03707344A4093822299F31D0082EFA98EC4E6C89",
-  vkey: #"DFF1D77F2A671C5F36183726DB2341BE58FEAE1DA2DECED843240F7B502BA659" 
-}
+pub const test_schnorr_components: SchnorrComponents =
+  SchnorrComponents {
+    signature: #"6d461beb2f2da00027d884fd13a24e2ae85caecca8aaa2d41777217ec38fb4960a67d47bc4f0722754edb0e9017072600ffe4030c2e73771dcd3773f46a62652",
+    message: #"243f6a8885a308d313198a2e03707344a4093822299f31d0082efa98ec4e6c89",
+    vkey: #"dff1d77f2a671c5f36183726db2341be58feae1da2deced843240f7b502ba659",
+  }

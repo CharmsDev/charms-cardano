@@ -1,7 +1,8 @@
 use aiken/builtin.{serialise_data}
+use aiken/crypto.{sha2_256}
 use ak_381/groth16.{Proof, SnarkVerificationKey}
 use cardano/transaction.{Datum, DatumHash, InlineDatum, NoDatum}
-use charms_cardano/utils.{bytearray_to_list}
+use charms_cardano/utils.{bytearray_to_int}
 
 pub type MainRedeemer {
   version: Int,
@@ -31,7 +32,8 @@ pub fn cbor_serialize(
   spell_vk: SnarkVerificationKey,
   spell: NormalizedSpell,
 ) -> List<Int> {
-  bytearray_to_list(serialise_data((spell_vk, spell)))
+  // Mirrors Rust MockProver: SHA256(CBOR(spell_vk, spell)) → single BLS12-381 scalar
+  [bytearray_to_int(sha2_256(serialise_data((spell_vk, spell))))]
 }
 
 pub fn extract_spell(datum: Datum) -> Data {

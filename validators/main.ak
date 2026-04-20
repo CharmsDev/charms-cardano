@@ -10,7 +10,8 @@ use cardano/transaction.{
 }
 use charms_cardano/beacon.{BeaconParts, beacon_asset_name}
 use charms_cardano/test_utils.{
-  test_beacon, test_beacon_parts, test_charms_version, test_schnorr_components,
+  base_passing_circuit, test_beacon, test_beacon_parts, test_charms_version,
+  test_schnorr_components,
 }
 
 fn main_impl(
@@ -45,6 +46,32 @@ validator main(version_nft_policy_id: ScriptHash, _app_vk: ByteArray) {
   else(_ctx: ScriptContext) {
     fail @"invalid script purpose"
   }
+}
+
+test groth_main_impl_pass() {
+  let groth_sh = base_passing_circuit().sh
+
+  let ref_oref = OutputReference { output_index: 1, transaction_id: #"" }
+  let ref_input =
+    Input { output_reference: ref_oref, output: test_beacon(groth_sh) }
+  let groth_redeemer: Redeemer = test_schnorr_components.signature
+
+  let redeemers: Pairs<ScriptPurpose, Redeemer> =
+    [Pair(Withdraw(Script(groth_sh)), groth_redeemer)]
+
+  let transaction =
+    Transaction {
+      ..placeholder,
+      redeemers,
+      reference_inputs: [ref_input],
+      id: test_schnorr_components.message,
+    }
+
+  main_impl(
+    test_beacon_parts.policy_id,
+    beacon_asset_name(test_beacon_parts, test_charms_version),
+    transaction,
+  )
 }
 
 test scrolls_main_impl_pass() {

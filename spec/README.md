@@ -22,9 +22,9 @@ Charms are utxo-chain objects that are composed of native assets with attached d
 
 Charms validation is split into 3 modular components.
 
-The technical specifics for each of these components can be found in corresponding files (TODO) in the `/spec` folder.
+The technical specifics for each of these components can be found in corresponding files in the `/spec` folder.
 
-### Main
+### [Main](main.md)
 
 The main contract is responsible for handling the delegation of transaction validation to the appropriate script based on the required charms version.
 
@@ -32,11 +32,11 @@ The main contract is responsible for handling the delegation of transaction vali
 
 The delegated validators contain the actual logic for validating transactions based on the specific charms version. Each version has its own validator script that implements the necessary rules and conditions.
 
-#### Scrolls Validator
+#### [Scrolls Validator](v1-scrolls.md)
 
 The Srolls validator is responsible for verifying the signatures from the Scrolls ICP verifiers to ensure that the transaction has been approved by the trusted parties.
 
-#### Groth16 Validator
+#### [Groth16 Validator](v2-groth.md)
 
 The Groth16 validator is responsible for verifying zk-SNARK proofs using the Groth16 proving system to ensure that the transaction satisfies the app contract.
 

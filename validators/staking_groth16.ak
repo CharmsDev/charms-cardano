@@ -3,6 +3,7 @@ use aiken/primitive/int.{from_utf8}
 use ak_381/groth16.{Proof, SnarkVerificationKey, groth_verify}
 use cardano/address.{Address, Credential, Script}
 use cardano/assets.{from_asset}
+use cardano/certificate.{Certificate, RegisterCredential}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{InlineDatum, Output, Transaction, placeholder}
 use charms_cardano/charms.{
@@ -27,6 +28,13 @@ validator staking_groth16(spell_vk: SnarkVerificationKey, charms_version: Int) {
 
     // verify groth16 proof
     groth_verify(spell_vk, proof, app_public_inputs)
+  }
+
+  publish(_redeemer: ByteArray, certificate: Certificate, _self: Transaction) {
+    when certificate is {
+      RegisterCredential { .. } -> True
+      _ -> False
+    }
   }
 
   else(_ctx: ScriptContext) {

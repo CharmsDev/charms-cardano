@@ -2,7 +2,7 @@ use aiken/collection/list
 use aiken/collection/pairs
 use aiken/crypto.{ScriptHash}
 use cardano/address.{Script}
-use cardano/assets.{PolicyId, has_nft}
+use cardano/assets.{PolicyId, from_lovelace, has_nft}
 use cardano/script_context.{ScriptContext}
 use cardano/transaction.{
   Input, Output, OutputReference, Redeemer, ScriptPurpose, Transaction, Withdraw,
@@ -101,6 +101,80 @@ test scrolls_main_impl_pass() {
     // version_nft_policy_id
     beacon_asset_name(test_beacon_parts, test_charms_version),
     // version_nft_name  
+    transaction,
+  )
+}
+
+// Negative test: expect fails when the reference input holds no beacon NFT.
+test main_impl_no_beacon_nft() fail {
+  let groth_sh = base_passing_circuit().sh
+  let ref_oref = OutputReference { output_index: 1, transaction_id: #"" }
+  let ref_input =
+    Input {
+      output_reference: ref_oref,
+      output: Output {
+        ..test_beacon(groth_sh),
+        value: from_lovelace(2_000_000),
+      },
+    }
+  let redeemer: Redeemer = test_schnorr_components.signature
+  let redeemers: Pairs<ScriptPurpose, Redeemer> =
+    [Pair(Withdraw(Script(groth_sh)), redeemer)]
+  let transaction =
+    Transaction {
+      ..placeholder,
+      redeemers,
+      reference_inputs: [ref_input],
+      id: test_schnorr_components.message,
+    }
+  main_impl(
+    test_beacon_parts.policy_id,
+    beacon_asset_name(test_beacon_parts, test_charms_version),
+    transaction,
+  )
+}
+
+// Negative test: expect fails when the beacon UTxO carries no reference_script.
+test main_impl_no_reference_script() fail {
+  let groth_sh = base_passing_circuit().sh
+  let ref_oref = OutputReference { output_index: 1, transaction_id: #"" }
+  let ref_input =
+    Input {
+      output_reference: ref_oref,
+      output: Output { ..test_beacon(groth_sh), reference_script: None },
+    }
+  let redeemer: Redeemer = test_schnorr_components.signature
+  let redeemers: Pairs<ScriptPurpose, Redeemer> =
+    [Pair(Withdraw(Script(groth_sh)), redeemer)]
+  let transaction =
+    Transaction {
+      ..placeholder,
+      redeemers,
+      reference_inputs: [ref_input],
+      id: test_schnorr_components.message,
+    }
+  main_impl(
+    test_beacon_parts.policy_id,
+    beacon_asset_name(test_beacon_parts, test_charms_version),
+    transaction,
+  )
+}
+
+// Negative test: returns False when the required Withdraw redeemer is absent.
+test main_impl_missing_withdraw_redeemer() {
+  let groth_sh = base_passing_circuit().sh
+  let ref_oref = OutputReference { output_index: 1, transaction_id: #"" }
+  let ref_input =
+    Input { output_reference: ref_oref, output: test_beacon(groth_sh) }
+  let transaction =
+    Transaction {
+      ..placeholder,
+      reference_inputs: [ref_input],
+      id: test_schnorr_components.message,
+    }
+  !main_impl(
+    test_beacon_parts.policy_id,
+    beacon_asset_name(test_beacon_parts, test_charms_version),
     transaction,
   )
 }

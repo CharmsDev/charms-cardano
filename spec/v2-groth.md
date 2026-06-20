@@ -194,11 +194,9 @@ This ensures that the proof was generated for the correct version of the Charms 
 The public inputs to the zk-SNARK circuit are derived by CBOR-serializing the `(spell_vk, spell)` pair into a flat list of bytes:
 
 ```aiken
-pub fn cbor_serialize(
-  spell_vk: SnarkVerificationKey,
-  spell: NormalizedSpell,
-) -> List<Int> {
-  bytearray_to_list(serialise_data((spell_vk, spell)))
+pub fn cbor_serialize(...) -> List<Int> {
+  // Mirrors Rust MockProver: SHA256(CBOR(spell_vk, spell)) → single BLS12-381 scalar
+  [bytearray_to_int(sha2_256(serialise_data((spell_vk, spell))))]
 }
 ```
 
